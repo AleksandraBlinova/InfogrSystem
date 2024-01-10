@@ -20,6 +20,7 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import StarBorder from "@mui/icons-material/StarBorder";
+import { Link } from "react-router-dom";
 
 const pages = ["Создать", "Возможности"];
 const options = ["Вход", "Регистрация"];
@@ -61,10 +62,13 @@ function AppBarComponent() {
     <AppBar position="static">
       <Container maxWidth="xl" style={{ backgroundColor: "#000" }}>
         <Toolbar disableGutters>
-          <img
-            src="./logo.jpg"
-            style={{ width: "150px", height: "35px", marginRight: "5px" }}
-          />
+          <Link to="/">
+            <img
+              src="./logo.jpg"
+              style={{ width: "150px", height: "35px", marginRight: "5px" }}
+            />
+          </Link>
+
           <Typography
             variant="h6"
             noWrap
@@ -201,6 +205,7 @@ function AppBarComponent() {
                     marginRight: "40px",
                     fontWeight: "600",
                   }}
+                  href="/createnewcreative"
                 >
                   Вход
                 </Button>
@@ -216,6 +221,7 @@ function AppBarComponent() {
 
                     backgroundColor: "purple",
                   }}
+                  href="/createnewcreative"
                 >
                   Регистрация
                 </Button>

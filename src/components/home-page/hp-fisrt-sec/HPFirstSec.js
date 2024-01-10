@@ -36,6 +36,7 @@ export default function HPFirstSec() {
               color="secondary"
               className="get-started"
               sx={{ backgroundColor: "#000", color: "white" }}
+              href="/createnewcreative"
             >
               Начать работу
             </Button>
