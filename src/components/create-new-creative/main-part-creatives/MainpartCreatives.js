@@ -18,6 +18,7 @@ import {
 import FolderIcon from "@mui/icons-material/Folder";
 import FolderSpecialIcon from "@mui/icons-material/FolderSpecial";
 import Divider from "@mui/material/Divider";
+import { Link } from "react-router-dom";
 
 const MainpartCreatives = () => {
   const [isHovered, setIsHovered] = React.useState(false);
@@ -50,17 +51,17 @@ const MainpartCreatives = () => {
           </Typography>
 
           <Box sx={{ marginTop: "50px" }}>
-            <Fab variant="extended">
+            <Button variant="extended" href="/newproject">
               <AddIcon sx={{ width: "20px", marginRight: "6px" }} />
               Создать новый проект
-            </Fab>
+            </Button>
           </Box>
 
           <Box sx={{ marginTop: "30px" }}>
-            <Fab variant="extended">
+            <Button variant="extended">
               <FolderIcon sx={{ width: "20px", marginRight: "6px" }} />
               Создать новую папку
-            </Fab>
+            </Button>
           </Box>
           <Box sx={{ marginTop: "80px" }}>
             {" "}

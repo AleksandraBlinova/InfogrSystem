@@ -17,7 +17,7 @@ import { styled } from "@mui/material/styles";
 const pages = ["Мои работы", "Создать"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function AppBarCreatives() {
+function AppBarCreatives(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -34,12 +34,6 @@ function AppBarCreatives() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-  };
-
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
-
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex(index);
   };
 
   const CustomMenuItem = styled(MenuItem)`
@@ -121,16 +115,20 @@ function AppBarCreatives() {
           >
             <CustomMenuItem
               key={1}
-              onClick={(event) => handleListItemClick(event, 1)}
-              selected={selectedIndex === 1}
+              onClick={(event) => props.handleListItemClick(event, 1)}
+              selected={props.selectedIndex === 1}
+              component={Link}
+              to="/createnewcreative"
             >
               <Typography textAlign="center">Мои проекты</Typography>
             </CustomMenuItem>
             <CustomMenuItem
               key={2}
-              onClick={(event) => handleListItemClick(event, 2)}
-              selected={selectedIndex === 2}
+              onClick={(event) => props.handleListItemClick(event, 2)}
+              selected={props.selectedIndex === 2}
               sx={{ marginLeft: "100px" }}
+              component={Link}
+              to="/newproject"
             >
               <Typography textAlign="center">Создать</Typography>
             </CustomMenuItem>
