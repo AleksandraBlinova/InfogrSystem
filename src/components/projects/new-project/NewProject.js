@@ -12,6 +12,7 @@ import Paper from "@mui/material/Paper";
 import { Box } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
+import CardActionArea from "@mui/material/CardActionArea";
 
 const NewProject = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(2);
@@ -58,13 +59,15 @@ const NewProject = () => {
                   Инфографика OZON
                 </TableCell>
                 <TableCell align="center">
-                  <CardMedia
-                    component="img"
-                    width="100px"
-                    height="200px"
-                    image="6391435521.jpg"
-                  />
-                  Создать без шаблона для OZON
+                  <CardActionArea href="/withouttempOzon">
+                    <CardMedia
+                      component="img"
+                      width="100px"
+                      height="200px"
+                      image="6391435521.jpg"
+                    />
+                    Создать без шаблона для OZON
+                  </CardActionArea>
                 </TableCell>
                 <TableCell align="center">
                   {" "}
