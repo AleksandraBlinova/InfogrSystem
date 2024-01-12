@@ -1,0 +1,14 @@
+.main_video_ru_poster {
+    width: 700px;
+    height: 450px;
+    margin-left: 40px;
+    margin-top: 70px;
+}
+
+@media screen and (max-width: 1300px) {
+    .main_video_ru_poster {
+        display: none;
+    }
+
+
+}

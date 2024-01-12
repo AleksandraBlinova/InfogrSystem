@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import "./HPFirstSec.css";
 
 export default function HPFirstSec() {
   return (
@@ -13,7 +14,7 @@ export default function HPFirstSec() {
             component="div"
             variant="h5"
             sx={{
-              fontSize: "50px",
+              fontSize: "45px",
               fontWeight: "500",
               textAlign: "left",
               marginTop: "50px",
@@ -42,17 +43,12 @@ export default function HPFirstSec() {
             </Button>
           </Box>
         </Box>
-        <Box>
+        <div>
           <img
             src="main_video_ru_poster.jpg"
-            style={{
-              width: "700px",
-              height: "450px",
-              marginLeft: "40px",
-              marginTop: "70px",
-            }}
+            className="main_video_ru_poster"
           ></img>
-        </Box>
+        </div>
       </Box>
     </div>
   );
