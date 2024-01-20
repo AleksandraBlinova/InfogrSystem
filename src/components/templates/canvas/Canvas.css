@@ -1,0 +1,47 @@
+.canvas {
+    position: relative;
+    width: 400px;
+    height: 500px;
+    border: 1px solid #ccc;
+    background-color: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.canvas__dropzone {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.canvas__icon {
+    font-size: 48px;
+}
+
+.canvas__images {
+    display: flex;
+    overflow: auto;
+}
+
+.canvas__image {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 8px;
+    background-size: cover;
+}
+
+.canvas__remove-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 4px;
+    padding: 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
