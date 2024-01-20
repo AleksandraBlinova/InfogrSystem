@@ -39,7 +39,7 @@ const Canvas = () => {
         }}
       >
         <Paper className="canvas" elevation={3}>
-          <div {...getRootProps()} className="canvas__dropzone">
+          {/* <div {...getRootProps()} className="canvas__dropzone">
             <input {...getInputProps()} />
           </div>
           <div className="canvas__images">
@@ -57,7 +57,7 @@ const Canvas = () => {
                 </button>
               </div>
             ))}
-          </div>
+          </div> */}
         </Paper>
       </Box>
     </>
