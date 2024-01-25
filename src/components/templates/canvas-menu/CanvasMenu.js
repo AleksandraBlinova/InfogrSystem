@@ -19,49 +19,10 @@ import CircleIcon from "@mui/icons-material/Circle";
 
 import "./CanvasMenu.css";
 
-const CanvasMenu = () => {
+const CanvasMenu = (props) => {
   const [opened, setOpened] = useState(false);
   const handleChangeOpened = () => {
     setOpened(!opened);
-  };
-
-  const [dragActive, setDragActive] = React.useState(false);
-  // ref
-  const inputRef = React.useRef(null);
-
-  // handle drag events
-  const handleDrag = function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true);
-    } else if (e.type === "dragleave") {
-      setDragActive(false);
-    }
-  };
-
-  // triggers when file is dropped
-  const handleDrop = function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-    console.log(e.dataTransfer.files[0]);
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      // handleFiles(e.dataTransfer.files);
-    }
-  };
-
-  // triggers when file is selected with click
-  const handleChange = function (e) {
-    e.preventDefault();
-    if (e.target.files && e.target.files[0]) {
-      // handleFiles(e.target.files);
-    }
-  };
-
-  // triggers the input when the button is clicked
-  const onButtonClick = () => {
-    inputRef.current.click();
   };
 
   return (
@@ -130,7 +91,7 @@ const CanvasMenu = () => {
                 <Typography sx={{ marginTop: "3px" }}>Загрузить</Typography>
               </Grid>
               <Grid item xs={4}>
-                <IconButton onClick={handleChangeOpened}>
+                <IconButton onClick={props.handleChangeOpened}>
                   <CloseIcon
                     sx={{
                       color: "#000",
@@ -141,35 +102,38 @@ const CanvasMenu = () => {
               </Grid>
               <form
                 id="form-file-upload"
-                onDragEnter={handleDrag}
+                onDragEnter={props.handleDrag}
                 onSubmit={(e) => e.preventDefault()}
               >
                 <input
-                  ref={inputRef}
+                  ref={props.inputRef}
                   type="file"
                   id="input-file-upload"
                   multiple={true}
-                  onChange={handleChange}
+                  onChange={props.handleChange}
                 />
                 <label
                   id="label-file-upload"
                   htmlFor="input-file-upload"
-                  className={dragActive ? "drag-active" : ""}
+                  className={props.dragActive ? "drag-active" : ""}
                 >
                   <div>
                     <p>Нажмите или перенесите</p>
-                    <button className="upload-button" onClick={onButtonClick}>
+                    <button
+                      className="upload-button"
+                      onClick={props.onButtonClick}
+                    >
                       файл для загрузки
                     </button>
                   </div>
                 </label>
-                {dragActive && (
+                {props.dragActive && (
                   <div
                     id="drag-file-element"
-                    onDragEnter={handleDrag}
-                    onDragLeave={handleDrag}
-                    onDragOver={handleDrag}
-                    onDrop={handleDrop}
+                    onDragEnter={props.handleDrag}
+                    onDragLeave={props.handleDrag}
+                    onDragOver={props.handleDrag}
+                    onDrop={props.handleDrop}
                   ></div>
                 )}
               </form>
