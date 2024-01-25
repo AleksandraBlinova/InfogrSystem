@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDropzone } from "react-dropzone";
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+
+import AlertTitle from "@mui/material/AlertTitle";
 import "./Canvas.css";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
+import { Typography } from "@mui/material";
+import Alert from "@mui/material/Alert";
+import IconButton from "@mui/material/IconButton";
+import Collapse from "@mui/material/Collapse";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Canvas = (props) => {
+  const [open, setOpen] = React.useState(true);
+
   return (
     <>
       <Box
@@ -32,6 +39,12 @@ const Canvas = (props) => {
                 }}
               />
             </div>
+          )}
+          {!props.openedFirstTime && props.imagePaperActiveType == "" && (
+            <Alert severity="error">
+              <AlertTitle>Ошибка</AlertTitle>
+              Неподдерживаемый формат файла
+            </Alert>
           )}
         </Paper>
       </Box>

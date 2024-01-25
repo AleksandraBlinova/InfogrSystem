@@ -10,6 +10,12 @@ const DashboardWithoutTempOzon = () => {
   // ref
   const inputRef = React.useRef(null);
 
+  const [openedFirstTime, setOpenedFirstTime] = React.useState(true);
+
+  const handleOpenedFirstTime = (value) => {
+    setOpenedFirstTime(value);
+  };
+
   // handle drag events
   const handleDrag = function (e) {
     e.preventDefault();
@@ -27,6 +33,9 @@ const DashboardWithoutTempOzon = () => {
     e.stopPropagation();
     setDragActive(false);
     handleFile(e.dataTransfer.files[0]);
+    handleOpenedFirstTime(false);
+    setImagePaperActiveType(e.dataTransfer.files[0].type);
+    console.log(e.dataTransfer.files[0]);
   };
 
   // triggers when file is selected with click
@@ -42,6 +51,8 @@ const DashboardWithoutTempOzon = () => {
   const [previewUrl, setPreviewUrl] = useState("");
   const [imagePaperActive, setImagePaperActive] = useState();
 
+  const [imagePaperActiveType, setImagePaperActiveType] = useState(null);
+
   const handleFile = (file) => {
     //you can carry out any file validations here...
     setImagePaperActive(file);
@@ -50,7 +61,16 @@ const DashboardWithoutTempOzon = () => {
 
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#FAFAFA" }}>
-      <Grid width={1000} height={120} container></Grid>
+      <Grid
+        width="100%"
+        height={80}
+        container
+        sx={{
+          backgroundColor: "#FFF",
+          marginBottom: "50px",
+          border: "1px solid #bab6b6",
+        }}
+      ></Grid>
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
@@ -67,7 +87,12 @@ const DashboardWithoutTempOzon = () => {
           />
         </Grid>
         <Grid item xs={2} sm={4} md={4} key={2}>
-          <Canvas previewUrl={previewUrl} imagePaperActive={imagePaperActive} />
+          <Canvas
+            previewUrl={previewUrl}
+            imagePaperActive={imagePaperActive}
+            openedFirstTime={openedFirstTime}
+            imagePaperActiveType={imagePaperActiveType}
+          />
         </Grid>
       </Grid>
     </Box>
