@@ -20,9 +20,9 @@ import CircleIcon from "@mui/icons-material/Circle";
 import "./CanvasMenu.css";
 
 const CanvasMenu = (props) => {
-  const [opened, setOpened] = useState(false);
-  const handleChangeOpened = () => {
-    setOpened(!opened);
+  const [opened, setOpened] = useState(0);
+  const handleChangeOpened = (value) => {
+    setOpened(value);
   };
 
   return (
@@ -40,28 +40,28 @@ const CanvasMenu = (props) => {
           }}
         >
           <Box mt={3}>
-            <IconButton color="inherit" onClick={() => handleChangeOpened()}>
+            <IconButton color="inherit" onClick={() => handleChangeOpened(1)}>
               <AddPhotoAlternateIcon sx={{ marginRight: "5px" }} />{" "}
               <Typography>Загрузить</Typography>
             </IconButton>
           </Box>
 
           <Box mt={3}>
-            <IconButton color="inherit" onClick={() => handleChangeOpened()}>
+            <IconButton color="inherit" onClick={() => handleChangeOpened(2)}>
               <CloudIcon sx={{ marginRight: "5px" }} />{" "}
               <Typography>Шаблоны</Typography>
             </IconButton>
           </Box>
 
           <Box mt={3}>
-            <IconButton color="inherit" onClick={() => handleChangeOpened()}>
+            <IconButton color="inherit" onClick={() => handleChangeOpened(3)}>
               <FormatColorTextIcon sx={{ marginRight: "5px" }} />{" "}
               <Typography>Текст</Typography>
             </IconButton>
           </Box>
 
           <Box mt={3}>
-            <IconButton color="inherit" onClick={() => handleChangeOpened()}>
+            <IconButton color="inherit" onClick={() => handleChangeOpened(4)}>
               <WorkspacesIcon sx={{ marginRight: "5px" }} />{" "}
               <Typography>Объекты</Typography>
             </IconButton>
@@ -70,7 +70,7 @@ const CanvasMenu = (props) => {
       </Grid>
 
       <Grid item>
-        {opened == true && (
+        {opened == 1 && (
           <Box
             width={240}
             height={550}
@@ -91,7 +91,7 @@ const CanvasMenu = (props) => {
                 <Typography sx={{ marginTop: "3px" }}>Загрузить</Typography>
               </Grid>
               <Grid item xs={4}>
-                <IconButton onClick={props.handleChangeOpened}>
+                <IconButton onClick={() => handleChangeOpened(0)}>
                   <CloseIcon
                     sx={{
                       color: "#000",
@@ -172,6 +172,105 @@ const CanvasMenu = (props) => {
                     svg
                   </Typography>
                 </Grid>
+              </Grid>
+            </Grid>{" "}
+          </Box>
+        )}
+        {opened == 2 && (
+          <Box
+            width={240}
+            height={550}
+            p={2}
+            borderRight={1}
+            sx={{
+              borderColor: "grey.500",
+
+              backgroundColor: "#fff",
+            }}
+          >
+            <Grid
+              container
+              spacing={8}
+              sx={{ marginLeft: "0px", width: "100%" }}
+            >
+              <Grid item xs={8}>
+                <Typography sx={{ marginTop: "3px" }}>Шаблоны</Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <IconButton onClick={() => handleChangeOpened(0)}>
+                  <CloseIcon
+                    sx={{
+                      color: "#000",
+                      fontSize: "14px",
+                    }}
+                  />
+                </IconButton>
+              </Grid>
+            </Grid>{" "}
+          </Box>
+        )}
+        {opened == 3 && (
+          <Box
+            width={240}
+            height={550}
+            p={2}
+            borderRight={1}
+            sx={{
+              borderColor: "grey.500",
+
+              backgroundColor: "#fff",
+            }}
+          >
+            <Grid
+              container
+              spacing={8}
+              sx={{ marginLeft: "0px", width: "100%" }}
+            >
+              <Grid item xs={8}>
+                <Typography sx={{ marginTop: "3px" }}>Текст</Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <IconButton onClick={() => handleChangeOpened(0)}>
+                  <CloseIcon
+                    sx={{
+                      color: "#000",
+                      fontSize: "14px",
+                    }}
+                  />
+                </IconButton>
+              </Grid>
+            </Grid>{" "}
+          </Box>
+        )}
+        {opened == 4 && (
+          <Box
+            width={240}
+            height={550}
+            p={2}
+            borderRight={1}
+            sx={{
+              borderColor: "grey.500",
+
+              backgroundColor: "#fff",
+            }}
+          >
+            <Grid
+              container
+              spacing={8}
+              sx={{ marginLeft: "0px", width: "100%" }}
+            >
+              <Grid item xs={8}>
+                <Typography sx={{ marginTop: "3px" }}>Объекты</Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <IconButton onClick={() => handleChangeOpened(0)}>
+                  <CloseIcon
+                    sx={{
+                      color: "#000",
+                      fontSize: "14px",
+                    }}
+                  />
+                </IconButton>
               </Grid>
             </Grid>{" "}
           </Box>
