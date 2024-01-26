@@ -16,6 +16,7 @@ import Grid from "@mui/material/Grid";
 import CloseIcon from "@mui/icons-material/Close";
 import ToggleButton from "@mui/material/ToggleButton";
 import CircleIcon from "@mui/icons-material/Circle";
+import ObjectsForMenu from "./objects/ObjectsForMenu";
 
 import "./CanvasMenu.css";
 
@@ -273,6 +274,7 @@ const CanvasMenu = (props) => {
                 </IconButton>
               </Grid>
             </Grid>{" "}
+            <ObjectsForMenu />
           </Box>
         )}
       </Grid>
