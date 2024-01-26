@@ -17,6 +17,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import ToggleButton from "@mui/material/ToggleButton";
 import CircleIcon from "@mui/icons-material/Circle";
 import ObjectsForMenu from "./objects/ObjectsForMenu";
+import InterestsIcon from "@mui/icons-material/Interests";
 
 import "./CanvasMenu.css";
 
@@ -63,7 +64,7 @@ const CanvasMenu = (props) => {
 
           <Box mt={3}>
             <IconButton color="inherit" onClick={() => handleChangeOpened(4)}>
-              <WorkspacesIcon sx={{ marginRight: "5px" }} />{" "}
+              <InterestsIcon sx={{ marginRight: "5px" }} />{" "}
               <Typography>Объекты</Typography>
             </IconButton>
           </Box>

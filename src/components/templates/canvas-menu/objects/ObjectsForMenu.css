@@ -1,0 +1,24 @@
+.figures-container {
+    background-color: #ffffff;
+    overflow-x: scroll;
+    white-space: nowrap;
+    text-align: justify;
+    padding-top: 20px;
+}
+
+.figures-container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: #f9f9fd;
+}
+
+.figures-container::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background-color: #9500f8;
+}
+
+.figures-container::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: 0px;
+    background-color: #f9f9fd;
+}
