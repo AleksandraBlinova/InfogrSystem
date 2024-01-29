@@ -3,7 +3,7 @@
     overflow-x: scroll;
     white-space: nowrap;
     text-align: justify;
-    padding-top: 20px;
+    margin-top: 20px;
 }
 
 .figures-container::-webkit-scrollbar {
@@ -18,6 +18,56 @@
 }
 
 .figures-container::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: 0px;
+    background-color: #f9f9fd;
+}
+
+.lines-container {
+    background-color: #ffffff;
+    overflow-x: scroll;
+    white-space: nowrap;
+    text-align: justify;
+    margin-top: 30px;
+}
+
+.lines-container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: #f9f9fd;
+}
+
+.lines-container::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background-color: #9500f8;
+}
+
+.lines-container::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: 0px;
+    background-color: #f9f9fd;
+}
+
+.photos-unsplash-container {
+    background-color: #ffffff;
+    overflow-x: scroll;
+    white-space: nowrap;
+    text-align: justify;
+    margin-top: 30px;
+}
+
+.photos-unsplash-container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: #f9f9fd;
+}
+
+.photos-unsplash-container::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background-color: #9500f8;
+}
+
+.photos-unsplash-container::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
     border-radius: 0px;
     background-color: #f9f9fd;

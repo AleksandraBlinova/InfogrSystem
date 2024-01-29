@@ -8,6 +8,8 @@ import {
   Box,
 } from "@mui/material";
 
+import axios from "axios";
+
 import CloudIcon from "@mui/icons-material/Cloud";
 import FormatColorTextIcon from "@mui/icons-material/FormatColorText";
 import WorkspacesIcon from "@mui/icons-material/Workspaces";
@@ -25,6 +27,16 @@ const CanvasMenu = (props) => {
   const [opened, setOpened] = useState(0);
   const handleChangeOpened = (value) => {
     setOpened(value);
+  };
+
+  const [unsplashImagesOnline, setUnsplashImagesOnline] = useState([]);
+
+  const fetchAPIUnsplash = async () => {
+    const response = await axios.get(
+      "https://api.unsplash.com/photos/?client_id=RKnG9ADSOyqmCXxJ_9nf3au8Ie-E5kzFcdIkVFIcLNc"
+    );
+    const data = await response.data;
+    setUnsplashImagesOnline(data);
   };
 
   return (
@@ -63,7 +75,13 @@ const CanvasMenu = (props) => {
           </Box>
 
           <Box mt={3}>
-            <IconButton color="inherit" onClick={() => handleChangeOpened(4)}>
+            <IconButton
+              color="inherit"
+              onClick={() => {
+                handleChangeOpened(4);
+                fetchAPIUnsplash();
+              }}
+            >
               <InterestsIcon sx={{ marginRight: "5px" }} />{" "}
               <Typography>Объекты</Typography>
             </IconButton>
@@ -275,7 +293,7 @@ const CanvasMenu = (props) => {
                 </IconButton>
               </Grid>
             </Grid>{" "}
-            <ObjectsForMenu />
+            <ObjectsForMenu unsplashImagesOnline={unsplashImagesOnline} />
           </Box>
         )}
       </Grid>
