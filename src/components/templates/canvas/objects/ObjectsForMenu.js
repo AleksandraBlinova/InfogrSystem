@@ -7,12 +7,18 @@ import Emoji from "./Emoji";
 import CityIcons from "./CityIcons";
 import "./ObjectsForMenu.css";
 
-const ObjectsForMenu = (props) => {
+const ObjectsForMenu = ({
+  unsplashImagesOnline,
+  handleChangeClickOnUnsplash,
+}) => {
   return (
     <>
       <Figures />
       <Lines />
-      <Photos unsplashImagesOnline={props.unsplashImagesOnline} />
+      <Photos
+        unsplashImagesOnline={unsplashImagesOnline}
+        handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+      />
       <BusinessIcons />
       <Emoji />
       <CityIcons />

@@ -29,16 +29,6 @@ const CanvasMenu = (props) => {
     setOpened(value);
   };
 
-  const [unsplashImagesOnline, setUnsplashImagesOnline] = useState([]);
-
-  const fetchAPIUnsplash = async () => {
-    const response = await axios.get(
-      "https://api.unsplash.com/photos/?client_id=RKnG9ADSOyqmCXxJ_9nf3au8Ie-E5kzFcdIkVFIcLNc"
-    );
-    const data = await response.data;
-    setUnsplashImagesOnline(data);
-  };
-
   return (
     <Grid container spacing={-7}>
       <Grid item>
@@ -79,7 +69,7 @@ const CanvasMenu = (props) => {
               color="inherit"
               onClick={() => {
                 handleChangeOpened(4);
-                fetchAPIUnsplash();
+                props.fetchAPIUnsplash();
               }}
             >
               <InterestsIcon sx={{ marginRight: "5px" }} />{" "}
@@ -306,7 +296,10 @@ const CanvasMenu = (props) => {
                 </IconButton>
               </Grid>
             </Grid>{" "}
-            <ObjectsForMenu unsplashImagesOnline={unsplashImagesOnline} />
+            <ObjectsForMenu
+              unsplashImagesOnline={props.unsplashImagesOnline}
+              handleChangeClickOnUnsplash={props.handleChangeClickOnUnsplash}
+            />
           </Box>
         )}
       </Grid>

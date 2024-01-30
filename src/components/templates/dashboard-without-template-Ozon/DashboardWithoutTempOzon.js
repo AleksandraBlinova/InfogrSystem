@@ -1,11 +1,29 @@
 import React, { useRef, useEffect, useState } from "react";
 import Canvas from "../canvas/Canvas";
-import CanvasMenu from "../canvas-menu/CanvasMenu";
+import CanvasMenu from "../canvas/CanvasMenu";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import axios from "axios";
 
 const DashboardWithoutTempOzon = () => {
+  const [unsplashImagesOnline, setUnsplashImagesOnline] = useState([]);
+
+  const fetchAPIUnsplash = async () => {
+    const response = await axios.get(
+      "https://api.unsplash.com/photos/?client_id=RKnG9ADSOyqmCXxJ_9nf3au8Ie-E5kzFcdIkVFIcLNc"
+    );
+    const data = await response.data;
+    setUnsplashImagesOnline(data);
+  };
+
+  const [clickOnUnsplash, setClickOnUnsplash] = useState();
+
+  const handleChangeClickOnUnsplash = (value) => {
+    setClickOnUnsplash(value);
+    setPreviewUrl("");
+  };
+
   const [dragActive, setDragActive] = React.useState(false);
   // ref
   const inputRef = React.useRef(null);
@@ -84,6 +102,9 @@ const DashboardWithoutTempOzon = () => {
             handleDrag={handleDrag}
             dragActive={dragActive}
             inputRef={inputRef}
+            unsplashImagesOnline={unsplashImagesOnline}
+            fetchAPIUnsplash={fetchAPIUnsplash}
+            handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
           />
         </Grid>
         <Grid item xs={2} sm={4} md={4} key={2}>
@@ -92,6 +113,8 @@ const DashboardWithoutTempOzon = () => {
             imagePaperActive={imagePaperActive}
             openedFirstTime={openedFirstTime}
             imagePaperActiveType={imagePaperActiveType}
+            clickOnUnsplash={clickOnUnsplash}
+            unsplashImagesOnline={unsplashImagesOnline}
           />
         </Grid>
       </Grid>

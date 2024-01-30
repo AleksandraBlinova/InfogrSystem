@@ -11,8 +11,6 @@ import Collapse from "@mui/material/Collapse";
 import CloseIcon from "@mui/icons-material/Close";
 
 const Canvas = (props) => {
-  const [open, setOpen] = React.useState(true);
-
   return (
     <>
       <Box
@@ -45,6 +43,20 @@ const Canvas = (props) => {
               <AlertTitle>Ошибка</AlertTitle>
               Неподдерживаемый формат файла
             </Alert>
+          )}
+          {props.unsplashImagesOnline && props.clickOnUnsplash && (
+            <div className="image">
+              <img
+                src={props.clickOnUnsplash}
+                alt="image"
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  objectFit: "cover",
+                  marginTop: "0px",
+                }}
+              />
+            </div>
           )}
         </Paper>
       </Box>
