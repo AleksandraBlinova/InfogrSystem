@@ -98,7 +98,9 @@ const CanvasMenu = (props) => {
               sx={{ marginLeft: "0px", width: "100%" }}
             >
               <Grid item xs={8}>
-                <Typography sx={{ marginTop: "3px" }}>Загрузить</Typography>
+                <Typography sx={{ marginTop: "3px", fontWeight: "600" }}>
+                  Загрузить
+                </Typography>
               </Grid>
               <Grid item xs={4}>
                 <IconButton onClick={() => handleChangeOpened(0)}>
@@ -156,9 +158,10 @@ const CanvasMenu = (props) => {
                 container
                 spacing={3}
                 sx={{
-                  marginTop: "-3px",
+                  marginTop: "0px",
                   textAlign: "center",
                   marginLeft: "0px",
+                  marginBottom: "-20px",
                 }}
               >
                 <Grid item xs={3}>
@@ -182,6 +185,9 @@ const CanvasMenu = (props) => {
                     svg
                   </Typography>
                 </Grid>
+              </Grid>
+              <Grid item>
+                <Typography>История загрузок:</Typography>
               </Grid>
             </Grid>{" "}
           </Box>

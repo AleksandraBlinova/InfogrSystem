@@ -67,6 +67,8 @@ const Rectangle = ({
       {isSelected && (
         <Transformer
           ref={trRef}
+          rotateEnabled={false}
+          padding={5}
           boundBoxFunc={(oldBox, newBox) => {
             // limit resize
             if (newBox.width < 5 || newBox.height < 5) {
@@ -135,12 +137,18 @@ const Canvas = (props) => {
         sx={{
           display: "flex",
           flexWrap: "wrap",
+          width: "500px",
+          height: "600px",
         }}
       >
         <Paper
           className="canvas"
           elevation={3}
-          sx={{ width: "420px", height: "560px", borderRadius: "0px" }}
+          sx={{
+            width: "420px",
+            height: "560px",
+            borderRadius: "0px",
+          }}
         >
           {!props.openedFirstTime && props.imagePaperActiveType == "" && (
             <Alert severity="error" id="alertError">

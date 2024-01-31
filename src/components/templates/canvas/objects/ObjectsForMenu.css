@@ -14,7 +14,7 @@
 
 .figures-container::-webkit-scrollbar-thumb {
     border-radius: 0px;
-    background-color: #9500f8;
+    background-color: #6d6c6d;
 }
 
 .figures-container::-webkit-scrollbar-track {
@@ -39,7 +39,7 @@
 
 .lines-container::-webkit-scrollbar-thumb {
     border-radius: 0px;
-    background-color: #9500f8;
+    background-color: #6d6c6d;
 }
 
 .lines-container::-webkit-scrollbar-track {
@@ -64,7 +64,7 @@
 
 .photos-unsplash-container::-webkit-scrollbar-thumb {
     border-radius: 0px;
-    background-color: #9500f8;
+    background-color: #6d6c6d;
 }
 
 .photos-unsplash-container::-webkit-scrollbar-track {
@@ -89,7 +89,7 @@
 
 .graphics-s8-container::-webkit-scrollbar-thumb {
     border-radius: 0px;
-    background-color: #9500f8;
+    background-color: #6d6c6d;
 }
 
 .graphics-s8-container::-webkit-scrollbar-track {
