@@ -83,6 +83,14 @@ const DashboardWithoutTempOzon = () => {
       ]);
   };
 
+  const removeImgFromHistory = (imgSrc) => {
+    uploadedImagesDrDr.filter((i) => imgSrc != i);
+  };
+
+  React.useEffect(() => {
+    // data from props to array here
+    setuploadedImagesDrDr(uploadedImagesDrDr);
+  }, [uploadedImagesDrDr]);
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#FAFAFA" }}>
       <Grid
@@ -112,6 +120,8 @@ const DashboardWithoutTempOzon = () => {
             fetchAPIUnsplash={fetchAPIUnsplash}
             handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
             uploadedImagesDrDr={uploadedImagesDrDr}
+            setuploadedImagesDrDr={setuploadedImagesDrDr}
+            removeImgFromHistory={removeImgFromHistory}
           />
         </Grid>
         <Grid item xs={2} sm={4} md={4} key={2}>

@@ -29,6 +29,14 @@ const CanvasMenu = (props) => {
     setOpened(value);
   };
 
+  const [showCloseBut, setShowCloseBut] = useState(-1);
+  const handleMouseEnter = (e) => {
+    setShowCloseBut(e);
+  };
+  const handleMouseLeave = (e) => {
+    setShowCloseBut(-1);
+  };
+
   return (
     <Grid container spacing={-7}>
       <Grid item>
@@ -82,7 +90,7 @@ const CanvasMenu = (props) => {
       <Grid item>
         {opened == 1 && (
           <Box
-            width={270}
+            width={250}
             height={550}
             p={2}
             borderRight={1}
@@ -212,11 +220,37 @@ const CanvasMenu = (props) => {
                   marginBottom: "-20px",
                 }}
               >
-                {props.uploadedImagesDrDr.map((imgSrc) => (
-                  <Grid item>
+                {props.uploadedImagesDrDr.map((imgSrc, index) => (
+                  <Grid item sx={{ position: "relative" }}>
+                    {showCloseBut == index && (
+                      <IconButton
+                        sx={{
+                          position: "absolute",
+                          right: "0px",
+                          zIndex: 10,
+                        }}
+                        onClick={() => props.removeImgFromHistory(imgSrc)}
+                        onMouseEnter={() => handleMouseEnter(index)}
+                        onMouseLeave={handleMouseLeave}
+                      >
+                        <CloseIcon
+                          sx={{
+                            color: "#000",
+                            fontSize: "20px",
+                          }}
+                        />
+                      </IconButton>
+                    )}{" "}
                     <img
                       src={imgSrc}
-                      style={{ width: "60px", height: "80px" }}
+                      value={index}
+                      style={{
+                        width: "60px",
+                        height: "80px",
+                        marginBottom: "20px",
+                      }}
+                      onMouseEnter={() => handleMouseEnter(index)}
+                      onMouseLeave={handleMouseLeave}
                     />
                   </Grid>
                 ))}
