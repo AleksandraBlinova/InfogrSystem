@@ -1,4 +1,5 @@
 import "./App.css";
+import React, { useState, useRef, useEffect } from "react";
 import Homepage from "./components/home-page/Homepage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AppBarComponent from "./components/app-bar/Appbar";
