@@ -110,6 +110,13 @@ const Canvas = (props) => {
     };
   });
 
+  useEffect(() => {
+    const alertErrorEl = document.getElementById("alertError");
+
+    if (props.unsplashImagesOnline && props.clickOnUnsplash && alertErrorEl)
+      alertErrorEl.style.display = "none";
+  });
+
   const handleClickKeyDown = (e) => {
     if ((e.key === "Delete" || e.key === "Backspace") && selectedId) {
       props.handleChangeClickOnUnsplash("");
@@ -135,26 +142,49 @@ const Canvas = (props) => {
           elevation={3}
           sx={{ width: "420px", height: "560px", borderRadius: "0px" }}
         >
-          {props.previewUrl && (
-            <div className="image">
-              <img
-                src={props.previewUrl}
-                alt="image"
-                style={{
-                  height: "100%",
-                  width: "100%",
-                  objectFit: "cover",
-                  marginTop: "0px",
-                }}
-              />
-            </div>
-          )}
           {!props.openedFirstTime && props.imagePaperActiveType == "" && (
-            <Alert severity="error">
+            <Alert severity="error" id="alertError">
               <AlertTitle>Ошибка</AlertTitle>
               Неподдерживаемый формат файла
             </Alert>
           )}
+          {props.previewUrl && (
+            <div className="image" id="imageCanvasForRect">
+              <Stage
+                width={420}
+                height={560}
+                onMouseDown={(e) => {
+                  // deselect when clicked on empty area
+                  const clickedOnEmpty = e.target === e.target.getStage();
+                  if (clickedOnEmpty) {
+                    selectShape(null);
+                  }
+                }}
+              >
+                <Layer>
+                  {rectangles.map((rect, i) => {
+                    return (
+                      <Rectangle
+                        key={i}
+                        shapeProps={rect}
+                        isSelected={rect.id === selectedId}
+                        onSelect={() => {
+                          selectShape(rect.id);
+                        }}
+                        clickOnUnsplash={props.previewUrl}
+                        onChange={(newAttrs) => {
+                          const rects = rectangles.slice();
+                          rects[i] = newAttrs;
+                          setRectangles(rects);
+                        }}
+                      />
+                    );
+                  })}
+                </Layer>
+              </Stage>
+            </div>
+          )}
+
           {props.unsplashImagesOnline && props.clickOnUnsplash && (
             <div className="image" id="imageCanvasForRect">
               <Stage

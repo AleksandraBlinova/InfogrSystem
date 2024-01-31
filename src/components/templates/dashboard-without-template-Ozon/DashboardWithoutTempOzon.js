@@ -53,7 +53,6 @@ const DashboardWithoutTempOzon = () => {
     handleFile(e.dataTransfer.files[0]);
     handleOpenedFirstTime(false);
     setImagePaperActiveType(e.dataTransfer.files[0].type);
-    console.log(e.dataTransfer.files[0]);
   };
 
   // triggers when file is selected with click
