@@ -88,8 +88,19 @@ const CanvasMenu = (props) => {
             borderRight={1}
             sx={{
               borderColor: "grey.500",
-
+              overflowY: "auto",
               backgroundColor: "#fff",
+              "&::-webkit-scrollbar": {
+                width: "6px",
+              },
+              "&::-webkit-scrollbar-track": {
+                boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+                webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+                backgroundColor: "rgba(0,0,0,.1)",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: "#a6a6a7",
+              },
             }}
           >
             <Grid
