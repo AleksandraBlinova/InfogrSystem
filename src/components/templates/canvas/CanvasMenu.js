@@ -82,7 +82,7 @@ const CanvasMenu = (props) => {
       <Grid item>
         {opened == 1 && (
           <Box
-            width={240}
+            width={270}
             height={550}
             p={2}
             borderRight={1}
@@ -198,7 +198,28 @@ const CanvasMenu = (props) => {
                 </Grid>
               </Grid>
               <Grid item>
-                <Typography>История загрузок:</Typography>
+                <Typography sx={{ marginLeft: "-10px" }}>
+                  История загрузок:
+                </Typography>
+              </Grid>
+              <Grid
+                container
+                spacing={3}
+                sx={{
+                  marginTop: "0px",
+                  textAlign: "center",
+                  marginLeft: "0px",
+                  marginBottom: "-20px",
+                }}
+              >
+                {props.uploadedImagesDrDr.map((imgSrc) => (
+                  <Grid item>
+                    <img
+                      src={imgSrc}
+                      style={{ width: "60px", height: "80px" }}
+                    />
+                  </Grid>
+                ))}
               </Grid>
             </Grid>{" "}
           </Box>

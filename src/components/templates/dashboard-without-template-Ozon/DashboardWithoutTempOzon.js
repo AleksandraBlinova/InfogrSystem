@@ -45,6 +45,8 @@ const DashboardWithoutTempOzon = () => {
     }
   };
 
+  const [uploadedImagesDrDr, setuploadedImagesDrDr] = useState([]);
+
   // triggers when file is dropped
   const handleDrop = function (e) {
     e.preventDefault();
@@ -74,6 +76,11 @@ const DashboardWithoutTempOzon = () => {
     //you can carry out any file validations here...
     setImagePaperActive(file);
     setPreviewUrl(window.URL.createObjectURL(file));
+    if (!file.type == "")
+      setuploadedImagesDrDr((uploadedImagesDrDr) => [
+        ...uploadedImagesDrDr,
+        window.URL.createObjectURL(file),
+      ]);
   };
 
   return (
@@ -104,6 +111,7 @@ const DashboardWithoutTempOzon = () => {
             unsplashImagesOnline={unsplashImagesOnline}
             fetchAPIUnsplash={fetchAPIUnsplash}
             handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+            uploadedImagesDrDr={uploadedImagesDrDr}
           />
         </Grid>
         <Grid item xs={2} sm={4} md={4} key={2}>
