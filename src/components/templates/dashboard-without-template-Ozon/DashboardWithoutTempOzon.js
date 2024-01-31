@@ -115,6 +115,7 @@ const DashboardWithoutTempOzon = () => {
             imagePaperActiveType={imagePaperActiveType}
             clickOnUnsplash={clickOnUnsplash}
             unsplashImagesOnline={unsplashImagesOnline}
+            handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
           />
         </Grid>
       </Grid>

@@ -103,7 +103,21 @@ const Canvas = (props) => {
     };
   });
 
+  useEffect(() => {
+    document.addEventListener("keydown", handleClickKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleClickKeyDown);
+    };
+  });
+
+  const handleClickKeyDown = (e) => {
+    if ((e.key === "Delete" || e.key === "Backspace") && selectedId) {
+      props.handleChangeClickOnUnsplash("");
+    }
+  };
+
   const handleClick = (event) => {
+    //прослушка на выбранность рамки вокруг объекта
     if (event.toElement.toString() != "[object HTMLCanvasElement]")
       selectShape(null);
   };
@@ -149,8 +163,6 @@ const Canvas = (props) => {
                 onMouseDown={(e) => {
                   // deselect when clicked on empty area
                   const clickedOnEmpty = e.target === e.target.getStage();
-                  let elem = document.getElementById("imageCanvasForRect");
-
                   if (clickedOnEmpty) {
                     selectShape(null);
                   }
