@@ -68,7 +68,6 @@ const Rectangle = ({
         <Transformer
           ref={trRef}
           rotateEnabled={false}
-          padding={5}
           boundBoxFunc={(oldBox, newBox) => {
             // limit resize
             if (newBox.width < 5 || newBox.height < 5) {
