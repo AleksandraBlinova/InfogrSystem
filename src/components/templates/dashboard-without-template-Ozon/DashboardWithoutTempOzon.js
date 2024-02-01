@@ -93,6 +93,15 @@ const DashboardWithoutTempOzon = () => {
     setImagePaperActiveType(imgsrcCanvas);
   };
 
+  const [selectedId, selectShape] = React.useState(null);
+
+  const handleClickKeyDown = (e) => {
+    if ((e.key === "Delete" || e.key === "Backspace") && selectedId) {
+      handleChangeClickOnUnsplash("");
+      setImagePaperActiveType("deleted");
+    }
+  };
+
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#FAFAFA" }}>
       <Grid
@@ -137,6 +146,10 @@ const DashboardWithoutTempOzon = () => {
             unsplashImagesOnline={unsplashImagesOnline}
             handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
             uploadedImagesDrDr={uploadedImagesDrDr}
+            setImagePaperActiveType={setImagePaperActiveType}
+            handleClickKeyDown={handleClickKeyDown}
+            selectedId={selectedId}
+            selectShape={selectShape}
           />
         </Grid>
       </Grid>

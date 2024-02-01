@@ -95,7 +95,6 @@ const initialRectangles = [
 
 const Canvas = (props) => {
   const [rectangles, setRectangles] = React.useState(initialRectangles);
-  const [selectedId, selectShape] = React.useState(null);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClick);
@@ -105,22 +104,16 @@ const Canvas = (props) => {
   });
 
   useEffect(() => {
-    document.addEventListener("keydown", handleClickKeyDown);
+    document.addEventListener("keydown", props.handleClickKeyDown);
     return () => {
-      document.removeEventListener("keydown", handleClickKeyDown);
+      document.removeEventListener("keydown", props.handleClickKeyDown);
     };
   });
-
-  const handleClickKeyDown = (e) => {
-    if ((e.key === "Delete" || e.key === "Backspace") && selectedId) {
-      props.handleChangeClickOnUnsplash("");
-    }
-  };
 
   const handleClick = (event) => {
     //прослушка на выбранность рамки вокруг объекта
     if (event.toElement.toString() != "[object HTMLCanvasElement]")
-      selectShape(null);
+      props.selectShape(null);
   };
 
   return (
@@ -157,7 +150,7 @@ const Canvas = (props) => {
                   // deselect when clicked on empty area
                   const clickedOnEmpty = e.target === e.target.getStage();
                   if (clickedOnEmpty) {
-                    selectShape(null);
+                    props.selectShape(null);
                   }
                 }}
               >
@@ -167,9 +160,9 @@ const Canvas = (props) => {
                       <Rectangle
                         key={i}
                         shapeProps={rect}
-                        isSelected={rect.id === selectedId}
+                        isSelected={rect.id === props.selectedId}
                         onSelect={() => {
-                          selectShape(rect.id);
+                          props.selectShape(rect.id);
                         }}
                         clickOnUnsplash={props.previewUrl}
                         onChange={(newAttrs) => {
@@ -194,7 +187,7 @@ const Canvas = (props) => {
                   // deselect when clicked on empty area
                   const clickedOnEmpty = e.target === e.target.getStage();
                   if (clickedOnEmpty) {
-                    selectShape(null);
+                    props.selectShape(null);
                   }
                 }}
               >
@@ -204,9 +197,9 @@ const Canvas = (props) => {
                       <Rectangle
                         key={i}
                         shapeProps={rect}
-                        isSelected={rect.id === selectedId}
+                        isSelected={rect.id === props.selectedId}
                         onSelect={() => {
-                          selectShape(rect.id);
+                          props.selectShape(rect.id);
                         }}
                         clickOnUnsplash={props.clickOnUnsplash}
                         onChange={(newAttrs) => {
