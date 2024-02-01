@@ -111,11 +111,6 @@ const Canvas = (props) => {
     };
   });
 
-  useEffect(() => {
-    const alertErrorEl = document.getElementById("alertError");
-    console.log(props.clickOnUnsplash);
-  });
-
   const handleClickKeyDown = (e) => {
     if ((e.key === "Delete" || e.key === "Backspace") && selectedId) {
       props.handleChangeClickOnUnsplash("");
