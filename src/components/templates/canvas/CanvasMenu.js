@@ -251,6 +251,7 @@ const CanvasMenu = (props) => {
                       }}
                       onMouseEnter={() => handleMouseEnter(index)}
                       onMouseLeave={handleMouseLeave}
+                      onClick={() => props.handleChangeImgFromHist(imgSrc)}
                     />
                   </Grid>
                 ))}

@@ -22,6 +22,7 @@ const DashboardWithoutTempOzon = () => {
   const handleChangeClickOnUnsplash = (value) => {
     setClickOnUnsplash(value);
     setPreviewUrl("");
+    setImagePaperActiveType(value);
   };
 
   const [dragActive, setDragActive] = React.useState(false);
@@ -85,7 +86,11 @@ const DashboardWithoutTempOzon = () => {
 
   const removeImgFromHistory = (imgSrc) => {
     setuploadedImagesDrDr(uploadedImagesDrDr.filter((i) => imgSrc != i));
-    console.log(uploadedImagesDrDr);
+  };
+
+  const handleChangeImgFromHist = (imgsrcCanvas) => {
+    setPreviewUrl(imgsrcCanvas);
+    setImagePaperActiveType(imgsrcCanvas);
   };
 
   return (
@@ -119,6 +124,7 @@ const DashboardWithoutTempOzon = () => {
             uploadedImagesDrDr={uploadedImagesDrDr}
             setuploadedImagesDrDr={setuploadedImagesDrDr}
             removeImgFromHistory={removeImgFromHistory}
+            handleChangeImgFromHist={handleChangeImgFromHist}
           />
         </Grid>
         <Grid item xs={2} sm={4} md={4} key={2}>
@@ -130,6 +136,7 @@ const DashboardWithoutTempOzon = () => {
             clickOnUnsplash={clickOnUnsplash}
             unsplashImagesOnline={unsplashImagesOnline}
             handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+            uploadedImagesDrDr={uploadedImagesDrDr}
           />
         </Grid>
       </Grid>

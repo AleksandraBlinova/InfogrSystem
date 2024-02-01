@@ -113,9 +113,7 @@ const Canvas = (props) => {
 
   useEffect(() => {
     const alertErrorEl = document.getElementById("alertError");
-
-    if (props.unsplashImagesOnline && props.clickOnUnsplash && alertErrorEl)
-      alertErrorEl.style.display = "none";
+    console.log(props.clickOnUnsplash);
   });
 
   const handleClickKeyDown = (e) => {
