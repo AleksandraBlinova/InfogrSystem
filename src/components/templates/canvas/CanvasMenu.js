@@ -245,8 +245,8 @@ const CanvasMenu = (props) => {
                       src={imgSrc}
                       value={index}
                       style={{
-                        width: "60px",
-                        height: "80px",
+                        width: "90px",
+                        height: "110px",
                         marginBottom: "20px",
                       }}
                       onMouseEnter={() => handleMouseEnter(index)}

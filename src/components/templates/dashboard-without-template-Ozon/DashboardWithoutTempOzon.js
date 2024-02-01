@@ -84,13 +84,10 @@ const DashboardWithoutTempOzon = () => {
   };
 
   const removeImgFromHistory = (imgSrc) => {
-    uploadedImagesDrDr.filter((i) => imgSrc != i);
+    setuploadedImagesDrDr(uploadedImagesDrDr.filter((i) => imgSrc != i));
+    console.log(uploadedImagesDrDr);
   };
 
-  React.useEffect(() => {
-    // data from props to array here
-    setuploadedImagesDrDr(uploadedImagesDrDr);
-  }, [uploadedImagesDrDr]);
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#FAFAFA" }}>
       <Grid
