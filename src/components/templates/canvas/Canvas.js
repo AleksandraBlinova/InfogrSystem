@@ -28,8 +28,6 @@ const CustomTransformer = ({ selectedShape }) => {
 };
 
 const Canvas = (props) => {
-  const [selectedShape, setSelectedShape] = useState(null);
-
   useEffect(() => {
     document.addEventListener("mousedown", handleClick);
     return () => {
@@ -47,7 +45,7 @@ const Canvas = (props) => {
   const handleClick = (event) => {
     //прослушка на выбранность рамки вокруг объекта
     if (event.toElement.toString() != "[object HTMLCanvasElement]")
-      setSelectedShape(null);
+      props.setSelectedShape(null);
   };
 
   return (
@@ -91,14 +89,14 @@ const Canvas = (props) => {
                           width={400}
                           height={500}
                           onClick={(e) => {
-                            setSelectedShape(e.target);
+                            props.setSelectedShape(e.target);
                           }}
                         />
                       );
                     }
                     return null;
                   })}
-                  <CustomTransformer selectedShape={selectedShape} />
+                  <CustomTransformer selectedShape={props.selectedShape} />
                 </Layer>
               </Stage>
             </div>

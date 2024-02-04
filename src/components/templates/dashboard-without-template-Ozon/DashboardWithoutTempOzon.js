@@ -80,7 +80,7 @@ const DashboardWithoutTempOzon = () => {
     //you can carry out any file validations here...
     setImagePaperActive(file);
     setPreviewUrl(window.URL.createObjectURL(file));
-    console.log(file.type);
+
     if (!file.type == "") {
       setuploadedImagesDrDr((uploadedImagesDrDr) => [
         ...uploadedImagesDrDr,
@@ -100,8 +100,15 @@ const DashboardWithoutTempOzon = () => {
     setImagePaperActiveType(imgsrcCanvas);
   };
 
+  const [selectedShape, setSelectedShape] = useState(null);
+
   const handleClickKeyDown = (e) => {
-    if (e.key === "Delete" || e.key === "Backspace") {
+    if ((e.key === "Delete" || e.key === "Backspace") && selectedShape) {
+      setAllImagesOnStage(
+        allImagesOnStage.filter((i) => i.id - 1 != selectedShape.index)
+      );
+      setSelectedShape(null);
+      console.log(allImagesOnStage);
     }
   };
 
@@ -176,8 +183,10 @@ const DashboardWithoutTempOzon = () => {
             handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
             uploadedImagesDrDr={uploadedImagesDrDr}
             setImagePaperActiveType={setImagePaperActiveType}
-            handleClickKeyDown={handleClickKeyDown}
             allImagesOnStage={allImagesOnStage}
+            handleClickKeyDown={handleClickKeyDown}
+            selectedShape={selectedShape}
+            setSelectedShape={setSelectedShape}
           />
         </Grid>
       </Grid>
