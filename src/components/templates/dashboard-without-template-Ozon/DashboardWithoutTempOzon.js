@@ -7,6 +7,8 @@ import Grid from "@mui/material/Grid";
 import axios from "axios";
 
 const DashboardWithoutTempOzon = () => {
+  const [allImagesOnStage, setAllImagesOnStage] = useState([]);
+
   const [unsplashImagesOnline, setUnsplashImagesOnline] = useState([]);
 
   const fetchAPIUnsplash = async () => {
@@ -20,9 +22,10 @@ const DashboardWithoutTempOzon = () => {
   const [clickOnUnsplash, setClickOnUnsplash] = useState();
 
   const handleChangeClickOnUnsplash = (value) => {
-    setClickOnUnsplash(value);
-    setPreviewUrl("");
-    setImagePaperActiveType(value);
+    const file = new File([value], "photo.jpeg", { type: "image/jpeg" });
+    setClickOnUnsplash(file);
+    setPreviewUrl(value);
+    addImage(file, value);
   };
 
   const [dragActive, setDragActive] = React.useState(false);
@@ -77,11 +80,15 @@ const DashboardWithoutTempOzon = () => {
     //you can carry out any file validations here...
     setImagePaperActive(file);
     setPreviewUrl(window.URL.createObjectURL(file));
-    if (!file.type == "")
+    console.log(file.type);
+    if (!file.type == "") {
       setuploadedImagesDrDr((uploadedImagesDrDr) => [
         ...uploadedImagesDrDr,
         window.URL.createObjectURL(file),
       ]);
+
+      addImage(file, "");
+    }
   };
 
   const removeImgFromHistory = (imgSrc) => {
@@ -93,14 +100,36 @@ const DashboardWithoutTempOzon = () => {
     setImagePaperActiveType(imgsrcCanvas);
   };
 
-  const [selectedId, selectShape] = React.useState(null);
-
   const handleClickKeyDown = (e) => {
-    if ((e.key === "Delete" || e.key === "Backspace") && selectedId) {
-      handleChangeClickOnUnsplash("");
-      setImagePaperActiveType("deleted");
+    if (e.key === "Delete" || e.key === "Backspace") {
     }
   };
+
+  ///////canvas
+
+  const addImage = (file, url) => {
+    const imageFile = file;
+    console.log(file);
+    if (imageFile) {
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        const newImage = {
+          type: "image",
+          id: allImagesOnStage.length + 1,
+          x: 0,
+          y: 0,
+          image: new window.Image(),
+        };
+
+        if (url) newImage.image.src = url;
+        else newImage.image.src = event.target.result;
+
+        setAllImagesOnStage([...allImagesOnStage, newImage]);
+      };
+      reader.readAsDataURL(imageFile);
+    }
+  };
+  //////////canvas
 
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#FAFAFA" }}>
@@ -148,8 +177,7 @@ const DashboardWithoutTempOzon = () => {
             uploadedImagesDrDr={uploadedImagesDrDr}
             setImagePaperActiveType={setImagePaperActiveType}
             handleClickKeyDown={handleClickKeyDown}
-            selectedId={selectedId}
-            selectShape={selectShape}
+            allImagesOnStage={allImagesOnStage}
           />
         </Grid>
       </Grid>
