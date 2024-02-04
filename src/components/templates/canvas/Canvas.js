@@ -11,6 +11,9 @@ import { render } from "react-dom";
 import { Stage, Layer, Image, Transformer } from "react-konva";
 import useImage from "use-image";
 import Konva from "konva";
+import { IconButton } from "@mui/material";
+import ClearIcon from "@mui/icons-material/Clear";
+import Stack from "@mui/material/Stack";
 
 const CustomTransformer = ({ selectedShape }) => {
   const trRef = useRef();
@@ -48,6 +51,11 @@ const Canvas = (props) => {
       props.setSelectedShape(null);
   };
 
+  const handleCloseAlert = () => {
+    var alertt = document.getElementById("alertError");
+    alertt.style.display = "none";
+  };
+
   return (
     <>
       <Box
@@ -68,8 +76,7 @@ const Canvas = (props) => {
           }}
         >
           {!props.openedFirstTime && props.imagePaperActiveType == "" && (
-            <Alert severity="error" id="alertError">
-              <AlertTitle>Ошибка</AlertTitle>
+            <Alert severity="error" id="alertError" onClose={handleCloseAlert}>
               Неподдерживаемый формат файла
             </Alert>
           )}

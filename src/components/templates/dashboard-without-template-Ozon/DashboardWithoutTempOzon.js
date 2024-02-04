@@ -89,6 +89,7 @@ const DashboardWithoutTempOzon = () => {
 
       addImage(file, "");
     }
+    console.log(allImagesOnStage);
   };
 
   const removeImgFromHistory = (imgSrc) => {
@@ -116,7 +117,6 @@ const DashboardWithoutTempOzon = () => {
 
   const addImage = (file, url) => {
     const imageFile = file;
-    console.log(file);
     if (imageFile) {
       var reader = new FileReader();
       reader.onload = function (event) {
