@@ -13,15 +13,17 @@ const ObjectsForMenu = ({
 }) => {
   return (
     <>
-      <Figures />
-      <Lines />
+      <Figures handleChangeClickOnUnsplash={handleChangeClickOnUnsplash} />
+      <Lines handleChangeClickOnUnsplash={handleChangeClickOnUnsplash} />
       <Photos
         unsplashImagesOnline={unsplashImagesOnline}
         handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
       />
-      <BusinessIcons />
-      <Emoji />
-      <CityIcons />
+      <BusinessIcons
+        handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+      />
+      <Emoji handleChangeClickOnUnsplash={handleChangeClickOnUnsplash} />
+      <CityIcons handleChangeClickOnUnsplash={handleChangeClickOnUnsplash} />
     </>
   );
 };

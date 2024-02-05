@@ -12,37 +12,93 @@ import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import PentagonIcon from "@mui/icons-material/Pentagon";
 import HexagonIcon from "@mui/icons-material/Hexagon";
 
-const Figures = () => {
+const Figures = ({ handleChangeClickOnUnsplash }) => {
   return (
     <div className="figures-container">
       <Typography sx={{ fontSize: "16px", fontWeight: "500" }}>
         Фигуры:{" "}
       </Typography>
-      <svg width="50" height="50">
-        <CircleIcon sx={{ fontSize: "20px", color: "#dedada" }} />
-      </svg>
-
-      <svg width="50" height="50">
-        <RectangleIcon sx={{ fontSize: "20px", color: "#dedada" }} />
-      </svg>
-      <svg width="50" height="50">
-        <SquareIcon sx={{ fontSize: "20px", color: "#dedada" }} />
-      </svg>
-      <svg width="50" height="50">
-        <StarOutlinedIcon sx={{ fontSize: "20px", color: "#dedada" }} />
-      </svg>
-      <svg width="50" height="50">
-        <FavoriteOutlinedIcon sx={{ fontSize: "20px", color: "#dedada" }} />
-      </svg>
-      <svg width="50" height="50">
-        <ChangeHistoryIcon sx={{ fontSize: "20px", color: "#dedada" }} />
-      </svg>
-      <svg width="50" height="50">
-        <PentagonIcon sx={{ fontSize: "20px", color: "#dedada" }} />
-      </svg>
-      <svg width="50" height="50">
-        <HexagonIcon sx={{ fontSize: "20px", color: "#dedada" }} />
-      </svg>
+      <img
+        style={{ width: "50px", marginRight: "10px" }}
+        src="./figures/video_4484656_7523051_screenshot_pixian_ai.png"
+        onClick={() => {
+          handleChangeClickOnUnsplash(
+            "./figures/video_4484656_7523051_screenshot_pixian_ai.png"
+          );
+        }}
+      />
+      <img
+        style={{ width: "50px", marginRight: "10px" }}
+        src="./figures/video_4484658_7523063_screenshot_pixian_ai.png"
+        onClick={() => {
+          handleChangeClickOnUnsplash(
+            "./figures/video_4484658_7523063_screenshot_pixian_ai.png"
+          );
+        }}
+      />
+      <img
+        style={{ width: "50px", marginRight: "10px" }}
+        src="./figures/video_4484660_7523069_screenshot_pixian_ai.png"
+        onClick={() => {
+          handleChangeClickOnUnsplash(
+            "./figures/video_4484660_7523069_screenshot_pixian_ai.png"
+          );
+        }}
+      />
+      <img
+        style={{ width: "50px", marginRight: "10px" }}
+        src="./figures/video_4484664_7523078_screenshot_pixian_ai.png"
+        onClick={() => {
+          handleChangeClickOnUnsplash(
+            "./figures/video_4484664_7523078_screenshot_pixian_ai.png"
+          );
+        }}
+      />
+      <img
+        style={{ width: "50px", marginRight: "10px" }}
+        src="./figures/video_4484668_7523081_screenshot_pixian_ai.png"
+        onClick={() => {
+          handleChangeClickOnUnsplash(
+            "./figures/video_4484668_7523081_screenshot_pixian_ai.png"
+          );
+        }}
+      />
+      <img
+        style={{ width: "50px", marginRight: "10px" }}
+        src="./figures/video_4484672_7523087_screenshot_pixian_ai.png"
+        onClick={() => {
+          handleChangeClickOnUnsplash(
+            "./figures/video_4484672_7523087_screenshot_pixian_ai.png"
+          );
+        }}
+      />
+      <img
+        style={{ width: "50px", marginRight: "10px" }}
+        src="./figures/video_4484675_7523091_screenshot_pixian_ai.png"
+        onClick={() => {
+          handleChangeClickOnUnsplash(
+            "./figures/video_4484675_7523091_screenshot_pixian_ai.png"
+          );
+        }}
+      />
+      <img
+        style={{ width: "50px", marginRight: "10px" }}
+        src="./figures/video_4484678_7523093_screenshot_pixian_ai.png"
+        onClick={() => {
+          handleChangeClickOnUnsplash(
+            "./figures/video_4484678_7523093_screenshot_pixian_ai.png"
+          );
+        }}
+      />
+      <img
+        style={{ width: "50px", marginRight: "10px" }}
+        src="./figures/video_4650429_7818899_screenshot_pixian_ai.png"
+        onClick={() => {
+          handleChangeClickOnUnsplash(
+            "./figures/video_4650429_7818899_screenshot_pixian_ai.png"
+          );
+        }}
+      />
     </div>
   );
 };
