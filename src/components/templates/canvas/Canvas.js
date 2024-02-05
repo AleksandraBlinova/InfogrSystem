@@ -86,6 +86,7 @@ const Canvas = (props) => {
                 <Layer>
                   {props.allImagesOnStage.map((object) => {
                     if (object.type === "image") {
+                      console.log("object", object);
                       return (
                         <Image
                           key={object.id}
@@ -93,8 +94,6 @@ const Canvas = (props) => {
                           y={object.y}
                           image={object.image}
                           draggable={true}
-                          width={400}
-                          height={500}
                           onClick={(e) => {
                             props.setSelectedShape(e.target);
                           }}

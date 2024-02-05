@@ -89,7 +89,6 @@ const DashboardWithoutTempOzon = () => {
 
       addImage(file, "");
     }
-    console.log(allImagesOnStage);
   };
 
   const removeImgFromHistory = (imgSrc) => {
