@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Typography } from "@mui/material";
 
-const Abstracs = ({ unsplashAbstracts }) => {
+const Abstracs = ({ unsplashAbstracts, handleChangeClickOnUnsplash }) => {
   return (
     <div className="photos-unsplash-container">
       <Link to="https://unsplash.com/">
@@ -25,6 +25,7 @@ const Abstracs = ({ unsplashAbstracts }) => {
                 key={itm.id}
                 src={itm.urls.small}
                 style={{ width: "100px", height: "100px", marginRight: "15px" }}
+                onClick={() => handleChangeClickOnUnsplash(itm.urls.small)}
               />
             );
           })}

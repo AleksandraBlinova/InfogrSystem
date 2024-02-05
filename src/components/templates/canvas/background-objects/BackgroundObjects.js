@@ -15,14 +15,26 @@ const BackgroundObjects = ({
 }) => {
   return (
     <div>
-      <Textures unsplashTextures={unsplashTextures} />
-      <PhotoGradients unsplashPhotoGradients={unsplashPhotoGradients} />
+      <Textures
+        unsplashTextures={unsplashTextures}
+        handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+      />
+      <PhotoGradients
+        unsplashPhotoGradients={unsplashPhotoGradients}
+        handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+      />
       <Photos
         unsplashImagesOnline={unsplashImagesOnline}
         handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
       />
-      <Abstracts unsplashAbstracts={unsplashAbstracts} />
-      <WaterPhotos unsplashWater={unsplashWater} />
+      <Abstracts
+        unsplashAbstracts={unsplashAbstracts}
+        handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+      />
+      <WaterPhotos
+        unsplashWater={unsplashWater}
+        handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+      />
     </div>
   );
 };

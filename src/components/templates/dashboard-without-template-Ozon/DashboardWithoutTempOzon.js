@@ -72,7 +72,6 @@ const DashboardWithoutTempOzon = () => {
       `https://api.unsplash.com/search/photos?query=${query}&client_id=${clientId}`
     );
     const data = await response.data.results;
-    console.log(response.data.results);
     setUnsplashWater(data);
   };
   ////////water from unsplash
