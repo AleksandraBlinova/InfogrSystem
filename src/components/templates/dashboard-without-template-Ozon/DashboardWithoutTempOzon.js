@@ -108,7 +108,6 @@ const DashboardWithoutTempOzon = () => {
         allImagesOnStage.filter((i) => i.id - 1 != selectedShape.index)
       );
       setSelectedShape(null);
-      console.log(allImagesOnStage);
     }
   };
 
