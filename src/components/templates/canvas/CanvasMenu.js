@@ -20,6 +20,8 @@ import ToggleButton from "@mui/material/ToggleButton";
 import CircleIcon from "@mui/icons-material/Circle";
 import ObjectsForMenu from "./objects/ObjectsForMenu";
 import InterestsIcon from "@mui/icons-material/Interests";
+import WallpaperIcon from "@mui/icons-material/Wallpaper";
+import BackgroundObjects from "./background-objects/BackgroundObjects";
 
 import "./CanvasMenu.css";
 
@@ -82,6 +84,23 @@ const CanvasMenu = (props) => {
             >
               <InterestsIcon sx={{ marginRight: "5px" }} />{" "}
               <Typography>Объекты</Typography>
+            </IconButton>
+          </Box>
+
+          <Box mt={3}>
+            <IconButton
+              color="inherit"
+              onClick={() => {
+                handleChangeOpened(5);
+                props.fetchAPIUnsplashTextures();
+                props.fetchAPIUnsplashPhotoGradients();
+                props.fetchAPIUnsplash();
+                props.fetchAPIUnsplashAbstracts();
+                props.fetchAPIUnsplashWater();
+              }}
+            >
+              <WallpaperIcon sx={{ marginRight: "5px" }} />{" "}
+              <Typography>Фон</Typography>
             </IconButton>
           </Box>
         </Box>
@@ -371,6 +390,60 @@ const CanvasMenu = (props) => {
             </Grid>{" "}
             <ObjectsForMenu
               unsplashImagesOnline={props.unsplashImagesOnline}
+              handleChangeClickOnUnsplash={props.handleChangeClickOnUnsplash}
+            />
+          </Box>
+        )}
+        {opened == 5 && (
+          <Box
+            width={240}
+            height={550}
+            p={2}
+            borderRight={1}
+            sx={{
+              borderColor: "grey.500",
+              overflowY: "auto",
+              backgroundColor: "#fff",
+              "&::-webkit-scrollbar": {
+                width: "6px",
+              },
+              "&::-webkit-scrollbar-track": {
+                boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+                webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+                backgroundColor: "rgba(0,0,0,.1)",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: "#a6a6a7",
+              },
+            }}
+          >
+            <Grid
+              container
+              spacing={8}
+              sx={{ marginLeft: "0px", width: "100%" }}
+            >
+              <Grid item xs={8}>
+                <Typography sx={{ marginTop: "3px", fontWeight: "600" }}>
+                  Фон
+                </Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <IconButton onClick={() => handleChangeOpened(0)}>
+                  <CloseIcon
+                    sx={{
+                      color: "#000",
+                      fontSize: "14px",
+                    }}
+                  />
+                </IconButton>
+              </Grid>
+            </Grid>{" "}
+            <BackgroundObjects
+              unsplashTextures={props.unsplashTextures}
+              unsplashImagesOnline={props.unsplashImagesOnline}
+              unsplashPhotoGradients={props.unsplashPhotoGradients}
+              unsplashAbstracts={props.unsplashAbstracts}
+              unsplashWater={props.unsplashWater}
               handleChangeClickOnUnsplash={props.handleChangeClickOnUnsplash}
             />
           </Box>

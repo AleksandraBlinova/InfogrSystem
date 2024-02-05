@@ -7,8 +7,8 @@ import Grid from "@mui/material/Grid";
 import axios from "axios";
 
 const DashboardWithoutTempOzon = () => {
-  const [allImagesOnStage, setAllImagesOnStage] = useState([]);
-
+  const [allImagesOnStage, setAllImagesOnStage] = useState([]); //для отображения всех фоток на холсте
+  ////////photos from unsplash
   const [unsplashImagesOnline, setUnsplashImagesOnline] = useState([]);
 
   const fetchAPIUnsplash = async () => {
@@ -18,6 +18,64 @@ const DashboardWithoutTempOzon = () => {
     const data = await response.data;
     setUnsplashImagesOnline(data);
   };
+  ////////photos from unsplash
+
+  ////////Textures from unsplash
+  const [unsplashTextures, setUnsplashTextures] = useState([]);
+
+  const fetchAPIUnsplashTextures = async () => {
+    const query = "texture";
+    const clientId = "RKnG9ADSOyqmCXxJ_9nf3au8Ie-E5kzFcdIkVFIcLNc";
+    const response = await axios.get(
+      `https://api.unsplash.com/search/photos?query=${query}&client_id=${clientId}`
+    );
+    const data = await response.data.results;
+    setUnsplashTextures(data);
+  };
+  ////////Textures from unsplash
+
+  ////////photo gradients from unsplash
+  const [unsplashPhotoGradients, setUnsplashPhotoGradients] = useState([]);
+
+  const fetchAPIUnsplashPhotoGradients = async () => {
+    const query = "gradient";
+    const clientId = "RKnG9ADSOyqmCXxJ_9nf3au8Ie-E5kzFcdIkVFIcLNc";
+    const response = await axios.get(
+      `https://api.unsplash.com/search/photos?query=${query}&client_id=${clientId}`
+    );
+    const data = await response.data.results;
+    setUnsplashPhotoGradients(data);
+  };
+  ////////photo gradients from unsplash
+
+  ////////abstracts from unsplash
+  const [unsplashAbstracts, setUnsplashAbstracts] = useState([]);
+
+  const fetchAPIUnsplashAbstracts = async () => {
+    const query = "abstract background";
+    const clientId = "RKnG9ADSOyqmCXxJ_9nf3au8Ie-E5kzFcdIkVFIcLNc";
+    const response = await axios.get(
+      `https://api.unsplash.com/search/photos?query=${query}&client_id=${clientId}`
+    );
+    const data = await response.data.results;
+    setUnsplashAbstracts(data);
+  };
+  ////////abstracts gradients from unsplash
+
+  ////////water from unsplash
+  const [unsplashWater, setUnsplashWater] = useState([]);
+
+  const fetchAPIUnsplashWater = async () => {
+    const query = "water background";
+    const clientId = "RKnG9ADSOyqmCXxJ_9nf3au8Ie-E5kzFcdIkVFIcLNc";
+    const response = await axios.get(
+      `https://api.unsplash.com/search/photos?query=${query}&client_id=${clientId}`
+    );
+    const data = await response.data.results;
+    console.log(response.data.results);
+    setUnsplashWater(data);
+  };
+  ////////water from unsplash
 
   const [clickOnUnsplash, setClickOnUnsplash] = useState();
 
@@ -162,7 +220,15 @@ const DashboardWithoutTempOzon = () => {
             dragActive={dragActive}
             inputRef={inputRef}
             unsplashImagesOnline={unsplashImagesOnline}
+            unsplashTextures={unsplashTextures}
+            unsplashPhotoGradients={unsplashPhotoGradients}
+            unsplashAbstracts={unsplashAbstracts}
+            unsplashWater={unsplashWater}
             fetchAPIUnsplash={fetchAPIUnsplash}
+            fetchAPIUnsplashTextures={fetchAPIUnsplashTextures}
+            fetchAPIUnsplashPhotoGradients={fetchAPIUnsplashPhotoGradients}
+            fetchAPIUnsplashAbstracts={fetchAPIUnsplashAbstracts}
+            fetchAPIUnsplashWater={fetchAPIUnsplashWater}
             handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
             uploadedImagesDrDr={uploadedImagesDrDr}
             setuploadedImagesDrDr={setuploadedImagesDrDr}
