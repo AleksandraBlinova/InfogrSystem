@@ -50,3 +50,29 @@
     bottom: 0px;
     left: 0px;
 }
+
+
+.text-area-container {
+    background-color: #ffffff;
+    overflow-x: scroll;
+    white-space: nowrap;
+    text-align: justify;
+    margin-top: 40px;
+}
+
+.text-area-container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: #f9f9fd;
+}
+
+.text-area-container::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background-color: #6d6c6d;
+}
+
+.text-area-container::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: 0px;
+    background-color: #f9f9fd;
+}
