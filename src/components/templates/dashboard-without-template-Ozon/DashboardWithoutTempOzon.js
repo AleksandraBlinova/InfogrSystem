@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import axios from "axios";
 
 const DashboardWithoutTempOzon = () => {
-  const [allImagesOnStage, setAllImagesOnStage] = useState([]); //для отображения всех фоток на холсте
+  const [allObjectsOnStage, setallObjectsOnStage] = useState([]); //для отображения всех фоток на холсте
   ////////photos from unsplash
   const [unsplashImagesOnline, setUnsplashImagesOnline] = useState([]);
 
@@ -161,8 +161,15 @@ const DashboardWithoutTempOzon = () => {
 
   const handleClickKeyDown = (e) => {
     if ((e.key === "Delete" || e.key === "Backspace") && selectedShape) {
-      setAllImagesOnStage(
-        allImagesOnStage.filter((i) => i.id - 1 != selectedShape.index)
+      if (
+        allObjectsOnStage.length == 1 &&
+        allObjectsOnStage[0].id != selectedShape.index
+      )
+        setallObjectsOnStage(allObjectsOnStage.splice(0, 1));
+      console.log(allObjectsOnStage);
+      console.log(selectedShape);
+      setallObjectsOnStage(
+        allObjectsOnStage.filter((i) => i.id - 1 != selectedShape.index)
       );
       setSelectedShape(null);
     }
@@ -177,7 +184,7 @@ const DashboardWithoutTempOzon = () => {
       reader.onload = function (event) {
         const newImage = {
           type: "image",
-          id: allImagesOnStage.length + 1,
+          id: allObjectsOnStage.length + 1,
           x: 0,
           y: 0,
           image: new window.Image(),
@@ -186,12 +193,31 @@ const DashboardWithoutTempOzon = () => {
         if (url) newImage.image.src = url;
         else newImage.image.src = event.target.result;
 
-        setAllImagesOnStage([...allImagesOnStage, newImage]);
+        setallObjectsOnStage([...allObjectsOnStage, newImage]);
       };
       reader.readAsDataURL(imageFile);
     }
   };
   //////////canvas
+
+  ///////canvas text area
+
+  const textInputRef = useRef();
+
+  const addText = () => {
+    const newText = {
+      type: "text",
+      id: allObjectsOnStage.length + 1,
+      x: 100,
+      y: 100,
+      text: textInputRef.current.value,
+      fontSize: 24,
+    };
+
+    setallObjectsOnStage([...allObjectsOnStage, newText]);
+    setPreviewUrl("addedtext");
+  };
+  ///////canvas text area
 
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#FAFAFA" }}>
@@ -233,6 +259,8 @@ const DashboardWithoutTempOzon = () => {
             setuploadedImagesDrDr={setuploadedImagesDrDr}
             removeImgFromHistory={removeImgFromHistory}
             handleChangeImgFromHist={handleChangeImgFromHist}
+            addText={addText}
+            textInputRef={textInputRef}
           />
         </Grid>
         <Grid item xs={2} sm={4} md={4} key={2}>
@@ -246,7 +274,7 @@ const DashboardWithoutTempOzon = () => {
             handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
             uploadedImagesDrDr={uploadedImagesDrDr}
             setImagePaperActiveType={setImagePaperActiveType}
-            allImagesOnStage={allImagesOnStage}
+            allObjectsOnStage={allObjectsOnStage}
             handleClickKeyDown={handleClickKeyDown}
             selectedShape={selectedShape}
             setSelectedShape={setSelectedShape}

@@ -10,6 +10,8 @@ import {
 
 import axios from "axios";
 
+import TextArea from "./text-area/TextArea";
+
 import CloudIcon from "@mui/icons-material/Cloud";
 import FormatColorTextIcon from "@mui/icons-material/FormatColorText";
 import WorkspacesIcon from "@mui/icons-material/Workspaces";
@@ -296,7 +298,9 @@ const CanvasMenu = (props) => {
               sx={{ marginLeft: "0px", width: "100%" }}
             >
               <Grid item xs={8}>
-                <Typography sx={{ marginTop: "3px" }}>Шаблоны</Typography>
+                <Typography sx={{ marginTop: "3px", fontWeight: "600" }}>
+                  Шаблоны
+                </Typography>
               </Grid>
               <Grid item xs={4}>
                 <IconButton onClick={() => handleChangeOpened(0)}>
@@ -329,7 +333,9 @@ const CanvasMenu = (props) => {
               sx={{ marginLeft: "0px", width: "100%" }}
             >
               <Grid item xs={8}>
-                <Typography sx={{ marginTop: "3px" }}>Текст</Typography>
+                <Typography sx={{ marginTop: "3px", fontWeight: "600" }}>
+                  Текст
+                </Typography>
               </Grid>
               <Grid item xs={4}>
                 <IconButton onClick={() => handleChangeOpened(0)}>
@@ -342,6 +348,10 @@ const CanvasMenu = (props) => {
                 </IconButton>
               </Grid>
             </Grid>{" "}
+            <TextArea
+              addText={props.addText}
+              textInputRef={props.textInputRef}
+            />
           </Box>
         )}
         {opened == 4 && (

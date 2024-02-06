@@ -8,7 +8,7 @@ import Paper from "@mui/material/Paper";
 import Alert from "@mui/material/Alert";
 
 import { render } from "react-dom";
-import { Stage, Layer, Image, Transformer } from "react-konva";
+import { Stage, Layer, Image, Transformer, Text } from "react-konva";
 import useImage from "use-image";
 import Konva from "konva";
 import { IconButton } from "@mui/material";
@@ -84,9 +84,8 @@ const Canvas = (props) => {
             <div className="image" id="imageCanvasForRect">
               <Stage width={420} height={580}>
                 <Layer>
-                  {props.allImagesOnStage.map((object) => {
+                  {props.allObjectsOnStage.map((object) => {
                     if (object.type === "image") {
-                      console.log("object", object);
                       return (
                         <Image
                           key={object.id}
@@ -99,7 +98,22 @@ const Canvas = (props) => {
                           }}
                         />
                       );
+                    } else if (object.type === "text") {
+                      return (
+                        <Text
+                          key={object.id}
+                          x={object.x}
+                          y={object.y}
+                          text={object.text}
+                          fontSize={object.fontSize}
+                          draggable={true}
+                          onClick={(e) => {
+                            props.setSelectedShape(e.target);
+                          }}
+                        />
+                      );
                     }
+
                     return null;
                   })}
                   <CustomTransformer selectedShape={props.selectedShape} />
