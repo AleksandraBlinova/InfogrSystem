@@ -103,6 +103,45 @@ const TextArea = ({ addText, textInputRef }) => {
           src="./textStyles/наклИподч.png"
         />
       </div>
+      <div className="text-area-container">
+        <Typography
+          sx={{ fontSize: "16px", fontWeight: "500", marginBottom: "10px" }}
+        >
+          Шрифты текста:{" "}
+        </Typography>
+        <img
+          style={{
+            width: "100px",
+            marginRight: "15px",
+            border: "1px solid grey",
+          }}
+          src="./textFonts/arial.png"
+        />
+        <img
+          style={{
+            width: "100px",
+            marginRight: "15px",
+            border: "1px solid grey",
+          }}
+          src="./textFonts/calibri.png"
+        />
+        <img
+          style={{
+            width: "100px",
+            marginRight: "15px",
+            border: "1px solid grey",
+          }}
+          src="./textFonts/segoeUI.png"
+        />
+        <img
+          style={{
+            width: "100px",
+            marginRight: "15px",
+            border: "1px solid grey",
+          }}
+          src="./textFonts/timesNewRoman.png"
+        />
+      </div>
     </div>
   );
 };
