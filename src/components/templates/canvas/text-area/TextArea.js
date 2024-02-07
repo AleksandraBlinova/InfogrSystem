@@ -74,42 +74,6 @@ const TextArea = ({ addText, textInputRef, changeTextStyle }) => {
           src="./textStyles/подчеркнутый.png"
           onClick={() => changeTextStyle("подчеркнутый")}
         />
-        <img
-          style={{
-            width: "100px",
-            marginRight: "15px",
-            border: "1px solid grey",
-          }}
-          src="./textStyles/жирИнакл.png"
-          onClick={() => changeTextStyle("жирИнакл")}
-        />
-        <img
-          style={{
-            width: "100px",
-            marginRight: "15px",
-            border: "1px solid grey",
-          }}
-          src="./textStyles/жирИнаклИподч.png"
-          onClick={() => changeTextStyle("жирИнаклИподч")}
-        />
-        <img
-          style={{
-            width: "100px",
-            marginRight: "15px",
-            border: "1px solid grey",
-          }}
-          src="./textStyles/жирИподч.png"
-          onClick={() => changeTextStyle("жирИподч")}
-        />
-        <img
-          style={{
-            width: "100px",
-            marginRight: "15px",
-            border: "1px solid grey",
-          }}
-          src="./textStyles/наклИподч.png"
-          onClick={() => changeTextStyle("наклИподч")}
-        />
       </div>
       <div className="text-area-container">
         <Typography

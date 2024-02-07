@@ -212,7 +212,8 @@ const DashboardWithoutTempOzon = () => {
       y: 100,
       text: textInputRef.current.value,
       fontSize: 24,
-      fontWeight: 400,
+      fontFamily: "Arial",
+      textDecoration: "empty",
     };
 
     setallObjectsOnStage([...allObjectsOnStage, newText]);
@@ -233,11 +234,29 @@ const DashboardWithoutTempOzon = () => {
   const changeTextStyle = (value) => {
     setActiveTransformer(false);
     if (curText) {
-      if (value == "обычный") curText.fontSize = 44;
-      if (value == "жирный") curText.fontSize = 70;
-    }
+      if (value == "arial") curText.fontFamily = "Arial";
+      if (value == "calibri") curText.fontFamily = "Calibri";
+      if (value == "segoeUI") curText.fontFamily = "Segoe UI";
+      if (value == "timesNewRoman") curText.fontFamily = "Times New Roman";
+      if (value == "обычный") {
+        curText.fontStyle = "normal";
+        curText.textDecoration = "empty";
+      }
+      if (value == "жирный") {
+        curText.fontStyle = "bold";
+        curText.textDecoration = "empty";
+      }
+      if (value == "наклонный") {
+        curText.fontStyle = "italic";
+        curText.textDecoration = "empty";
+      }
+      if (value == "подчеркнутый") {
+        curText.textDecoration = "underline";
+        curText.fontStyle = "normal";
+      }
 
-    console.log("curText", allObjectsOnStage);
+      console.log(curText);
+    }
   };
 
   return (

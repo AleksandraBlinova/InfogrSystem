@@ -107,7 +107,9 @@ const Canvas = (props) => {
                           y={object.y}
                           text={object.text}
                           fontSize={object.fontSize}
-                          fontWeight={object.fontWeight}
+                          fontStyle={object.fontStyle}
+                          fontFamily={object.fontFamily}
+                          textDecoration={object.textDecoration}
                           draggable={true}
                           onClick={(e) => {
                             props.setSelectedShape(e.target);
