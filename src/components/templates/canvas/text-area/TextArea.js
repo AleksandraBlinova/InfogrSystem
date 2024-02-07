@@ -5,6 +5,18 @@ import { Typography } from "@mui/material";
 import { Stage, Layer, Text, Image } from "react-konva";
 
 const TextArea = ({ addText, textInputRef, changeTextStyle }) => {
+  const [selectedImageFont, setselectedImageFont] = useState(0);
+
+  const [selectedImageStyle, setselectedImageStyle] = useState(0);
+
+  const handleChangeImaageStyleSelected = (value) => {
+    setselectedImageStyle(value);
+  };
+
+  const handleChangeImaageFontSelected = (value) => {
+    setselectedImageFont(value);
+  };
+
   return (
     <div>
       {" "}
@@ -39,40 +51,60 @@ const TextArea = ({ addText, textInputRef, changeTextStyle }) => {
           Стили текста:{" "}
         </Typography>
         <img
+          id="imaageFontSelected"
           style={{
             width: "100px",
             marginRight: "15px",
-            border: "1px solid grey",
+            border:
+              selectedImageStyle == 0 ? "3px solid purple" : "1px solid grey",
           }}
           src="./textStyles/обычный.png"
-          onClick={() => changeTextStyle("обычный")}
+          onClick={() => {
+            changeTextStyle("обычный");
+            handleChangeImaageStyleSelected(0);
+          }}
         />
         <img
+          id="imaageFontSelected"
           style={{
             width: "100px",
             marginRight: "15px",
-            border: "1px solid grey",
+            border:
+              selectedImageStyle == 1 ? "3px solid purple" : "1px solid grey",
           }}
           src="./textStyles/жирный.png"
-          onClick={() => changeTextStyle("жирный")}
+          onClick={() => {
+            changeTextStyle("жирный");
+            handleChangeImaageStyleSelected(1);
+          }}
         />
         <img
+          id="imaageFontSelected"
           style={{
             width: "100px",
             marginRight: "15px",
-            border: "1px solid grey",
+            border:
+              selectedImageStyle == 2 ? "3px solid purple" : "1px solid grey",
           }}
           src="./textStyles/наклонный.png"
-          onClick={() => changeTextStyle("наклонный")}
+          onClick={() => {
+            changeTextStyle("наклонный");
+            handleChangeImaageStyleSelected(2);
+          }}
         />
         <img
+          id="imaageFontSelected"
           style={{
             width: "100px",
             marginRight: "15px",
-            border: "1px solid grey",
+            border:
+              selectedImageStyle == 3 ? "3px solid purple" : "1px solid grey",
           }}
           src="./textStyles/подчеркнутый.png"
-          onClick={() => changeTextStyle("подчеркнутый")}
+          onClick={() => {
+            changeTextStyle("подчеркнутый");
+            handleChangeImaageStyleSelected(3);
+          }}
         />
       </div>
       <div className="text-area-container">
@@ -82,40 +114,62 @@ const TextArea = ({ addText, textInputRef, changeTextStyle }) => {
           Шрифты текста:{" "}
         </Typography>
         <img
+          id="imaageFontSelected"
           style={{
             width: "100px",
             marginRight: "15px",
-            border: "1px solid grey",
+            border:
+              selectedImageFont == 0 ? "3px solid purple" : "1px solid grey",
           }}
           src="./textFonts/arial.png"
-          onClick={() => changeTextStyle("arial")}
+          onClick={() => {
+            changeTextStyle("arial");
+            handleChangeImaageFontSelected(0);
+          }}
         />
         <img
+          id="imaageFontSelected"
           style={{
             width: "100px",
             marginRight: "15px",
-            border: "1px solid grey",
+            border:
+              selectedImageFont == 1 ? "3px solid purple" : "1px solid grey",
           }}
           src="./textFonts/calibri.png"
-          onClick={() => changeTextStyle("calibri")}
+          onClick={() => {
+            changeTextStyle("calibri");
+            handleChangeImaageFontSelected(1);
+          }}
         />
         <img
+          id="imaageFontSelected"
           style={{
             width: "100px",
             marginRight: "15px",
-            border: "1px solid grey",
+            border:
+              selectedImageFont == 2 ? "3px solid purple" : "1px solid grey",
           }}
           src="./textFonts/segoeUI.png"
-          onClick={() => changeTextStyle("segoeUI")}
+          onClick={() => {
+            {
+              changeTextStyle("segoeUI");
+              handleChangeImaageFontSelected(2);
+            }
+          }}
         />
         <img
+          id="imaageFontSelected"
           style={{
             width: "100px",
             marginRight: "15px",
-            border: "1px solid grey",
+            border:
+              selectedImageFont == 3 ? "3px solid purple" : "1px solid grey",
           }}
           src="./textFonts/timesNewRoman.png"
-          onClick={() => changeTextStyle("timesNewRoman")}
+          onClick={() => {
+            changeTextStyle("timesNewRoman");
+            handleChangeImaageFontSelected(3);
+          }}
         />
       </div>
     </div>
