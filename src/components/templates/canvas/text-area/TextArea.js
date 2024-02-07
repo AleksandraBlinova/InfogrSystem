@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 import { Stage, Layer, Text, Image } from "react-konva";
 
-const TextArea = ({ addText, textInputRef }) => {
+const TextArea = ({ addText, textInputRef, changeTextStyle }) => {
   return (
     <div>
       {" "}
@@ -45,6 +45,7 @@ const TextArea = ({ addText, textInputRef }) => {
             border: "1px solid grey",
           }}
           src="./textStyles/обычный.png"
+          onClick={() => changeTextStyle("обычный")}
         />
         <img
           style={{
@@ -53,6 +54,7 @@ const TextArea = ({ addText, textInputRef }) => {
             border: "1px solid grey",
           }}
           src="./textStyles/жирный.png"
+          onClick={() => changeTextStyle("жирный")}
         />
         <img
           style={{
@@ -61,6 +63,7 @@ const TextArea = ({ addText, textInputRef }) => {
             border: "1px solid grey",
           }}
           src="./textStyles/наклонный.png"
+          onClick={() => changeTextStyle("наклонный")}
         />
         <img
           style={{
@@ -69,6 +72,7 @@ const TextArea = ({ addText, textInputRef }) => {
             border: "1px solid grey",
           }}
           src="./textStyles/подчеркнутый.png"
+          onClick={() => changeTextStyle("подчеркнутый")}
         />
         <img
           style={{
@@ -77,6 +81,7 @@ const TextArea = ({ addText, textInputRef }) => {
             border: "1px solid grey",
           }}
           src="./textStyles/жирИнакл.png"
+          onClick={() => changeTextStyle("жирИнакл")}
         />
         <img
           style={{
@@ -85,6 +90,7 @@ const TextArea = ({ addText, textInputRef }) => {
             border: "1px solid grey",
           }}
           src="./textStyles/жирИнаклИподч.png"
+          onClick={() => changeTextStyle("жирИнаклИподч")}
         />
         <img
           style={{
@@ -93,6 +99,7 @@ const TextArea = ({ addText, textInputRef }) => {
             border: "1px solid grey",
           }}
           src="./textStyles/жирИподч.png"
+          onClick={() => changeTextStyle("жирИподч")}
         />
         <img
           style={{
@@ -101,6 +108,7 @@ const TextArea = ({ addText, textInputRef }) => {
             border: "1px solid grey",
           }}
           src="./textStyles/наклИподч.png"
+          onClick={() => changeTextStyle("наклИподч")}
         />
       </div>
       <div className="text-area-container">
@@ -116,6 +124,7 @@ const TextArea = ({ addText, textInputRef }) => {
             border: "1px solid grey",
           }}
           src="./textFonts/arial.png"
+          onClick={() => changeTextStyle("arial")}
         />
         <img
           style={{
@@ -124,6 +133,7 @@ const TextArea = ({ addText, textInputRef }) => {
             border: "1px solid grey",
           }}
           src="./textFonts/calibri.png"
+          onClick={() => changeTextStyle("calibri")}
         />
         <img
           style={{
@@ -132,6 +142,7 @@ const TextArea = ({ addText, textInputRef }) => {
             border: "1px solid grey",
           }}
           src="./textFonts/segoeUI.png"
+          onClick={() => changeTextStyle("segoeUI")}
         />
         <img
           style={{
@@ -140,6 +151,7 @@ const TextArea = ({ addText, textInputRef }) => {
             border: "1px solid grey",
           }}
           src="./textFonts/timesNewRoman.png"
+          onClick={() => changeTextStyle("timesNewRoman")}
         />
       </div>
     </div>

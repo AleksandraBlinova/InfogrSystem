@@ -351,6 +351,7 @@ const CanvasMenu = (props) => {
             <TextArea
               addText={props.addText}
               textInputRef={props.textInputRef}
+              changeTextStyle={props.changeTextStyle}
             />
           </Box>
         )}

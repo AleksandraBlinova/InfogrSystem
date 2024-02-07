@@ -212,12 +212,33 @@ const DashboardWithoutTempOzon = () => {
       y: 100,
       text: textInputRef.current.value,
       fontSize: 24,
+      fontWeight: 400,
     };
 
     setallObjectsOnStage([...allObjectsOnStage, newText]);
     setPreviewUrl("addedtext");
   };
   ///////canvas text area
+
+  const [curText, setCurText] = useState("");
+
+  const [isActiveTransformer, setActiveTransformer] = useState(true); // Создаем состояние `isActive` для активации/деактивации Transformer
+
+  const setCurrentShapeText = (idCurText) => {
+    const currentTextShape = allObjectsOnStage.find((i) => i.id == idCurText);
+    setCurText(currentTextShape);
+    setActiveTransformer(true);
+  };
+
+  const changeTextStyle = (value) => {
+    setActiveTransformer(false);
+    if (curText) {
+      if (value == "обычный") curText.fontSize = 44;
+      if (value == "жирный") curText.fontSize = 70;
+    }
+
+    console.log("curText", allObjectsOnStage);
+  };
 
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#FAFAFA" }}>
@@ -261,10 +282,12 @@ const DashboardWithoutTempOzon = () => {
             handleChangeImgFromHist={handleChangeImgFromHist}
             addText={addText}
             textInputRef={textInputRef}
+            changeTextStyle={changeTextStyle}
           />
         </Grid>
         <Grid item xs={2} sm={4} md={4} key={2}>
           <Canvas
+            isActiveTransformer={isActiveTransformer}
             previewUrl={previewUrl}
             imagePaperActive={imagePaperActive}
             openedFirstTime={openedFirstTime}
@@ -278,6 +301,7 @@ const DashboardWithoutTempOzon = () => {
             handleClickKeyDown={handleClickKeyDown}
             selectedShape={selectedShape}
             setSelectedShape={setSelectedShape}
+            setCurrentShapeText={setCurrentShapeText}
           />
         </Grid>
       </Grid>

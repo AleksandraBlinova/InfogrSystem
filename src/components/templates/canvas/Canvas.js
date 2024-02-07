@@ -101,14 +101,17 @@ const Canvas = (props) => {
                     } else if (object.type === "text") {
                       return (
                         <Text
+                          id="curtextShapeCanvas"
                           key={object.id}
                           x={object.x}
                           y={object.y}
                           text={object.text}
                           fontSize={object.fontSize}
+                          fontWeight={object.fontWeight}
                           draggable={true}
                           onClick={(e) => {
                             props.setSelectedShape(e.target);
+                            props.setCurrentShapeText(object.id);
                           }}
                         />
                       );
@@ -116,7 +119,9 @@ const Canvas = (props) => {
 
                     return null;
                   })}
-                  <CustomTransformer selectedShape={props.selectedShape} />
+                  {props.isActiveTransformer && (
+                    <CustomTransformer selectedShape={props.selectedShape} />
+                  )}
                 </Layer>
               </Stage>
             </div>
