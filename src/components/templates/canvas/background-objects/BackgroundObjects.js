@@ -4,6 +4,7 @@ import PhotoGradients from "./PhotoGradients";
 import Photos from "../objects/Photos";
 import Abstracts from "./Abstracs";
 import WaterPhotos from "./WaterPhotos";
+import BackgroundColors from "./BackgroundColors";
 
 const BackgroundObjects = ({
   unsplashImagesOnline,
@@ -15,6 +16,7 @@ const BackgroundObjects = ({
 }) => {
   return (
     <div>
+      <BackgroundColors />
       <Textures
         unsplashTextures={unsplashTextures}
         handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
