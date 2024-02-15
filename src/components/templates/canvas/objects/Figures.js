@@ -20,83 +20,65 @@ const Figures = ({ handleChangeClickOnUnsplash }) => {
       </Typography>
       <img
         style={{ width: "50px", marginRight: "10px" }}
-        src="./figures/video_4484656_7523051_screenshot_pixian_ai.png"
+        src="./figures/квадрат.png"
         onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./figures/video_4484656_7523051_screenshot_pixian_ai.png"
-          );
+          handleChangeClickOnUnsplash("./figures/квадрат.png");
         }}
       />
       <img
         style={{ width: "50px", marginRight: "10px" }}
-        src="./figures/video_4484658_7523063_screenshot_pixian_ai.png"
+        src="./figures/круг.png"
         onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./figures/video_4484658_7523063_screenshot_pixian_ai.png"
-          );
+          handleChangeClickOnUnsplash("./figures/круг.png");
         }}
       />
       <img
         style={{ width: "50px", marginRight: "10px" }}
-        src="./figures/video_4484660_7523069_screenshot_pixian_ai.png"
+        src="./figures/треугольник.png"
         onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./figures/video_4484660_7523069_screenshot_pixian_ai.png"
-          );
+          handleChangeClickOnUnsplash("./figures/треугольник.png");
         }}
       />
       <img
         style={{ width: "50px", marginRight: "10px" }}
-        src="./figures/video_4484664_7523078_screenshot_pixian_ai.png"
+        src="./figures/звезда.png"
         onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./figures/video_4484664_7523078_screenshot_pixian_ai.png"
-          );
+          handleChangeClickOnUnsplash("./figures/звезда.png");
         }}
       />
       <img
         style={{ width: "50px", marginRight: "10px" }}
-        src="./figures/video_4484668_7523081_screenshot_pixian_ai.png"
+        src="./figures/сердце.png"
         onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./figures/video_4484668_7523081_screenshot_pixian_ai.png"
-          );
+          handleChangeClickOnUnsplash("./figures/сердце.png");
         }}
       />
       <img
         style={{ width: "50px", marginRight: "10px" }}
-        src="./figures/video_4484672_7523087_screenshot_pixian_ai.png"
+        src="./figures/трапеция.png"
         onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./figures/video_4484672_7523087_screenshot_pixian_ai.png"
-          );
+          handleChangeClickOnUnsplash("./figures/трапеция.png");
         }}
       />
       <img
         style={{ width: "50px", marginRight: "10px" }}
-        src="./figures/video_4484675_7523091_screenshot_pixian_ai.png"
+        src="./figures/шестиугольник.png"
         onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./figures/video_4484675_7523091_screenshot_pixian_ai.png"
-          );
+          handleChangeClickOnUnsplash("./figures/шестиугольник.png");
         }}
       />
       <img
         style={{ width: "50px", marginRight: "10px" }}
-        src="./figures/video_4484678_7523093_screenshot_pixian_ai.png"
+        src="./figures/восьмиугольник.png"
         onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./figures/video_4484678_7523093_screenshot_pixian_ai.png"
-          );
+          handleChangeClickOnUnsplash("./figures/восьмиугольник.png");
         }}
       />
       <img
         style={{ width: "50px", marginRight: "10px" }}
-        src="./figures/video_4650429_7818899_screenshot_pixian_ai.png"
+        src="./figures/пентагон.png"
         onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./figures/video_4650429_7818899_screenshot_pixian_ai.png"
-          );
+          handleChangeClickOnUnsplash("./figures/пентагон.png");
         }}
       />
     </div>

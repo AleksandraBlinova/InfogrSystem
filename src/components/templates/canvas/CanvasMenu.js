@@ -456,6 +456,7 @@ const CanvasMenu = (props) => {
               unsplashAbstracts={props.unsplashAbstracts}
               unsplashWater={props.unsplashWater}
               handleChangeClickOnUnsplash={props.handleChangeClickOnUnsplash}
+              changeBackgroundLinesFigures={props.changeBackgroundLinesFigures}
             />
           </Box>
         )}

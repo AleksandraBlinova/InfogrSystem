@@ -8,7 +8,18 @@ import Paper from "@mui/material/Paper";
 import Alert from "@mui/material/Alert";
 
 import { render } from "react-dom";
-import { Stage, Layer, Image, Transformer, Text } from "react-konva";
+import {
+  Stage,
+  Layer,
+  Image,
+  Transformer,
+  Text,
+  Rect,
+  Circle,
+  Star,
+  Group,
+  Line,
+} from "react-konva";
 import useImage from "use-image";
 import Konva from "konva";
 import { IconButton } from "@mui/material";
@@ -86,18 +97,85 @@ const Canvas = (props) => {
                 <Layer>
                   {props.allObjectsOnStage.map((object) => {
                     if (object.type === "image") {
-                      return (
-                        <Image
-                          key={object.id}
-                          x={object.x}
-                          y={object.y}
-                          image={object.image}
-                          draggable={true}
-                          onClick={(e) => {
-                            props.setSelectedShape(e.target);
-                          }}
-                        />
-                      );
+                      if (object.typeofImage == "figures_quadrat") {
+                        return (
+                          <Rect
+                            fill={object.fill}
+                            width={object.width}
+                            height={object.height}
+                            draggable={true}
+                            onClick={(e) => {
+                              props.setSelectedShape(e.target);
+                              props.setCurrentShapeText(object.id);
+                            }}
+                            key={object.id}
+                            x={object.x}
+                            y={object.y}
+                          />
+                        );
+                      } else if (object.typeofImage == "figures_circle") {
+                        return (
+                          <Circle
+                            fill={object.fill}
+                            radius={40}
+                            draggable={true}
+                            onClick={(e) => {
+                              props.setSelectedShape(e.target);
+                              props.setCurrentShapeText(object.id);
+                            }}
+                            key={object.id}
+                            x={object.x}
+                            y={object.y}
+                          />
+                        );
+                      } else if (object.typeofImage == "figures_star") {
+                        return (
+                          <Star
+                            fill={object.fill}
+                            numPoints={5}
+                            innerRadius={14}
+                            outerRadius={40}
+                            draggable={true}
+                            onClick={(e) => {
+                              props.setSelectedShape(e.target);
+                              props.setCurrentShapeText(object.id);
+                            }}
+                            key={object.id}
+                            x={object.x}
+                            y={object.y}
+                          />
+                        );
+                      } else if (object.typeofImage == "figures_triangle") {
+                        return (
+                          <Line
+                            draggable={true}
+                            onClick={(e) => {
+                              props.setSelectedShape(e.target);
+                              props.setCurrentShapeText(object.id);
+                            }}
+                            points={[35, 130, 125, 130, 80, 40]}
+                            closed
+                            fill={object.fill}
+                            key={object.id}
+                            x={object.x}
+                            y={object.y}
+                          />
+                        );
+                      } else {
+                        return (
+                          <Image
+                            key={object.id}
+                            x={object.x}
+                            y={object.y}
+                            image={object.image}
+                            draggable={true}
+                            onClick={(e) => {
+                              props.setSelectedShape(e.target);
+                              props.setCurrentShapeText(object.id);
+                            }}
+                          />
+                        );
+                      }
                     } else if (object.type === "text") {
                       return (
                         <Text

@@ -2,11 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Typography } from "@mui/material";
 
-const BackgroundColors = ({}) => {
+const BackgroundColors = ({ changeBackgroundLinesFigures }) => {
   const data = [
     { id: 1, color: "#000" },
     { id: 2, color: "#fff" },
-    { id: 3, color: "#ffcdd2" },
     { id: 4, color: "#ffcdd2" },
     { id: 5, color: "#ff5252" },
     { id: 6, color: "#ff1744" },
@@ -93,6 +92,7 @@ const BackgroundColors = ({}) => {
                 marginRight: "10px",
                 marginBottom: "10px",
               }}
+              onClick={() => changeBackgroundLinesFigures(item)}
             ></div>
           </div>
         ))}

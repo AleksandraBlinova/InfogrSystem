@@ -13,10 +13,13 @@ const BackgroundObjects = ({
   unsplashPhotoGradients,
   unsplashAbstracts,
   unsplashWater,
+  changeBackgroundLinesFigures,
 }) => {
   return (
     <div>
-      <BackgroundColors />
+      <BackgroundColors
+        changeBackgroundLinesFigures={changeBackgroundLinesFigures}
+      />
       <Textures
         unsplashTextures={unsplashTextures}
         handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}

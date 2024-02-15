@@ -79,7 +79,11 @@ const DashboardWithoutTempOzon = () => {
   const [clickOnUnsplash, setClickOnUnsplash] = useState();
 
   const handleChangeClickOnUnsplash = (value) => {
-    const file = new File([value], "photo.jpeg", { type: "image/jpeg" });
+    let file;
+    if (value.includes("figures") || value.includes("lines"))
+      file = new File([value], "photo.png", { type: "image/png" });
+    else file = new File([value], "photo.jpeg", { type: "image/jpeg" });
+
     setClickOnUnsplash(file);
     setPreviewUrl(value);
     addImage(file, value);
@@ -135,6 +139,7 @@ const DashboardWithoutTempOzon = () => {
 
   const handleFile = (file) => {
     //you can carry out any file validations here...
+
     setImagePaperActive(file);
     setPreviewUrl(window.URL.createObjectURL(file));
 
@@ -166,8 +171,7 @@ const DashboardWithoutTempOzon = () => {
         allObjectsOnStage[0].id != selectedShape.index
       )
         setallObjectsOnStage(allObjectsOnStage.splice(0, 1));
-      console.log(allObjectsOnStage);
-      console.log(selectedShape);
+
       setallObjectsOnStage(
         allObjectsOnStage.filter((i) => i.id - 1 != selectedShape.index)
       );
@@ -178,18 +182,57 @@ const DashboardWithoutTempOzon = () => {
   ///////canvas
 
   const addImage = (file, url) => {
+    let typeofPhoto;
+    if (url) {
+      if (url.includes("figures")) {
+        if (url.includes("квадрат")) typeofPhoto = "figures_quadrat";
+        else if (url.includes("круг")) typeofPhoto = "figures_circle";
+        else if (url.includes("треугольник")) typeofPhoto = "figures_triangle";
+        else if (url.includes("сердце")) typeofPhoto = "figures_heart";
+        else if (url.includes("трапеция")) typeofPhoto = "figures_4angles";
+        else if (url.includes("пентагон")) typeofPhoto = "figures_5angles";
+        else if (url.includes("шестиугольник")) typeofPhoto = "figures_6angles";
+        else if (url.includes("восьмиугольник"))
+          typeofPhoto = "figures_8angles";
+        else if (url.includes("звезда")) typeofPhoto = "figures_star";
+      } else if (url.includes("lines")) typeofPhoto = "lines";
+      else if (url.includes("emoji")) typeofPhoto = "emoji";
+      else if (url.includes("city")) typeofPhoto = "city_icons";
+      else if (url.includes("business")) typeofPhoto = "business_icons";
+      else if (url.includes("unsplash")) typeofPhoto = "unsplash";
+      else typeofPhoto = "";
+    } else typeofPhoto = "drag_drop";
+
     const imageFile = file;
     if (imageFile) {
       var reader = new FileReader();
-      reader.onload = function (event) {
-        const newImage = {
-          type: "image",
-          id: allObjectsOnStage.length + 1,
-          x: 0,
-          y: 0,
-          image: new window.Image(),
-        };
 
+      reader.onload = function (event) {
+        let newImage;
+        console.log(file);
+        if (imageFile.type.includes("png")) {
+          newImage = {
+            type: "image",
+            id: allObjectsOnStage.length + 1,
+            x: 180,
+            y: 220,
+            image: new window.Image(),
+            typeofImage: typeofPhoto,
+            fill: "#bdbdbd",
+            width: 80,
+            height: 80,
+          };
+        } else {
+          newImage = {
+            type: "image",
+            id: allObjectsOnStage.length + 1,
+            x: 0,
+            y: 0,
+            image: new window.Image(),
+            typeofImage: typeofPhoto,
+          };
+        }
+        console.log(newImage);
         if (url) newImage.image.src = url;
         else newImage.image.src = event.target.result;
 
@@ -223,11 +266,14 @@ const DashboardWithoutTempOzon = () => {
 
   const [curText, setCurText] = useState("");
 
+  const [curBackground, setCurBackground] = useState("");
+
   const [isActiveTransformer, setActiveTransformer] = useState(true); // Создаем состояние `isActive` для активации/деактивации Transformer
 
   const setCurrentShapeText = (idCurText) => {
     const currentTextShape = allObjectsOnStage.find((i) => i.id == idCurText);
     setCurText(currentTextShape);
+    setCurBackground(currentTextShape);
     setActiveTransformer(true);
   };
 
@@ -254,8 +300,13 @@ const DashboardWithoutTempOzon = () => {
         curText.textDecoration = "underline";
         curText.fontStyle = "normal";
       }
+    }
+  };
 
-      console.log(curText);
+  const changeBackgroundLinesFigures = (value) => {
+    setActiveTransformer(false);
+    if (curBackground) {
+      curBackground.fill = value.color;
     }
   };
 
@@ -302,6 +353,7 @@ const DashboardWithoutTempOzon = () => {
             addText={addText}
             textInputRef={textInputRef}
             changeTextStyle={changeTextStyle}
+            changeBackgroundLinesFigures={changeBackgroundLinesFigures}
           />
         </Grid>
         <Grid item xs={2} sm={4} md={4} key={2}>
