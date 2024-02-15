@@ -17,8 +17,7 @@ import {
   Rect,
   Circle,
   Star,
-  Group,
-  Shape,
+  Arrow,
   RegularPolygon,
   Line,
 } from "react-konva";
@@ -269,6 +268,38 @@ const Canvas = (props) => {
                       ) {
                         return (
                           <Line
+                            points={[0, 100, 300, 100]}
+                            x={0}
+                            y={0}
+                            stroke={object.stroke}
+                            strokeWidth={3}
+                            draggable={true}
+                            onClick={(e) => {
+                              props.setSelectedShape(e.target);
+                              props.setCurrentShapeText(object.id);
+                            }}
+                            dash={[15, 8]} // Шаблон пунктирной линии: 5 пикселей сплошной линии, 5 пикселей пустоты
+                          />
+                        );
+                      } else if (object.typeofImage == "lines_arrawsimple") {
+                        return (
+                          <Arrow
+                            points={[0, 100, 300, 100]}
+                            x={0}
+                            y={0}
+                            stroke={object.stroke}
+                            strokeWidth={3}
+                            draggable={true}
+                            onClick={(e) => {
+                              props.setSelectedShape(e.target);
+                              props.setCurrentShapeText(object.id);
+                            }}
+                            //dash={[15, 8]} // Шаблон пунктирной линии: 5 пикселей сплошной линии, 5 пикселей пустоты
+                          />
+                        );
+                      } else if (object.typeofImage == "lines_arrawdashed") {
+                        return (
+                          <Arrow
                             points={[0, 100, 300, 100]}
                             x={0}
                             y={0}

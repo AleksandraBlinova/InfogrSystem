@@ -200,6 +200,8 @@ const DashboardWithoutTempOzon = () => {
         if (url.includes("1line")) typeofPhoto = "lines_simple";
         else if (url.includes("2line")) typeofPhoto = "lines_dotted_smalldotes";
         else if (url.includes("3line")) typeofPhoto = "lines_dotted_bigdotes";
+        else if (url.includes("7line")) typeofPhoto = "lines_arrawsimple";
+        else if (url.includes("8line")) typeofPhoto = "lines_arrawdashed";
       } else if (url.includes("emoji")) typeofPhoto = "emoji";
       else if (url.includes("city")) typeofPhoto = "city_icons";
       else if (url.includes("business")) typeofPhoto = "business_icons";
