@@ -80,8 +80,10 @@ const DashboardWithoutTempOzon = () => {
 
   const handleChangeClickOnUnsplash = (value) => {
     let file;
-    if (value.includes("figures") || value.includes("lines"))
+    if (value.includes("figures"))
       file = new File([value], "photo.png", { type: "image/png" });
+    else if (value.includes("lines"))
+      file = new File([value], "line.png", { type: "image/png" });
     else file = new File([value], "photo.jpeg", { type: "image/jpeg" });
 
     setClickOnUnsplash(file);
@@ -194,8 +196,11 @@ const DashboardWithoutTempOzon = () => {
         else if (url.includes("восьмиугольник"))
           typeofPhoto = "figures_8angles";
         else if (url.includes("звезда")) typeofPhoto = "figures_star";
-      } else if (url.includes("lines")) typeofPhoto = "lines";
-      else if (url.includes("emoji")) typeofPhoto = "emoji";
+      } else if (url.includes("lines")) {
+        if (url.includes("1line")) typeofPhoto = "lines_simple";
+        else if (url.includes("2line")) typeofPhoto = "lines_dotted_smalldotes";
+        else if (url.includes("3line")) typeofPhoto = "lines_dotted_bigdotes";
+      } else if (url.includes("emoji")) typeofPhoto = "emoji";
       else if (url.includes("city")) typeofPhoto = "city_icons";
       else if (url.includes("business")) typeofPhoto = "business_icons";
       else if (url.includes("unsplash")) typeofPhoto = "unsplash";
@@ -218,6 +223,7 @@ const DashboardWithoutTempOzon = () => {
             image: new window.Image(),
             typeofImage: typeofPhoto,
             fill: "#bdbdbd",
+            stroke: "#000",
             width: 85,
             height: 85,
           };
@@ -306,6 +312,7 @@ const DashboardWithoutTempOzon = () => {
     setActiveTransformer(false);
     if (curBackground) {
       curBackground.fill = value.color;
+      curBackground.stroke = value.color;
     }
   };
 

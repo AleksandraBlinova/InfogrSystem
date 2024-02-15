@@ -29,27 +29,6 @@ const Lines = ({ handleChangeClickOnUnsplash }) => {
           handleChangeClickOnUnsplash("./lines/3line.png");
         }}
       />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./lines/4line.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./lines/4line.png");
-        }}
-      />
-      <img
-        style={{ width: "60px", marginRight: "20px" }}
-        src="./lines/5line.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./lines/5line.png");
-        }}
-      />
-      <img
-        style={{ width: "80px", marginRight: "20px" }}
-        src="./lines/6line.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./lines/6line.png");
-        }}
-      />
     </div>
   );
 };

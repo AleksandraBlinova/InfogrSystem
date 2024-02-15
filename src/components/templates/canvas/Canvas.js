@@ -230,6 +230,58 @@ const Canvas = (props) => {
                             rotation={0} // поворот на 30 градусов для вершины вверху
                           />
                         );
+                      } else if (object.typeofImage == "lines_simple") {
+                        return (
+                          <Line
+                            key={object.id}
+                            x={0}
+                            y={0}
+                            points={[0, 100, 300, 100]}
+                            stroke={object.stroke}
+                            strokeWidth={3}
+                            draggable={true}
+                            onClick={(e) => {
+                              props.setSelectedShape(e.target);
+                              props.setCurrentShapeText(object.id);
+                            }}
+                          />
+                        );
+                      } else if (
+                        object.typeofImage == "lines_dotted_smalldotes"
+                      ) {
+                        return (
+                          <Line
+                            points={[0, 100, 300, 100]}
+                            x={0}
+                            y={0}
+                            stroke={object.stroke}
+                            strokeWidth={3}
+                            draggable={true}
+                            onClick={(e) => {
+                              props.setSelectedShape(e.target);
+                              props.setCurrentShapeText(object.id);
+                            }}
+                            dash={[5, 5]} // Шаблон пунктирной линии: 5 пикселей сплошной линии, 5 пикселей пустоты
+                          />
+                        );
+                      } else if (
+                        object.typeofImage == "lines_dotted_bigdotes"
+                      ) {
+                        return (
+                          <Line
+                            points={[0, 100, 300, 100]}
+                            x={0}
+                            y={0}
+                            stroke={object.stroke}
+                            strokeWidth={3}
+                            draggable={true}
+                            onClick={(e) => {
+                              props.setSelectedShape(e.target);
+                              props.setCurrentShapeText(object.id);
+                            }}
+                            dash={[15, 8]} // Шаблон пунктирной линии: 5 пикселей сплошной линии, 5 пикселей пустоты
+                          />
+                        );
                       } else {
                         return (
                           <Image
