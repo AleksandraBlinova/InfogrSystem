@@ -18,6 +18,8 @@ import {
   Circle,
   Star,
   Group,
+  Shape,
+  RegularPolygon,
   Line,
 } from "react-konva";
 import useImage from "use-image";
@@ -117,7 +119,7 @@ const Canvas = (props) => {
                         return (
                           <Circle
                             fill={object.fill}
-                            radius={40}
+                            radius={45}
                             draggable={true}
                             onClick={(e) => {
                               props.setSelectedShape(e.target);
@@ -133,8 +135,8 @@ const Canvas = (props) => {
                           <Star
                             fill={object.fill}
                             numPoints={5}
-                            innerRadius={14}
-                            outerRadius={40}
+                            innerRadius={18}
+                            outerRadius={55}
                             draggable={true}
                             onClick={(e) => {
                               props.setSelectedShape(e.target);
@@ -159,6 +161,73 @@ const Canvas = (props) => {
                             key={object.id}
                             x={object.x}
                             y={object.y}
+                          />
+                        );
+                      } else if (object.typeofImage == "figures_4angles") {
+                        return (
+                          <RegularPolygon
+                            draggable={true}
+                            onClick={(e) => {
+                              props.setSelectedShape(e.target);
+                              props.setCurrentShapeText(object.id);
+                            }}
+                            fill={object.fill}
+                            key={object.id}
+                            x={object.x}
+                            y={object.y}
+                            sides={5} // количество сторон пятиугольника
+                            radius={50} // радиус пятиугольника
+                          />
+                        );
+                      } else if (object.typeofImage == "figures_6angles") {
+                        return (
+                          <Star
+                            draggable={true}
+                            onClick={(e) => {
+                              props.setSelectedShape(e.target);
+                              props.setCurrentShapeText(object.id);
+                            }}
+                            fill={object.fill}
+                            key={object.id}
+                            x={object.x}
+                            y={object.y}
+                            numPoints={6} // количество вершин шестиугольника
+                            innerRadius={30} // радиус внутренней части звезды
+                            outerRadius={50} // радиус внешней части звезды
+                          />
+                        );
+                      } else if (object.typeofImage == "figures_8angles") {
+                        return (
+                          <Star
+                            draggable={true}
+                            onClick={(e) => {
+                              props.setSelectedShape(e.target);
+                              props.setCurrentShapeText(object.id);
+                            }}
+                            fill={object.fill}
+                            key={object.id}
+                            x={object.x}
+                            y={object.y}
+                            numPoints={8} // количество вершин шестиугольника
+                            innerRadius={35} // радиус внутренней части звезды
+                            outerRadius={45} // радиус внешней части звезды
+                          />
+                        );
+                      } else if (object.typeofImage == "figures_5angles") {
+                        return (
+                          <RegularPolygon
+                            sides={6}
+                            draggable={true}
+                            onClick={(e) => {
+                              props.setSelectedShape(e.target);
+                              props.setCurrentShapeText(object.id);
+                            }}
+                            fill={object.fill}
+                            key={object.id}
+                            x={object.x}
+                            y={object.y}
+                            radius={45}
+                            rotation={0} // поворот на 30 градусов для вершины вверху
                           />
                         );
                       } else {

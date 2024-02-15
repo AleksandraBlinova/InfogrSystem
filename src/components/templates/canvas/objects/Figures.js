@@ -46,13 +46,7 @@ const Figures = ({ handleChangeClickOnUnsplash }) => {
           handleChangeClickOnUnsplash("./figures/звезда.png");
         }}
       />
-      <img
-        style={{ width: "50px", marginRight: "10px" }}
-        src="./figures/сердце.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./figures/сердце.png");
-        }}
-      />
+
       <img
         style={{ width: "50px", marginRight: "10px" }}
         src="./figures/трапеция.png"

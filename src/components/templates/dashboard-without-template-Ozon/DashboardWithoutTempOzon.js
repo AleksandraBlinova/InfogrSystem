@@ -188,7 +188,6 @@ const DashboardWithoutTempOzon = () => {
         if (url.includes("квадрат")) typeofPhoto = "figures_quadrat";
         else if (url.includes("круг")) typeofPhoto = "figures_circle";
         else if (url.includes("треугольник")) typeofPhoto = "figures_triangle";
-        else if (url.includes("сердце")) typeofPhoto = "figures_heart";
         else if (url.includes("трапеция")) typeofPhoto = "figures_4angles";
         else if (url.includes("пентагон")) typeofPhoto = "figures_5angles";
         else if (url.includes("шестиугольник")) typeofPhoto = "figures_6angles";
@@ -219,8 +218,8 @@ const DashboardWithoutTempOzon = () => {
             image: new window.Image(),
             typeofImage: typeofPhoto,
             fill: "#bdbdbd",
-            width: 80,
-            height: 80,
+            width: 85,
+            height: 85,
           };
         } else {
           newImage = {
