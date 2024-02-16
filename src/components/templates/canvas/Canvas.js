@@ -74,7 +74,7 @@ const Canvas = (props) => {
         sx={{
           display: "flex",
           flexWrap: "wrap",
-          width: "500px",
+          width: "420px",
           height: "600px",
         }}
       >
@@ -320,6 +320,8 @@ const Canvas = (props) => {
                             key={object.id}
                             x={object.x}
                             y={object.y}
+                            width={object.width}
+                            height={object.height}
                             image={object.image}
                             draggable={true}
                             onClick={(e) => {

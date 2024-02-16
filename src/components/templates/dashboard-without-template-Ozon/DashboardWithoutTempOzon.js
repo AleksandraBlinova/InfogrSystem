@@ -236,6 +236,8 @@ const DashboardWithoutTempOzon = () => {
             id: allObjectsOnStage.length + 1,
             x: 0,
             y: 0,
+            width: 450,
+            height: 580,
             image: new window.Image(),
             typeofImage: typeofPhoto,
           };
@@ -247,6 +249,7 @@ const DashboardWithoutTempOzon = () => {
         setallObjectsOnStage([...allObjectsOnStage, newImage]);
       };
       reader.readAsDataURL(imageFile);
+      console.log(allObjectsOnStage);
     }
   };
   //////////canvas
