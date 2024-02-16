@@ -85,6 +85,7 @@ const Canvas = (props) => {
             width: "420px",
             height: "580px",
             borderRadius: "0px",
+            marginTop: "50px",
           }}
         >
           {!props.openedFirstTime && props.imagePaperActiveType == "" && (

@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
+import CanvasProjects from "../canvas/CanvasProjects";
 
 const DashboardWithoutTempOzon = () => {
   const [allObjectsOnStage, setallObjectsOnStage] = useState([]); //для отображения всех фоток на холсте
@@ -326,7 +327,7 @@ const DashboardWithoutTempOzon = () => {
         container
         sx={{
           backgroundColor: "#FFF",
-          marginBottom: "50px",
+
           border: "1px solid #bab6b6",
         }}
       ></Grid>
@@ -364,7 +365,7 @@ const DashboardWithoutTempOzon = () => {
             changeBackgroundLinesFigures={changeBackgroundLinesFigures}
           />
         </Grid>
-        <Grid item xs={2} sm={4} md={4} key={2}>
+        <Grid item xs={5} sm={4} md={4} key={2}>
           <Canvas
             isActiveTransformer={isActiveTransformer}
             previewUrl={previewUrl}
@@ -382,6 +383,9 @@ const DashboardWithoutTempOzon = () => {
             setSelectedShape={setSelectedShape}
             setCurrentShapeText={setCurrentShapeText}
           />
+        </Grid>
+        <Grid item xs={2} sm={4} md={3} key={3}>
+          <CanvasProjects />
         </Grid>
       </Grid>
     </Box>

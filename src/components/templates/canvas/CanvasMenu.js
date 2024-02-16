@@ -46,7 +46,7 @@ const CanvasMenu = (props) => {
       <Grid item>
         <Box
           width={120}
-          height={550}
+          height={635}
           p={2}
           borderRight={1}
           sx={{
@@ -112,7 +112,7 @@ const CanvasMenu = (props) => {
         {opened == 1 && (
           <Box
             width={250}
-            height={550}
+            height={635}
             p={2}
             borderRight={1}
             sx={{
@@ -283,7 +283,7 @@ const CanvasMenu = (props) => {
         {opened == 2 && (
           <Box
             width={240}
-            height={550}
+            height={635}
             p={2}
             borderRight={1}
             sx={{
@@ -318,7 +318,7 @@ const CanvasMenu = (props) => {
         {opened == 3 && (
           <Box
             width={240}
-            height={550}
+            height={635}
             p={2}
             borderRight={1}
             sx={{
@@ -358,7 +358,7 @@ const CanvasMenu = (props) => {
         {opened == 4 && (
           <Box
             width={240}
-            height={550}
+            height={635}
             p={2}
             borderRight={1}
             sx={{
@@ -408,7 +408,7 @@ const CanvasMenu = (props) => {
         {opened == 5 && (
           <Box
             width={240}
-            height={550}
+            height={635}
             p={2}
             borderRight={1}
             sx={{
