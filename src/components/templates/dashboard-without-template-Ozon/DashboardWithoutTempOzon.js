@@ -336,7 +336,7 @@ const DashboardWithoutTempOzon = () => {
       ></Grid>
       <Grid
         container
-        spacing={{ xs: 2, md: 3 }}
+        spacing={{ xs: 2, md: 0 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         <Grid item xs={2} sm={4} md={5} key={1}>

@@ -28,7 +28,7 @@ import BackgroundObjects from "./background-objects/BackgroundObjects";
 import "./CanvasMenu.css";
 
 const CanvasMenu = (props) => {
-  const [opened, setOpened] = useState(0);
+  const [opened, setOpened] = useState(1);
   const handleChangeOpened = (value) => {
     setOpened(value);
   };
