@@ -9,6 +9,12 @@ import CanvasProjects from "../canvas/CanvasProjects";
 
 const DashboardWithoutTempOzon = () => {
   const [allObjectsOnStage, setallObjectsOnStage] = useState([]); //для отображения всех фоток на холсте
+
+  const [allObjectsOnCURRENTStage, setallObjectsOnCURRENTStage] = useState([]); //для отображения всех фоток на холсте
+
+  let [numberOfStages, setNumberOfStages] = useState([1]);
+  let [currentStageIndex, setCurrentStageIndex] = useState(1);
+
   ////////photos from unsplash
   const [unsplashImagesOnline, setUnsplashImagesOnline] = useState([]);
 
@@ -170,13 +176,18 @@ const DashboardWithoutTempOzon = () => {
   const handleClickKeyDown = (e) => {
     if ((e.key === "Delete" || e.key === "Backspace") && selectedShape) {
       if (
-        allObjectsOnStage.length == 1 &&
-        allObjectsOnStage[0].id != selectedShape.index
-      )
+        allObjectsOnCURRENTStage.length == 1 &&
+        allObjectsOnCURRENTStage[0].id != selectedShape.index
+      ) {
+        setallObjectsOnCURRENTStage(allObjectsOnCURRENTStage.splice(0, 1));
         setallObjectsOnStage(allObjectsOnStage.splice(0, 1));
-
+      }
       setallObjectsOnStage(
         allObjectsOnStage.filter((i) => i.id - 1 != selectedShape.index)
+      );
+
+      setallObjectsOnCURRENTStage(
+        allObjectsOnCURRENTStage.filter((i) => i.id - 1 != selectedShape.index)
       );
       setSelectedShape(null);
     }
@@ -229,6 +240,7 @@ const DashboardWithoutTempOzon = () => {
             stroke: "#000",
             width: 85,
             height: 85,
+            slideIndex: currentStageIndex,
           };
         } else {
           newImage = {
@@ -240,16 +252,17 @@ const DashboardWithoutTempOzon = () => {
             height: 580,
             image: new window.Image(),
             typeofImage: typeofPhoto,
+            slideIndex: currentStageIndex,
           };
         }
-        console.log(newImage);
+
         if (url) newImage.image.src = url;
         else newImage.image.src = event.target.result;
 
         setallObjectsOnStage([...allObjectsOnStage, newImage]);
+        setallObjectsOnCURRENTStage([...allObjectsOnCURRENTStage, newImage]);
       };
       reader.readAsDataURL(imageFile);
-      console.log(allObjectsOnStage);
     }
   };
   //////////canvas
@@ -268,9 +281,11 @@ const DashboardWithoutTempOzon = () => {
       fontSize: 24,
       fontFamily: "Arial",
       textDecoration: "empty",
+      slideIndex: currentStageIndex,
     };
 
     setallObjectsOnStage([...allObjectsOnStage, newText]);
+    setallObjectsOnCURRENTStage([...allObjectsOnCURRENTStage, newText]);
     setPreviewUrl("addedtext");
   };
   ///////canvas text area
@@ -282,7 +297,9 @@ const DashboardWithoutTempOzon = () => {
   const [isActiveTransformer, setActiveTransformer] = useState(true); // Создаем состояние `isActive` для активации/деактивации Transformer
 
   const setCurrentShapeText = (idCurText) => {
-    const currentTextShape = allObjectsOnStage.find((i) => i.id == idCurText);
+    const currentTextShape = allObjectsOnCURRENTStage.find(
+      (i) => i.id == idCurText
+    );
     setCurText(currentTextShape);
     setCurBackground(currentTextShape);
     setActiveTransformer(true);
@@ -321,6 +338,15 @@ const DashboardWithoutTempOzon = () => {
       curBackground.stroke = value.color;
     }
   };
+
+  ////////////change current stage
+
+  const addNewCurrentStage = () => {
+    setNumberOfStages([...numberOfStages, currentStageIndex + 1]);
+    setCurrentStageIndex(currentStageIndex + 1);
+  };
+
+  ////////////change current stage
 
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#FAFAFA" }}>
@@ -381,6 +407,7 @@ const DashboardWithoutTempOzon = () => {
             uploadedImagesDrDr={uploadedImagesDrDr}
             setImagePaperActiveType={setImagePaperActiveType}
             allObjectsOnStage={allObjectsOnStage}
+            allObjectsOnCURRENTStage={allObjectsOnCURRENTStage}
             handleClickKeyDown={handleClickKeyDown}
             selectedShape={selectedShape}
             setSelectedShape={setSelectedShape}
@@ -388,7 +415,13 @@ const DashboardWithoutTempOzon = () => {
           />
         </Grid>
         <Grid item xs={2} sm={4} md={3} key={3}>
-          <CanvasProjects allObjectsOnStage={allObjectsOnStage} />
+          <CanvasProjects
+            allObjectsOnStage={allObjectsOnStage}
+            allObjectsOnCURRENTStage={allObjectsOnCURRENTStage}
+            addNewCurrentStage={addNewCurrentStage}
+            currentStageIndex={currentStageIndex}
+            numberOfStages={numberOfStages}
+          />
         </Grid>
       </Grid>
     </Box>

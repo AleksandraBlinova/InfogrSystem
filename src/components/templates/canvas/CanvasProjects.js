@@ -4,31 +4,40 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import FormatSizeIcon from "@mui/icons-material/FormatSize";
 
-const CanvasProjects = ({ allObjectsOnStage }) => {
-  console.log(allObjectsOnStage);
+const CanvasProjects = ({
+  allObjectsOnCURRENTStage,
+  allObjectsOnStage,
+  addNewCurrentStage,
+  currentStageIndex,
+  numberOfStages,
+}) => {
+  console.log(numberOfStages.map((item) => item));
   return (
     <Box>
-      <Box
-        width={250}
-        p={2}
-        border={1}
-        sx={{
-          borderColor: "grey.500",
-          marginLeft: "80px",
-          marginTop: "50px",
-        }}
-      >
-        <Grid container spacing={2}>
-          <Grid item xs={6} md={9}>
-            <Typography>Слайд 1</Typography>
+      {numberOfStages.map((item) => (
+        <Box
+          width={250}
+          p={2}
+          border={1}
+          sx={{
+            borderColor: "grey.500",
+            marginLeft: "80px",
+            marginTop: "50px",
+          }}
+        >
+          <Grid container spacing={2}>
+            <Grid item xs={6} md={9}>
+              <Typography>Слайд {item}</Typography>
+            </Grid>
+            <Grid item xs={6} md={3}>
+              <DeleteIcon sx={{ color: "grey", fontSize: "20px" }} />{" "}
+              <ContentCopyIcon sx={{ color: "grey", fontSize: "20px" }} />
+            </Grid>
           </Grid>
-          <Grid item xs={6} md={3}>
-            <DeleteIcon sx={{ color: "grey", fontSize: "20px" }} />{" "}
-            <ContentCopyIcon sx={{ color: "grey", fontSize: "20px" }} />
-          </Grid>
-        </Grid>
-      </Box>
-      {allObjectsOnStage.map((i) => (
+        </Box>
+      ))}
+
+      {allObjectsOnCURRENTStage.map((i) => (
         <Box
           sx={{
             marginLeft: "80px",
@@ -96,6 +105,27 @@ const CanvasProjects = ({ allObjectsOnStage }) => {
           )}
         </Box>
       ))}
+      <Box
+        sx={{
+          marginLeft: "80px",
+          marginTop: "30px",
+          textAlign: "center",
+        }}
+      >
+        <Button
+          variant="contained"
+          sx={{
+            backgroundColor: "#616161",
+            borderRadius: "0px",
+            "&:hover": {
+              backgroundColor: "#607d8b",
+            },
+          }}
+          onClick={addNewCurrentStage}
+        >
+          Добавить слайд
+        </Button>
+      </Box>
     </Box>
   );
 };

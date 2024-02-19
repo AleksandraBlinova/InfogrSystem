@@ -97,7 +97,7 @@ const Canvas = (props) => {
             <div className="image" id="imageCanvasForRect">
               <Stage width={420} height={580}>
                 <Layer>
-                  {props.allObjectsOnStage.map((object) => {
+                  {props.allObjectsOnCURRENTStage.map((object) => {
                     if (object.type === "image") {
                       if (object.typeofImage == "figures_quadrat") {
                         return (
