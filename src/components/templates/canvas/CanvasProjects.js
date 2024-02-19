@@ -1,31 +1,101 @@
 import React from "react";
-import { Grid, Box, IconButton, Typography } from "@mui/material";
+import { Grid, Button, Box, IconButton, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import FormatSizeIcon from "@mui/icons-material/FormatSize";
 
-const CanvasProjects = () => {
+const CanvasProjects = ({ allObjectsOnStage }) => {
+  console.log(allObjectsOnStage);
   return (
-    <Box
-      width={250}
-      height={135}
-      p={2}
-      border={1}
-      sx={{
-        borderColor: "grey.500",
-        backgroundColor: "#fff",
-        marginLeft: "80px",
-        marginTop: "50px",
-      }}
-    >
-      <Grid container spacing={2}>
-        <Grid item xs={6} md={9}>
-          <Typography>Слайд 1</Typography>
+    <Box>
+      <Box
+        width={250}
+        p={2}
+        border={1}
+        sx={{
+          borderColor: "grey.500",
+          marginLeft: "80px",
+          marginTop: "50px",
+        }}
+      >
+        <Grid container spacing={2}>
+          <Grid item xs={6} md={9}>
+            <Typography>Слайд 1</Typography>
+          </Grid>
+          <Grid item xs={6} md={3}>
+            <DeleteIcon sx={{ color: "grey", fontSize: "20px" }} />{" "}
+            <ContentCopyIcon sx={{ color: "grey", fontSize: "20px" }} />
+          </Grid>
         </Grid>
-        <Grid item xs={6} md={3}>
-          <DeleteIcon sx={{ color: "grey", fontSize: "20px" }} />{" "}
-          <ContentCopyIcon sx={{ color: "grey", fontSize: "20px" }} />
-        </Grid>
-      </Grid>
+      </Box>
+      {allObjectsOnStage.map((i) => (
+        <Box
+          sx={{
+            marginLeft: "80px",
+            backgroundColor: "#bdbdbd",
+            borderRadius: "0",
+            width: "282px",
+            height: "50px",
+            border: "1px solid #9e9e9e",
+          }}
+        >
+          {i.type == "image" && (
+            <Grid container>
+              {" "}
+              <Grid item xs={4}>
+                {" "}
+                <img
+                  src={i.image.src}
+                  style={{
+                    width: "30px",
+                    height: "30px",
+                    marginLeft: "20px",
+                    marginTop: "9px",
+                  }}
+                />
+              </Grid>
+              <Grid item xs={8}>
+                {" "}
+                {(i.typeofImage.includes("icon") ||
+                  i.typeofImage.includes("emoji")) && (
+                  <Typography sx={{ marginTop: "12px" }}>Иконка</Typography>
+                )}
+                {(i.typeofImage.includes("unsplash") ||
+                  i.typeofImage.includes("drag_drop")) && (
+                  <Typography sx={{ marginTop: "12px" }}>
+                    Изображение
+                  </Typography>
+                )}
+                {i.typeofImage.includes("figure") && (
+                  <Typography sx={{ marginTop: "12px" }}>Фигура</Typography>
+                )}
+                {i.typeofImage.includes("line") && (
+                  <Typography sx={{ marginTop: "12px" }}>Линия</Typography>
+                )}
+              </Grid>
+            </Grid>
+          )}
+          {i.type == "text" && (
+            <Grid container>
+              {" "}
+              <Grid item xs={4}>
+                {" "}
+                <FormatSizeIcon
+                  sx={{
+                    marginLeft: "20px",
+                    marginTop: "12px",
+                    color: "#424242",
+                  }}
+                />
+              </Grid>
+              <Grid item xs={8}>
+                {" "}
+                <Typography sx={{ marginTop: "12px" }}>Текст</Typography>
+              </Grid>
+            </Grid>
+          )}
+        </Box>
+      ))}
     </Box>
   );
 };

@@ -388,7 +388,7 @@ const DashboardWithoutTempOzon = () => {
           />
         </Grid>
         <Grid item xs={2} sm={4} md={3} key={3}>
-          <CanvasProjects />
+          <CanvasProjects allObjectsOnStage={allObjectsOnStage} />
         </Grid>
       </Grid>
     </Box>
