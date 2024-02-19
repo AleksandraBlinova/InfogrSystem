@@ -339,11 +339,24 @@ const DashboardWithoutTempOzon = () => {
     }
   };
 
-  ////////////change current stage
+  ////////////ADD current stage
 
   const addNewCurrentStage = () => {
     setNumberOfStages([...numberOfStages, currentStageIndex + 1]);
     setCurrentStageIndex(currentStageIndex + 1);
+  };
+
+  ////////////ADD current stage
+
+  ////////////change current stage
+
+  const changeCurrentStage = (selectedStageNum) => {
+    setCurrentStageIndex(selectedStageNum);
+    let curArray = [];
+    allObjectsOnStage.forEach((element) => {
+      if (element.slideIndex == selectedStageNum) curArray.push(element);
+    });
+    setallObjectsOnCURRENTStage(curArray);
   };
 
   ////////////change current stage
@@ -421,6 +434,7 @@ const DashboardWithoutTempOzon = () => {
             addNewCurrentStage={addNewCurrentStage}
             currentStageIndex={currentStageIndex}
             numberOfStages={numberOfStages}
+            changeCurrentStage={changeCurrentStage}
           />
         </Grid>
       </Grid>
