@@ -87,7 +87,11 @@ const DashboardWithoutTempOzon = () => {
 
   const handleChangeClickOnUnsplash = (value) => {
     let file;
-    if (value.includes("figures"))
+    if (
+      value.includes("figures") ||
+      value.includes("emoji") ||
+      value.includes("icon")
+    )
       file = new File([value], "photo.png", { type: "image/png" });
     else if (value.includes("lines"))
       file = new File([value], "line.png", { type: "image/png" });
@@ -224,7 +228,6 @@ const DashboardWithoutTempOzon = () => {
     const imageFile = file;
     if (imageFile) {
       var reader = new FileReader();
-
       reader.onload = function (event) {
         let newImage;
         if (imageFile.type.includes("png")) {
@@ -343,6 +346,8 @@ const DashboardWithoutTempOzon = () => {
   const addNewCurrentStage = () => {
     setNumberOfStages([...numberOfStages, currentStageIndex + 1]);
     setCurrentStageIndex(currentStageIndex + 1);
+    let curArray = [];
+    setallObjectsOnCURRENTStage(curArray);
   };
 
   ////////////ADD current stage
