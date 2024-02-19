@@ -227,7 +227,6 @@ const DashboardWithoutTempOzon = () => {
 
       reader.onload = function (event) {
         let newImage;
-        console.log(file);
         if (imageFile.type.includes("png")) {
           newImage = {
             type: "image",

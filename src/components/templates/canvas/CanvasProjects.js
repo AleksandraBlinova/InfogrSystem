@@ -12,7 +12,6 @@ const CanvasProjects = ({
   numberOfStages,
   changeCurrentStage,
 }) => {
-  console.log(allObjectsOnCURRENTStage);
   return (
     <Box>
       {numberOfStages.map((item) => (
