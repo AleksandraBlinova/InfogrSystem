@@ -414,6 +414,7 @@ const DashboardWithoutTempOzon = () => {
         newEl.slideIndex = numberOfStages.length + 1;
         allObjectsOnStage.push(newEl);
         allObjectsOnCURRENTStage.push(newEl);
+        allObjectsOnCURRENTStage.shift();
       }
     });
     console.log(allObjectsOnCURRENTStage);
