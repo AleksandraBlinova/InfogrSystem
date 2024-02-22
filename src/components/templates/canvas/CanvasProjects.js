@@ -20,11 +20,14 @@ const CanvasProjects = ({
           <Box
             width={250}
             p={2}
-            border={1}
             sx={{
               borderColor: "grey.500",
               marginLeft: "80px",
               marginTop: "50px",
+              border:
+                item == currentStageIndex
+                  ? "1px solid #aa00ff"
+                  : "1px solid grey",
             }}
           >
             <Grid container spacing={2}>
@@ -59,7 +62,9 @@ const CanvasProjects = ({
                   borderRadius: "0",
                   width: "282px",
                   height: "50px",
-                  border: "1px solid #9e9e9e",
+                  borderLeft: "1px solid grey",
+                  borderBottom: "1px solid grey",
+                  borderRight: "1px solid grey",
                 }}
               >
                 {i.type == "image" && (
