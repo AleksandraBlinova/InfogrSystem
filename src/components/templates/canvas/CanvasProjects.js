@@ -11,6 +11,7 @@ const CanvasProjects = ({
   currentStageIndex,
   numberOfStages,
   changeCurrentStage,
+  deleteCurrentStage,
 }) => {
   return (
     <Box>
@@ -25,16 +26,25 @@ const CanvasProjects = ({
               marginLeft: "80px",
               marginTop: "50px",
             }}
-            onClick={() => {
-              changeCurrentStage(item);
-            }}
           >
             <Grid container spacing={2}>
               <Grid item xs={6} md={9}>
-                <Typography>Слайд {item}</Typography>
+                <Typography
+                  onClick={() => {
+                    changeCurrentStage(item);
+                  }}
+                >
+                  Слайд {item}
+                </Typography>
               </Grid>
               <Grid item xs={6} md={3}>
-                <DeleteIcon sx={{ color: "grey", fontSize: "20px" }} />{" "}
+                <DeleteIcon
+                  sx={{ color: "grey", fontSize: "20px" }}
+                  onClick={() => {
+                    changeCurrentStage(item - 1);
+                    deleteCurrentStage(item);
+                  }}
+                />{" "}
                 <ContentCopyIcon sx={{ color: "grey", fontSize: "20px" }} />
               </Grid>
             </Grid>

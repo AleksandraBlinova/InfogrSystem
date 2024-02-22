@@ -355,15 +355,50 @@ const DashboardWithoutTempOzon = () => {
   ////////////change current stage
 
   const changeCurrentStage = (selectedStageNum) => {
-    setCurrentStageIndex(selectedStageNum);
-    let curArray = [];
-    allObjectsOnStage.forEach((element) => {
-      if (element.slideIndex == selectedStageNum) curArray.push(element);
-    });
-    setallObjectsOnCURRENTStage(curArray);
+    if (numberOfStages.find((i) => i == selectedStageNum)) {
+      setCurrentStageIndex(selectedStageNum);
+      let curArray = [];
+      allObjectsOnStage.forEach((element) => {
+        if (element.slideIndex == selectedStageNum) curArray.push(element);
+      });
+      setallObjectsOnCURRENTStage(curArray);
+    } else {
+      setCurrentStageIndex(1);
+      let curArray = [];
+      allObjectsOnStage.forEach((element) => {
+        if (element.slideIndex == 1) curArray.push(element);
+      });
+      setallObjectsOnCURRENTStage(curArray);
+    }
   };
 
   ////////////change current stage
+
+  ////////////delete current stage
+
+  const deleteCurrentStage = (selectedStageNum) => {
+    if (
+      (selectedStageNum > 1 && numberOfStages.length > 1) ||
+      (selectedStageNum == 1 && numberOfStages.length > 1)
+    ) {
+      if (numberOfStages.find((i) => i == selectedStageNum)) {
+        console.log(selectedStageNum);
+        setCurrentStageIndex(selectedStageNum - 1);
+        numberOfStages.splice(numberOfStages.indexOf(selectedStageNum), 1);
+        setallObjectsOnStage(
+          allObjectsOnStage.filter((itm) => itm.slideIndex != selectedStageNum)
+        );
+      } else {
+        setCurrentStageIndex(1);
+        numberOfStages.splice(numberOfStages.length - 1, 1);
+        setallObjectsOnStage(
+          allObjectsOnStage.filter((itm) => itm.slideIndex == 1)
+        );
+      }
+    }
+  };
+
+  ////////////delete current stage
 
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#FAFAFA" }}>
@@ -429,6 +464,7 @@ const DashboardWithoutTempOzon = () => {
             selectedShape={selectedShape}
             setSelectedShape={setSelectedShape}
             setCurrentShapeText={setCurrentShapeText}
+            currentStageIndex={currentStageIndex}
           />
         </Grid>
         <Grid item xs={2} sm={4} md={3} key={3}>
@@ -439,6 +475,7 @@ const DashboardWithoutTempOzon = () => {
             currentStageIndex={currentStageIndex}
             numberOfStages={numberOfStages}
             changeCurrentStage={changeCurrentStage}
+            deleteCurrentStage={deleteCurrentStage}
           />
         </Grid>
       </Grid>
