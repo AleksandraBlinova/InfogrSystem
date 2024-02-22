@@ -1,5 +1,12 @@
 import React from "react";
-import { Grid, Button, Box, IconButton, Typography } from "@mui/material";
+import {
+  Grid,
+  Button,
+  Box,
+  IconButton,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import FormatSizeIcon from "@mui/icons-material/FormatSize";
@@ -31,7 +38,7 @@ const CanvasProjects = ({
             }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={6} md={9}>
+              <Grid item xs={6} md={8}>
                 <Typography
                   onClick={() => {
                     changeCurrentStage(item);
@@ -40,15 +47,49 @@ const CanvasProjects = ({
                   Слайд {item}
                 </Typography>
               </Grid>
-              <Grid item xs={6} md={3}>
-                <DeleteIcon
-                  sx={{ color: "grey", fontSize: "20px" }}
-                  onClick={() => {
-                    changeCurrentStage(item - 1);
-                    deleteCurrentStage(item);
+              <Grid item xs={6} md={4}>
+                <Tooltip
+                  title="Удалить"
+                  slotProps={{
+                    popper: {
+                      modifiers: [
+                        {
+                          name: "offset",
+                          options: {
+                            offset: [0, -14],
+                          },
+                        },
+                      ],
+                    },
                   }}
-                />{" "}
-                <ContentCopyIcon sx={{ color: "grey", fontSize: "20px" }} />
+                >
+                  <DeleteIcon
+                    sx={{ color: "grey", fontSize: "20px" }}
+                    onClick={() => {
+                      changeCurrentStage(item - 1);
+                      deleteCurrentStage(item);
+                    }}
+                  />{" "}
+                </Tooltip>
+                <Tooltip
+                  title="Дублировать"
+                  slotProps={{
+                    popper: {
+                      modifiers: [
+                        {
+                          name: "offset",
+                          options: {
+                            offset: [0, -14],
+                          },
+                        },
+                      ],
+                    },
+                  }}
+                >
+                  <ContentCopyIcon
+                    sx={{ color: "grey", fontSize: "20px", marginLeft: "20px" }}
+                  />
+                </Tooltip>
               </Grid>
             </Grid>
           </Box>
