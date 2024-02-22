@@ -400,6 +400,26 @@ const DashboardWithoutTempOzon = () => {
 
   ////////////delete current stage
 
+  const copyExistedSlide = (currentStageIndex) => {
+    setNumberOfStages([...numberOfStages, numberOfStages.length + 1]);
+    setCurrentStageIndex(numberOfStages.length + 1);
+    let curArray = [];
+    curArray.push(...allObjectsOnStage);
+    let newEl = {};
+
+    curArray.forEach((element) => {
+      if (element.slideIndex == currentStageIndex) {
+        Object.assign(newEl, element);
+        newEl.id = curArray.length + 1;
+        newEl.slideIndex = numberOfStages.length + 1;
+        allObjectsOnStage.push(newEl);
+        allObjectsOnCURRENTStage.push(newEl);
+      }
+    });
+    console.log(allObjectsOnCURRENTStage);
+    console.log(allObjectsOnStage);
+  };
+
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#FAFAFA" }}>
       <Grid
@@ -476,6 +496,7 @@ const DashboardWithoutTempOzon = () => {
             numberOfStages={numberOfStages}
             changeCurrentStage={changeCurrentStage}
             deleteCurrentStage={deleteCurrentStage}
+            copyExistedSlide={copyExistedSlide}
           />
         </Grid>
       </Grid>

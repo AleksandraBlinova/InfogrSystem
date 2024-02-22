@@ -19,6 +19,7 @@ const CanvasProjects = ({
   numberOfStages,
   changeCurrentStage,
   deleteCurrentStage,
+  copyExistedSlide,
 }) => {
   return (
     <Box>
@@ -48,48 +49,19 @@ const CanvasProjects = ({
                 </Typography>
               </Grid>
               <Grid item xs={6} md={4}>
-                <Tooltip
-                  title="Удалить"
-                  slotProps={{
-                    popper: {
-                      modifiers: [
-                        {
-                          name: "offset",
-                          options: {
-                            offset: [0, -14],
-                          },
-                        },
-                      ],
-                    },
+                <DeleteIcon
+                  sx={{ color: "grey", fontSize: "20px" }}
+                  onClick={() => {
+                    changeCurrentStage(item - 1);
+                    deleteCurrentStage(item);
                   }}
-                >
-                  <DeleteIcon
-                    sx={{ color: "grey", fontSize: "20px" }}
-                    onClick={() => {
-                      changeCurrentStage(item - 1);
-                      deleteCurrentStage(item);
-                    }}
-                  />{" "}
-                </Tooltip>
-                <Tooltip
-                  title="Дублировать"
-                  slotProps={{
-                    popper: {
-                      modifiers: [
-                        {
-                          name: "offset",
-                          options: {
-                            offset: [0, -14],
-                          },
-                        },
-                      ],
-                    },
+                />{" "}
+                <ContentCopyIcon
+                  sx={{ color: "grey", fontSize: "20px", marginLeft: "20px" }}
+                  onClick={() => {
+                    copyExistedSlide(item);
                   }}
-                >
-                  <ContentCopyIcon
-                    sx={{ color: "grey", fontSize: "20px", marginLeft: "20px" }}
-                  />
-                </Tooltip>
+                />
               </Grid>
             </Grid>
           </Box>
