@@ -1,13 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import AlertTitle from "@mui/material/AlertTitle";
 import "./Canvas.css";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-
 import Alert from "@mui/material/Alert";
-
-import { render } from "react-dom";
 import {
   Stage,
   Layer,
@@ -21,11 +17,6 @@ import {
   RegularPolygon,
   Line,
 } from "react-konva";
-import useImage from "use-image";
-import Konva from "konva";
-import { IconButton } from "@mui/material";
-import ClearIcon from "@mui/icons-material/Clear";
-import Stack from "@mui/material/Stack";
 
 const CustomTransformer = ({ selectedShape }) => {
   const trRef = useRef();
@@ -95,7 +86,12 @@ const Canvas = (props) => {
           )}
           {props.previewUrl && (
             <div className="image" id="imageCanvasForRect">
-              <Stage width={420} height={580}>
+              <Stage
+                id="myCanvas"
+                width={420}
+                height={580}
+                ref={props.stageRef}
+              >
                 <Layer>
                   {props.allObjectsOnCURRENTStage.map((object) => {
                     if (object.type === "image") {

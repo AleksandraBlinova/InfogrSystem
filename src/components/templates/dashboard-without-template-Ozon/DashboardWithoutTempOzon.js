@@ -6,6 +6,7 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
 import CanvasProjects from "../canvas/CanvasProjects";
+import CanvasAppBar from "../canvas/CanvasAppBar";
 
 const DashboardWithoutTempOzon = () => {
   const [allObjectsOnStage, setallObjectsOnStage] = useState([]); //для отображения всех фоток на холсте
@@ -421,18 +422,70 @@ const DashboardWithoutTempOzon = () => {
     console.log(allObjectsOnStage);
   };
 
+  ////////to download stage
+
+  const stageRef = useRef();
+
+  const convertStageToImage = () => {
+    const dataURL = stageRef.current.toDataURL({
+      pixelRatio: 3,
+    });
+    return new Promise((resolve, reject) => {
+      const image = new window.Image();
+      image.crossOrigin = "Anonymous";
+      image.onload = () => {
+        resolve(image);
+      };
+      image.onerror = (error) => {
+        reject(error);
+      };
+      image.src = dataURL;
+    });
+  };
+
+  const handleSaveImage = () => {
+    convertStageToImage()
+      .then((image) => {
+        // Convert the image to PNG or JPEG format
+        const canvas = document.createElement("canvas");
+        canvas.width = image.width;
+        canvas.height = image.height;
+
+        const context = canvas.getContext("2d");
+        context.drawImage(image, 0, 0);
+        console.log(canvas);
+        // Convert to PNG
+        const pngImageData = canvas.toDataURL("image/png");
+
+        // Convert to JPEG
+        const jpegImageData = canvas.toDataURL("image/jpeg", 0.8);
+
+        // Now you can save the PNG or JPEG image data
+        // For saving it to a file, you can create a link and trigger a click to download the image
+        const link = document.createElement("a");
+        link.download = "image.png"; // or 'image.jpeg' for JPEG
+        link.href = pngImageData; // or jpegImageData for JPEG
+        link.click();
+      })
+      .catch((error) => {
+        console.error("Error converting stage to image", error);
+      });
+  };
+
+  ///////to download stage
+
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#FAFAFA" }}>
       <Grid
         width="100%"
         height={80}
-        container
         sx={{
           backgroundColor: "#FFF",
-
           border: "1px solid #bab6b6",
         }}
-      ></Grid>
+      >
+        <CanvasAppBar handleSaveImage={handleSaveImage} />
+      </Grid>
       <Grid
         container
         spacing={{ xs: 2, md: 0 }}
@@ -486,6 +539,7 @@ const DashboardWithoutTempOzon = () => {
             setSelectedShape={setSelectedShape}
             setCurrentShapeText={setCurrentShapeText}
             currentStageIndex={currentStageIndex}
+            stageRef={stageRef}
           />
         </Grid>
         <Grid item xs={2} sm={4} md={3} key={3}>
