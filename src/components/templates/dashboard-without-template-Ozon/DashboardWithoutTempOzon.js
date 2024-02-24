@@ -465,8 +465,10 @@ const DashboardWithoutTempOzon = () => {
         // Now you can save the PNG or JPEG image data
         // For saving it to a file, you can create a link and trigger a click to download the image
         const link = document.createElement("a");
-        if (valueSelectedJpegPng == "png") link.download = "image.png"; // or 'image.jpeg' for JPEG
-        if (valueSelectedJpegPng == "jpeg") link.download = "image.jpeg"; // or 'image.jpeg' for JPEG
+        if (valueSelectedJpegPng == "png")
+          link.download = curInputNameofStage + ".png"; // or 'image.jpeg' for JPEG
+        if (valueSelectedJpegPng == "jpeg")
+          link.download = curInputNameofStage + ".jpeg"; // or 'image.jpeg' for JPEG
         link.href = imageData; // or jpegImageData for JPEG
         link.click();
       })
@@ -479,6 +481,13 @@ const DashboardWithoutTempOzon = () => {
 
   const handleChangeSelectedJpegPng = (event) => {
     setValueSelectedJpegPng(event.target.value);
+  };
+
+  const [curInputNameofStage, setCurInputNameofStage] = useState("Image");
+
+  const handleChangeInputNameofStage = (event) => {
+    console.log(event.target.value);
+    setCurInputNameofStage(event.target.value);
   };
 
   ///////to download stage
@@ -497,6 +506,8 @@ const DashboardWithoutTempOzon = () => {
           handleSaveImage={handleSaveImage}
           handleChangeSelectedJpegPng={handleChangeSelectedJpegPng}
           valueSelectedJpegPng={valueSelectedJpegPng}
+          curInputNameofStage={curInputNameofStage}
+          handleChangeInputNameofStage={handleChangeInputNameofStage}
         />
       </Grid>
       <Grid

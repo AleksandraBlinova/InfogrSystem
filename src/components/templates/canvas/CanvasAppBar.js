@@ -14,15 +14,26 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import Input from "@mui/material/Input";
 
 const CanvasAppBar = (props) => {
   return (
     <div>
       <Grid container spacing={3} p={2}>
         <Grid item xs={4} sx={{ marginTop: "10px" }}>
-          <Typography sx={{ fontSize: "18px", fontWeight: "bold" }}>
-            image
-          </Typography>
+          <Input
+            sx={{
+              fontSize: "18px",
+              fontWeight: "bold",
+              width: "150px",
+              borderLeft: "1px solid grey",
+              borderTop: "1px solid grey",
+              borderRight: "1px solid grey",
+              paddingLeft: "10px",
+            }}
+            onChange={props.handleChangeInputNameofStage}
+            defaultValue={props.curInputNameofStage}
+          />
         </Grid>
         <Grid item xs sx={{ marginTop: "10px" }}>
           <Typography sx={{ borderBottom: "1px dashed #000", width: "150px" }}>
