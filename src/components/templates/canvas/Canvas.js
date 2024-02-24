@@ -91,6 +91,7 @@ const Canvas = (props) => {
                 width={420}
                 height={580}
                 ref={props.stageRef}
+                crossorigin="Anonymous"
               >
                 <Layer>
                   {props.allObjectsOnCURRENTStage.map((object) => {

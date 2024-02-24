@@ -25,17 +25,39 @@ const Photos = ({ unsplashImagesOnline, handleChangeClickOnUnsplash }) => {
       </Link>
 
       <div>
-        {unsplashImagesOnline.length > 0 &&
-          unsplashImagesOnline.map((itm) => {
-            return (
-              <img
-                key={itm.id}
-                src={itm.urls.small}
-                style={{ width: "100px", height: "100px", marginRight: "15px" }}
-                onClick={() => handleChangeClickOnUnsplash(itm.urls.small)}
-              />
-            );
-          })}
+        {[
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+        ].map((num) => (
+          <img
+            style={{ height: "120px", width: "100px", marginRight: "20px" }}
+            src={
+              "./unsplash-rand-photos/photounsplashRandom" +
+              num.toString() +
+              ".jpg"
+            }
+            onClick={() => {
+              handleChangeClickOnUnsplash(
+                "./unsplash-rand-photos/photounsplashRandom" +
+                  num.toString() +
+                  ".jpg"
+              );
+            }}
+          />
+        ))}
       </div>
     </div>
   );

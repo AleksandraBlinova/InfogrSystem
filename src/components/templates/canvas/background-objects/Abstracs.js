@@ -18,17 +18,32 @@ const Abstracs = ({ unsplashAbstracts, handleChangeClickOnUnsplash }) => {
         </Typography>{" "}
       </Link>{" "}
       <div>
-        {unsplashAbstracts.length > 0 &&
-          unsplashAbstracts.map((itm) => {
-            return (
-              <img
-                key={itm.id}
-                src={itm.urls.small}
-                style={{ width: "100px", height: "100px", marginRight: "15px" }}
-                onClick={() => handleChangeClickOnUnsplash(itm.urls.small)}
-              />
-            );
-          })}
+        {[
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+        ].map((num) => (
+          <img
+            style={{ height: "120px", width: "100px", marginRight: "20px" }}
+            src={"./unsplash-texture/texture" + num.toString() + ".jpg"}
+            onClick={() => {
+              handleChangeClickOnUnsplash(
+                "./unsplash-texture/texture" + num.toString() + ".jpg"
+              );
+            }}
+          />
+        ))}
       </div>
     </div>
   );

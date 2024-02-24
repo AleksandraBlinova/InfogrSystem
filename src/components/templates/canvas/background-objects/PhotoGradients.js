@@ -21,17 +21,17 @@ const PhotoGradients = ({
         </Typography>{" "}
       </Link>{" "}
       <div>
-        {unsplashPhotoGradients.length > 0 &&
-          unsplashPhotoGradients.map((itm) => {
-            return (
-              <img
-                key={itm.id}
-                src={itm.urls.small}
-                style={{ width: "100px", height: "100px", marginRight: "15px" }}
-                onClick={() => handleChangeClickOnUnsplash(itm.urls.small)}
-              />
-            );
-          })}
+        {["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].map((num) => (
+          <img
+            style={{ height: "120px", width: "100px", marginRight: "20px" }}
+            src={"./unsplash-gradient/gradient" + num.toString() + ".jpg"}
+            onClick={() => {
+              handleChangeClickOnUnsplash(
+                "./unsplash-gradient/gradient" + num.toString() + ".jpg"
+              );
+            }}
+          />
+        ))}
       </div>
     </div>
   );

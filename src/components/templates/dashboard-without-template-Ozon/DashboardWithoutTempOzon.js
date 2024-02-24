@@ -261,6 +261,7 @@ const DashboardWithoutTempOzon = () => {
 
         if (url) newImage.image.src = url;
         else newImage.image.src = event.target.result;
+        console.log(newImage.image.src);
 
         setallObjectsOnStage([...allObjectsOnStage, newImage]);
         setallObjectsOnCURRENTStage([...allObjectsOnCURRENTStage, newImage]);
@@ -427,9 +428,13 @@ const DashboardWithoutTempOzon = () => {
   const stageRef = useRef();
 
   const convertStageToImage = () => {
-    const dataURL = stageRef.current.toDataURL({
-      pixelRatio: 3,
-    });
+    let dataURL;
+    if (stageRef.current)
+      dataURL = stageRef.current.toDataURL({
+        pixelRatio: 3,
+      });
+    else dataURL = "";
+
     return new Promise((resolve, reject) => {
       const image = new window.Image();
       image.crossOrigin = "Anonymous";
