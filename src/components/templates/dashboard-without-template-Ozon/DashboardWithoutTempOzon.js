@@ -454,22 +454,31 @@ const DashboardWithoutTempOzon = () => {
         const context = canvas.getContext("2d");
         context.drawImage(image, 0, 0);
         console.log(canvas);
-        // Convert to PNG
-        const pngImageData = canvas.toDataURL("image/png");
-
-        // Convert to JPEG
-        const jpegImageData = canvas.toDataURL("image/jpeg", 0.8);
+        let imageData;
+        if (valueSelectedJpegPng == "png")
+          // Convert to PNG
+          imageData = canvas.toDataURL("image/png");
+        if (valueSelectedJpegPng == "jpeg")
+          // Convert to JPEG
+          imageData = canvas.toDataURL("image/jpeg", 0.8);
 
         // Now you can save the PNG or JPEG image data
         // For saving it to a file, you can create a link and trigger a click to download the image
         const link = document.createElement("a");
-        link.download = "image.png"; // or 'image.jpeg' for JPEG
-        link.href = pngImageData; // or jpegImageData for JPEG
+        if (valueSelectedJpegPng == "png") link.download = "image.png"; // or 'image.jpeg' for JPEG
+        if (valueSelectedJpegPng == "jpeg") link.download = "image.jpeg"; // or 'image.jpeg' for JPEG
+        link.href = imageData; // or jpegImageData for JPEG
         link.click();
       })
       .catch((error) => {
         console.error("Error converting stage to image", error);
       });
+  };
+
+  const [valueSelectedJpegPng, setValueSelectedJpegPng] = React.useState("png");
+
+  const handleChangeSelectedJpegPng = (event) => {
+    setValueSelectedJpegPng(event.target.value);
   };
 
   ///////to download stage
@@ -484,7 +493,11 @@ const DashboardWithoutTempOzon = () => {
           border: "1px solid #bab6b6",
         }}
       >
-        <CanvasAppBar handleSaveImage={handleSaveImage} />
+        <CanvasAppBar
+          handleSaveImage={handleSaveImage}
+          handleChangeSelectedJpegPng={handleChangeSelectedJpegPng}
+          valueSelectedJpegPng={valueSelectedJpegPng}
+        />
       </Grid>
       <Grid
         container

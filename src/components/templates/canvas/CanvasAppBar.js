@@ -9,6 +9,11 @@ import {
 } from "@mui/material";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 const CanvasAppBar = (props) => {
   return (
@@ -24,10 +29,58 @@ const CanvasAppBar = (props) => {
             Размер: 1260*1740
           </Typography>
         </Grid>
-        <Grid item xs={3} sx={{ marginTop: "10px" }}>
-          <Typography sx={{ borderBottom: "1px dashed #000", width: "150px" }}>
-            Расширение: PNG
-          </Typography>
+        <Grid item xs={3} sx={{ marginTop: "-5px" }}>
+          <FormControl>
+            <FormLabel
+              sx={{
+                borderBottom: "1px dashed #000",
+                width: "150px",
+                color: "#000",
+                textAlign: "center",
+                "&.Mui-focused": {
+                  color: "#000",
+                },
+              }}
+            >
+              Расширение:
+            </FormLabel>
+            <RadioGroup
+              row
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group"
+              value={props.valueSelectedJpegPng}
+              onChange={props.handleChangeSelectedJpegPng}
+            >
+              <FormControlLabel
+                value="png"
+                control={
+                  <Radio
+                    sx={{
+                      color: "grey",
+                      "&.Mui-checked": {
+                        color: "#aa00ff",
+                      },
+                    }}
+                  />
+                }
+                label="PNG"
+              />
+              <FormControlLabel
+                value="jpeg"
+                control={
+                  <Radio
+                    sx={{
+                      color: "grey",
+                      "&.Mui-checked": {
+                        color: "#aa00ff",
+                      },
+                    }}
+                  />
+                }
+                label="JPEG"
+              />
+            </RadioGroup>
+          </FormControl>
         </Grid>
         <Grid item xs>
           <Typography>
@@ -49,7 +102,7 @@ const CanvasAppBar = (props) => {
               Скачать
             </Button>
             <Tooltip
-              title="Delete"
+              title="Telegram"
               slotProps={{
                 popper: {
                   modifiers: [
@@ -86,7 +139,7 @@ const CanvasAppBar = (props) => {
               </IconButton>
             </Tooltip>
             <Tooltip
-              title="Delete"
+              title="Whatsapp"
               slotProps={{
                 popper: {
                   modifiers: [
