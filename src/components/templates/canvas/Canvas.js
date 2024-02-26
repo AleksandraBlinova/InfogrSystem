@@ -105,6 +105,40 @@ const Canvas = (props) => {
                             fillPriority={object.fillPriority}
                             fillLinearGradientStartPoint={{ x: -30, y: 20 }}
                             fillLinearGradientEndPoint={{ x: 50, y: 20 }}
+                            rotation={object.rotation}
+                            fillLinearGradientColorStops={
+                              object.fillLinearGradientColorStops
+                                ? [
+                                    0,
+                                    object.fillLinearGradientColorStops[0],
+                                    1,
+                                    object.fillLinearGradientColorStops[1],
+                                  ]
+                                : ""
+                            }
+                            draggable={true}
+                            onClick={(e) => {
+                              props.setSelectedShape(e.target);
+                              props.setCurrentShapeText(object.id);
+                            }}
+                            key={object.id}
+                            x={object.x}
+                            y={object.y}
+                          />
+                        );
+                      } else if (
+                        object.typeofImage == "figures_quadrat_rounded"
+                      ) {
+                        return (
+                          <Rect
+                            fill={object.fill}
+                            width={object.width}
+                            height={object.height}
+                            rotation={object.rotation}
+                            cornerRadius={10}
+                            fillPriority={object.fillPriority}
+                            fillLinearGradientStartPoint={{ x: -30, y: 20 }}
+                            fillLinearGradientEndPoint={{ x: 50, y: 20 }}
                             fillLinearGradientColorStops={
                               object.fillLinearGradientColorStops
                                 ? [
@@ -129,6 +163,7 @@ const Canvas = (props) => {
                         return (
                           <Circle
                             fill={object.fill}
+                            rotation={object.rotation}
                             radius={45}
                             fillPriority={object.fillPriority}
                             fillLinearGradientStartPoint={{ x: -30, y: 20 }}
@@ -157,6 +192,7 @@ const Canvas = (props) => {
                         return (
                           <Star
                             fill={object.fill}
+                            rotation={object.rotation}
                             numPoints={5}
                             innerRadius={18}
                             outerRadius={55}
@@ -187,6 +223,7 @@ const Canvas = (props) => {
                         return (
                           <Line
                             draggable={true}
+                            rotation={object.rotation}
                             onClick={(e) => {
                               props.setSelectedShape(e.target);
                               props.setCurrentShapeText(object.id);
@@ -215,6 +252,7 @@ const Canvas = (props) => {
                       } else if (object.typeofImage == "figures_4angles") {
                         return (
                           <RegularPolygon
+                            rotation={object.rotation}
                             draggable={true}
                             onClick={(e) => {
                               props.setSelectedShape(e.target);
@@ -244,6 +282,7 @@ const Canvas = (props) => {
                       } else if (object.typeofImage == "figures_6angles") {
                         return (
                           <Star
+                            rotation={object.rotation}
                             draggable={true}
                             onClick={(e) => {
                               props.setSelectedShape(e.target);
@@ -274,6 +313,7 @@ const Canvas = (props) => {
                       } else if (object.typeofImage == "figures_8angles") {
                         return (
                           <Star
+                            rotation={object.rotation}
                             draggable={true}
                             onClick={(e) => {
                               props.setSelectedShape(e.target);
@@ -439,6 +479,7 @@ const Canvas = (props) => {
                           key={object.id}
                           x={object.x}
                           y={object.y}
+                          rotation={object.rotation}
                           fill={object.fill}
                           fillPriority={object.fillPriority}
                           fillLinearGradientStartPoint={{ x: -30, y: 20 }}

@@ -27,6 +27,13 @@ const Figures = ({ handleChangeClickOnUnsplash }) => {
       />
       <img
         style={{ width: "50px", marginRight: "10px" }}
+        src="./figures/квадратСкругленный.png"
+        onClick={() => {
+          handleChangeClickOnUnsplash("./figures/квадратСкругленный.png");
+        }}
+      />
+      <img
+        style={{ width: "50px", marginRight: "10px" }}
         src="./figures/круг.png"
         onClick={() => {
           handleChangeClickOnUnsplash("./figures/круг.png");

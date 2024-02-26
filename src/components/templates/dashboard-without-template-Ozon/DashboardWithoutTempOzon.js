@@ -7,6 +7,7 @@ import Grid from "@mui/material/Grid";
 import axios from "axios";
 import CanvasProjects from "../canvas/CanvasProjects";
 import CanvasAppBar from "../canvas/CanvasAppBar";
+import addImageTemplateOzonPillow from "../templates-ozon/template-pillow/TemplateOzonPillowData";
 
 const DashboardWithoutTempOzon = () => {
   const [allObjectsOnStage, setallObjectsOnStage] = useState([]); //для отображения всех фоток на холсте
@@ -86,7 +87,7 @@ const DashboardWithoutTempOzon = () => {
 
   const [clickOnUnsplash, setClickOnUnsplash] = useState();
 
-  const handleChangeClickOnUnsplash = (value) => {
+  const handleChangeClickOnUnsplash = (value, template) => {
     let file;
     if (
       value.includes("figures") ||
@@ -100,7 +101,19 @@ const DashboardWithoutTempOzon = () => {
 
     setClickOnUnsplash(file);
     setPreviewUrl(value);
-    addImage(file, value);
+    if (!template) addImage(file, value);
+    else if (template == "tempOzonPillow") {
+      addImageTemplateOzonPillow(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    }
   };
 
   const [dragActive, setDragActive] = React.useState(false);
@@ -202,9 +215,12 @@ const DashboardWithoutTempOzon = () => {
 
   const addImage = (file, url) => {
     let typeofPhoto;
+    console.log(url);
     if (url) {
       if (url.includes("figures")) {
-        if (url.includes("квадрат")) typeofPhoto = "figures_quadrat";
+        if (url.includes("квадратСкругленный"))
+          typeofPhoto = "figures_quadrat_rounded";
+        else if (url.includes("квадрат")) typeofPhoto = "figures_quadrat";
         else if (url.includes("круг")) typeofPhoto = "figures_circle";
         else if (url.includes("треугольник")) typeofPhoto = "figures_triangle";
         else if (url.includes("трапеция")) typeofPhoto = "figures_4angles";
@@ -261,7 +277,6 @@ const DashboardWithoutTempOzon = () => {
 
         if (url) newImage.image.src = url;
         else newImage.image.src = event.target.result;
-        console.log(newImage.image.src);
 
         setallObjectsOnStage([...allObjectsOnStage, newImage]);
         setallObjectsOnCURRENTStage([...allObjectsOnCURRENTStage, newImage]);

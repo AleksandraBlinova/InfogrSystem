@@ -28,7 +28,7 @@ import PaletteIcon from "@mui/icons-material/Palette";
 import BackgroundColors from "./background-objects/BackgroundColors";
 
 import "./CanvasMenu.css";
-import TemplateOzon1 from "../templates-ozon/TemplateOzon1";
+import TemplatesContainer from "../templates-ozon/TemplatesContainer";
 
 const CanvasMenu = (props) => {
   const [opened, setOpened] = useState(1);
@@ -321,7 +321,9 @@ const CanvasMenu = (props) => {
                   />
                 </IconButton>
               </Grid>
-              <TemplateOzon1 />
+              <TemplatesContainer
+                handleChangeClickOnUnsplash={props.handleChangeClickOnUnsplash}
+              />
             </Grid>{" "}
           </Box>
         )}
