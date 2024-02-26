@@ -18,6 +18,10 @@ export default function addImageTemplateOzonPillow(
   let rectSoft;
   let rectSize;
   let rectParams;
+  let bottomRect;
+  let bottomsmallRect1;
+  let bottomsmallRect2;
+  let bottomsmallRect3;
   if (imageFile) {
     var reader = new FileReader();
     reader.onload = function (event) {
@@ -185,6 +189,67 @@ export default function addImageTemplateOzonPillow(
         slideIndex: currentStageIndex,
       };
 
+      bottomRect = {
+        type: "image",
+        id: allObjectsOnStage.length + 1,
+        x: 118,
+        y: 513,
+        image: new window.Image(),
+        typeofImage: "figures_quadrat_rounded",
+        fill: "#fff",
+        width: 200,
+        height: 33,
+        slideIndex: currentStageIndex,
+      };
+      bottomRect.image.src = "./figures/квадратСкругленный.png";
+
+      const splittedStringbottomsmallRect = ["#243D25", "#C0EDA6"];
+
+      bottomsmallRect1 = {
+        type: "image",
+        id: allObjectsOnStage.length + 1,
+        x: 127,
+        y: 518,
+        image: new window.Image(),
+        typeofImage: "figures_quadrat_rounded",
+        fillLinearGradientColorStops: splittedStringbottomsmallRect,
+        fillPriority: "linear-gradient",
+        width: 50,
+        height: 23,
+        slideIndex: currentStageIndex,
+      };
+      bottomsmallRect1.image.src = "./figures/квадратСкругленный.png";
+
+      bottomsmallRect2 = {
+        type: "image",
+        id: allObjectsOnStage.length + 1,
+        x: 193,
+        y: 518,
+        image: new window.Image(),
+        typeofImage: "figures_quadrat_rounded",
+        fillLinearGradientColorStops: splittedString,
+        fillPriority: "linear-gradient",
+        width: 50,
+        height: 23,
+        slideIndex: currentStageIndex,
+      };
+      bottomsmallRect2.image.src = "./figures/квадратСкругленный.png";
+
+      bottomsmallRect3 = {
+        type: "image",
+        id: allObjectsOnStage.length + 1,
+        x: 259,
+        y: 518,
+        image: new window.Image(),
+        typeofImage: "figures_quadrat_rounded",
+        fillLinearGradientColorStops: splittedStringbottomsmallRect,
+        fillPriority: "linear-gradient",
+        width: 50,
+        height: 23,
+        slideIndex: currentStageIndex,
+      };
+      bottomsmallRect3.image.src = "./figures/квадратСкругленный.png";
+
       setallObjectsOnStage([
         ...allObjectsOnStage,
         newImage,
@@ -198,6 +263,10 @@ export default function addImageTemplateOzonPillow(
         rectParams,
         newTextRectParams1,
         newTextRectParams2,
+        bottomRect,
+        bottomsmallRect1,
+        bottomsmallRect2,
+        bottomsmallRect3,
       ]);
       setallObjectsOnCURRENTStage([
         ...allObjectsOnCURRENTStage,
@@ -212,6 +281,10 @@ export default function addImageTemplateOzonPillow(
         rectParams,
         newTextRectParams1,
         newTextRectParams2,
+        bottomRect,
+        bottomsmallRect1,
+        bottomsmallRect2,
+        bottomsmallRect3,
       ]);
     };
     reader.readAsDataURL(imageFile);
