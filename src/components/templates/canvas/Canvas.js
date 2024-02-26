@@ -102,6 +102,19 @@ const Canvas = (props) => {
                             fill={object.fill}
                             width={object.width}
                             height={object.height}
+                            fillPriority={object.fillPriority}
+                            fillLinearGradientStartPoint={{ x: -30, y: 20 }}
+                            fillLinearGradientEndPoint={{ x: 50, y: 20 }}
+                            fillLinearGradientColorStops={
+                              object.fillLinearGradientColorStops
+                                ? [
+                                    0,
+                                    object.fillLinearGradientColorStops[0],
+                                    1,
+                                    object.fillLinearGradientColorStops[1],
+                                  ]
+                                : ""
+                            }
                             draggable={true}
                             onClick={(e) => {
                               props.setSelectedShape(e.target);
@@ -117,6 +130,19 @@ const Canvas = (props) => {
                           <Circle
                             fill={object.fill}
                             radius={45}
+                            fillPriority={object.fillPriority}
+                            fillLinearGradientStartPoint={{ x: -30, y: 20 }}
+                            fillLinearGradientEndPoint={{ x: 50, y: 20 }}
+                            fillLinearGradientColorStops={
+                              object.fillLinearGradientColorStops
+                                ? [
+                                    0,
+                                    object.fillLinearGradientColorStops[0],
+                                    1,
+                                    object.fillLinearGradientColorStops[1],
+                                  ]
+                                : ""
+                            }
                             draggable={true}
                             onClick={(e) => {
                               props.setSelectedShape(e.target);
@@ -134,6 +160,19 @@ const Canvas = (props) => {
                             numPoints={5}
                             innerRadius={18}
                             outerRadius={55}
+                            fillPriority={object.fillPriority}
+                            fillLinearGradientStartPoint={{ x: -30, y: 20 }}
+                            fillLinearGradientEndPoint={{ x: 50, y: 20 }}
+                            fillLinearGradientColorStops={
+                              object.fillLinearGradientColorStops
+                                ? [
+                                    0,
+                                    object.fillLinearGradientColorStops[0],
+                                    1,
+                                    object.fillLinearGradientColorStops[1],
+                                  ]
+                                : ""
+                            }
                             draggable={true}
                             onClick={(e) => {
                               props.setSelectedShape(e.target);
@@ -155,6 +194,19 @@ const Canvas = (props) => {
                             points={[35, 130, 125, 130, 80, 40]}
                             closed
                             fill={object.fill}
+                            fillPriority={object.fillPriority}
+                            fillLinearGradientStartPoint={{ x: -30, y: 20 }}
+                            fillLinearGradientEndPoint={{ x: 50, y: 20 }}
+                            fillLinearGradientColorStops={
+                              object.fillLinearGradientColorStops
+                                ? [
+                                    0,
+                                    object.fillLinearGradientColorStops[0],
+                                    1,
+                                    object.fillLinearGradientColorStops[1],
+                                  ]
+                                : ""
+                            }
                             key={object.id}
                             x={object.x}
                             y={object.y}
@@ -169,6 +221,19 @@ const Canvas = (props) => {
                               props.setCurrentShapeText(object.id);
                             }}
                             fill={object.fill}
+                            fillPriority={object.fillPriority}
+                            fillLinearGradientStartPoint={{ x: -30, y: 20 }}
+                            fillLinearGradientEndPoint={{ x: 50, y: 20 }}
+                            fillLinearGradientColorStops={
+                              object.fillLinearGradientColorStops
+                                ? [
+                                    0,
+                                    object.fillLinearGradientColorStops[0],
+                                    1,
+                                    object.fillLinearGradientColorStops[1],
+                                  ]
+                                : ""
+                            }
                             key={object.id}
                             x={object.x}
                             y={object.y}
@@ -185,6 +250,19 @@ const Canvas = (props) => {
                               props.setCurrentShapeText(object.id);
                             }}
                             fill={object.fill}
+                            fillPriority={object.fillPriority}
+                            fillLinearGradientStartPoint={{ x: -30, y: 20 }}
+                            fillLinearGradientEndPoint={{ x: 50, y: 20 }}
+                            fillLinearGradientColorStops={
+                              object.fillLinearGradientColorStops
+                                ? [
+                                    0,
+                                    object.fillLinearGradientColorStops[0],
+                                    1,
+                                    object.fillLinearGradientColorStops[1],
+                                  ]
+                                : ""
+                            }
                             key={object.id}
                             x={object.x}
                             y={object.y}
@@ -202,6 +280,19 @@ const Canvas = (props) => {
                               props.setCurrentShapeText(object.id);
                             }}
                             fill={object.fill}
+                            fillPriority={object.fillPriority}
+                            fillLinearGradientStartPoint={{ x: -30, y: 20 }}
+                            fillLinearGradientEndPoint={{ x: 50, y: 20 }}
+                            fillLinearGradientColorStops={
+                              object.fillLinearGradientColorStops
+                                ? [
+                                    0,
+                                    object.fillLinearGradientColorStops[0],
+                                    1,
+                                    object.fillLinearGradientColorStops[1],
+                                  ]
+                                : ""
+                            }
                             key={object.id}
                             x={object.x}
                             y={object.y}
@@ -220,6 +311,19 @@ const Canvas = (props) => {
                               props.setCurrentShapeText(object.id);
                             }}
                             fill={object.fill}
+                            fillPriority={object.fillPriority}
+                            fillLinearGradientStartPoint={{ x: -30, y: 20 }}
+                            fillLinearGradientEndPoint={{ x: 50, y: 20 }}
+                            fillLinearGradientColorStops={
+                              object.fillLinearGradientColorStops
+                                ? [
+                                    0,
+                                    object.fillLinearGradientColorStops[0],
+                                    1,
+                                    object.fillLinearGradientColorStops[1],
+                                  ]
+                                : ""
+                            }
                             key={object.id}
                             x={object.x}
                             y={object.y}
@@ -335,6 +439,20 @@ const Canvas = (props) => {
                           key={object.id}
                           x={object.x}
                           y={object.y}
+                          fill={object.fill}
+                          fillPriority={object.fillPriority}
+                          fillLinearGradientStartPoint={{ x: -30, y: 20 }}
+                          fillLinearGradientEndPoint={{ x: 50, y: 20 }}
+                          fillLinearGradientColorStops={
+                            object.fillLinearGradientColorStops
+                              ? [
+                                  0,
+                                  object.fillLinearGradientColorStops[0],
+                                  1,
+                                  object.fillLinearGradientColorStops[1],
+                                ]
+                              : ""
+                          }
                           text={object.text}
                           fontSize={object.fontSize}
                           fontStyle={object.fontStyle}

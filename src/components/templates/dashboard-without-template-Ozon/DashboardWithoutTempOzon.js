@@ -338,8 +338,18 @@ const DashboardWithoutTempOzon = () => {
   const changeBackgroundLinesFigures = (value) => {
     setActiveTransformer(false);
     if (curBackground) {
-      curBackground.fill = value.color;
-      curBackground.stroke = value.color;
+      if (!value.color.includes("gradient")) {
+        curBackground.fill = value.color;
+        curBackground.stroke = value.color;
+      } else {
+        curBackground.fillPriority = "linear-gradient";
+        let splittedString = value.color.split(",");
+        splittedString.shift();
+        splittedString[splittedString.length - 1] = splittedString[
+          splittedString.length - 1
+        ].replace(")", "");
+        curBackground.fillLinearGradientColorStops = splittedString;
+      }
     }
   };
 

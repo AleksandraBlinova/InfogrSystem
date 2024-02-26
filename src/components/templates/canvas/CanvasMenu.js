@@ -24,8 +24,11 @@ import ObjectsForMenu from "./objects/ObjectsForMenu";
 import InterestsIcon from "@mui/icons-material/Interests";
 import WallpaperIcon from "@mui/icons-material/Wallpaper";
 import BackgroundObjects from "./background-objects/BackgroundObjects";
+import PaletteIcon from "@mui/icons-material/Palette";
+import BackgroundColors from "./background-objects/BackgroundColors";
 
 import "./CanvasMenu.css";
+import TemplateOzon1 from "../templates-ozon/TemplateOzon1";
 
 const CanvasMenu = (props) => {
   const [opened, setOpened] = useState(1);
@@ -94,15 +97,21 @@ const CanvasMenu = (props) => {
               color="inherit"
               onClick={() => {
                 handleChangeOpened(5);
-                props.fetchAPIUnsplashTextures();
-                props.fetchAPIUnsplashPhotoGradients();
-                props.fetchAPIUnsplash();
-                props.fetchAPIUnsplashAbstracts();
-                props.fetchAPIUnsplashWater();
               }}
             >
               <WallpaperIcon sx={{ marginRight: "5px" }} />{" "}
               <Typography>Фон</Typography>
+            </IconButton>
+          </Box>
+          <Box mt={3}>
+            <IconButton
+              color="inherit"
+              onClick={() => {
+                handleChangeOpened(6);
+              }}
+            >
+              <PaletteIcon sx={{ marginRight: "5px" }} />{" "}
+              <Typography>Цвет</Typography>
             </IconButton>
           </Box>
         </Box>
@@ -312,6 +321,7 @@ const CanvasMenu = (props) => {
                   />
                 </IconButton>
               </Grid>
+              <TemplateOzon1 />
             </Grid>{" "}
           </Box>
         )}
@@ -456,6 +466,55 @@ const CanvasMenu = (props) => {
               unsplashAbstracts={props.unsplashAbstracts}
               unsplashWater={props.unsplashWater}
               handleChangeClickOnUnsplash={props.handleChangeClickOnUnsplash}
+              changeBackgroundLinesFigures={props.changeBackgroundLinesFigures}
+            />
+          </Box>
+        )}
+        {opened == 6 && (
+          <Box
+            width={240}
+            height={635}
+            p={2}
+            borderRight={1}
+            sx={{
+              borderColor: "grey.500",
+              overflowY: "auto",
+              backgroundColor: "#fff",
+              "&::-webkit-scrollbar": {
+                width: "6px",
+              },
+              "&::-webkit-scrollbar-track": {
+                boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+                webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+                backgroundColor: "rgba(0,0,0,.1)",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: "#a6a6a7",
+              },
+            }}
+          >
+            <Grid
+              container
+              spacing={8}
+              sx={{ marginLeft: "0px", width: "100%" }}
+            >
+              <Grid item xs={8}>
+                <Typography sx={{ marginTop: "3px", fontWeight: "600" }}>
+                  Цвет
+                </Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <IconButton onClick={() => handleChangeOpened(0)}>
+                  <CloseIcon
+                    sx={{
+                      color: "#000",
+                      fontSize: "14px",
+                    }}
+                  />
+                </IconButton>
+              </Grid>
+            </Grid>{" "}
+            <BackgroundColors
               changeBackgroundLinesFigures={props.changeBackgroundLinesFigures}
             />
           </Box>

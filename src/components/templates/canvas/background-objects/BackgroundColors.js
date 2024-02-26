@@ -65,39 +65,133 @@ const BackgroundColors = ({ changeBackgroundLinesFigures }) => {
     { id: 62, color: "#607d8b" },
     { id: 63, color: "#616161" },
   ];
+
+  const dataGr = [
+    { id: 1, color: "linear-gradient(90deg, #fff129,#12b0ff)" },
+    { id: 2, color: "linear-gradient(90deg, #011b58,#941e60)" },
+    {
+      id: 4,
+      color: "linear-gradient(90deg, #2f2eb9,#d3ddcc)",
+    },
+    { id: 5, color: "linear-gradient(90deg, #7529f9,#1bcfdc)" },
+    { id: 6, color: "linear-gradient(90deg, #011d57,#fff76b)" },
+    { id: 7, color: "linear-gradient(90deg, #004a81,#ef7f7e)" },
+    { id: 8, color: "linear-gradient(90deg, #988eb5,#1016e2)" },
+    {
+      id: 9,
+      color: "linear-gradient(90deg, #6780c7,#8a33c9)",
+    },
+    {
+      id: 10,
+      color: "linear-gradient(90deg, #3d0084,#c728a4)",
+    },
+    {
+      id: 12,
+      color: "linear-gradient(90deg,  #c773fd,#ec238d)",
+    },
+    { id: 13, color: "linear-gradient(90deg, #c773fd,#3d0084)" },
+    { id: 14, color: "linear-gradient(90deg, #c728a4,#a61326)" },
+    { id: 15, color: "linear-gradient(90deg, #f0d28b,#f55c6a)" },
+    { id: 16, color: "linear-gradient(90deg, #8a8e85,#484747)" },
+    { id: 17, color: "linear-gradient(90deg, #d25177,#c18588)" },
+    { id: 18, color: "linear-gradient(90deg, #dd69ad,#e9ca2f)" },
+    { id: 19, color: "linear-gradient(90deg, #900e0e,#b1850b)" },
+    { id: 20, color: "linear-gradient(90deg, #bf5f7c,#535bd5)" },
+    { id: 21, color: "linear-gradient(90deg, #98ce30,#c5d323)" },
+    { id: 22, color: "linear-gradient(90deg, #3b89c4,#197630)" },
+    { id: 23, color: "linear-gradient(90deg, #2114e1,#df0ccd)" },
+    { id: 24, color: "linear-gradient(90deg, #1dcffb,#00e4c9)" },
+    { id: 25, color: "linear-gradient(90deg, #5f66ec,#bd83d6)" },
+    { id: 26, color: "linear-gradient(90deg, #5886a8,#ffffff)" },
+    { id: 27, color: "linear-gradient(90deg, #f490c2,#7ae2ff)" },
+    { id: 28, color: "linear-gradient(90deg, #ffffff,#8d90e3)" },
+    { id: 29, color: "linear-gradient(90deg, #01152c,#134057)" },
+    {
+      id: 30,
+      color: "linear-gradient(90deg, #2a795b,#294055)",
+    },
+    { id: 31, color: "linear-gradient(90deg, #00b7ff,#83d5ba)" },
+    { id: 32, color: "linear-gradient(90deg, #8c0f43,#7e5fd2)" },
+    {
+      id: 33,
+      color: "linear-gradient(90deg, #1ab5f0,#1b2225)",
+    },
+    { id: 34, color: "linear-gradient(90deg, #fe216f,#f881b0)" },
+    {
+      id: 35,
+      color: "linear-gradient(90deg, #2a7977,#213270)",
+    },
+    { id: 36, color: "linear-gradient(90deg, #11184a,#001aff)" },
+  ];
+
   return (
-    <div className="photos-unsplash-container">
-      {" "}
-      <Typography
-        sx={{
-          fontSize: "16px",
-          fontWeight: "500",
-          color: "#000",
-        }}
-      >
-        Цвета:{" "}
-      </Typography>{" "}
-      <div style={{ display: "flex" }}>
-        {data.map((item) => (
-          <div key={item.id} style={{ display: "flex" }}>
-            <div
-              key={item.id}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                backgroundColor: item.color,
-                width: "50px",
-                height: "50px",
-                border: "1px solid grey",
-                marginRight: "10px",
-                marginBottom: "10px",
-              }}
-              onClick={() => changeBackgroundLinesFigures(item)}
-            ></div>
-          </div>
-        ))}
+    <>
+      <div className="photos-unsplash-container">
+        {" "}
+        <Typography
+          sx={{
+            fontSize: "16px",
+            fontWeight: "500",
+            color: "#000",
+          }}
+        >
+          Цвета:{" "}
+        </Typography>{" "}
+        <div style={{ display: "flex" }}>
+          {data.map((item) => (
+            <div key={item.id} style={{ display: "flex" }}>
+              <div
+                key={item.id}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  backgroundColor: item.color,
+                  width: "50px",
+                  height: "50px",
+                  border: "1px solid grey",
+                  marginRight: "10px",
+                  marginBottom: "10px",
+                }}
+                onClick={() => changeBackgroundLinesFigures(item)}
+              ></div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+
+      <div className="photos-unsplash-container">
+        {" "}
+        <Typography
+          sx={{
+            fontSize: "16px",
+            fontWeight: "500",
+            color: "#000",
+          }}
+        >
+          Градиенты:{" "}
+        </Typography>{" "}
+        <div style={{ display: "flex" }}>
+          {dataGr.map((item) => (
+            <div key={item.id} style={{ display: "flex" }}>
+              <div
+                key={item.id}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  background: item.color,
+                  width: "50px",
+                  height: "50px",
+                  border: "1px solid grey",
+                  marginRight: "10px",
+                  marginBottom: "10px",
+                }}
+                onClick={() => changeBackgroundLinesFigures(item)}
+              ></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 };
 
