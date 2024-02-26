@@ -17,7 +17,11 @@ const TemplatesContainer = ({ handleChangeClickOnUnsplash }) => {
           handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
         />
       </Grid>
-      <Grid item xs={6} sx={{ marginBottom: "20px" }}></Grid>
+      <Grid item xs={6} sx={{ marginBottom: "20px" }}>
+        <TemplatesOzonPillow
+          handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+        />
+      </Grid>
       <Grid item xs={6}></Grid>
       <Grid item xs={6} sx={{ marginBottom: "20px" }}></Grid>
     </Grid>
