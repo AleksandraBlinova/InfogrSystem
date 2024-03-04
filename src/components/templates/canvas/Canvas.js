@@ -134,6 +134,7 @@ const Canvas = (props) => {
                             fill={object.fill}
                             width={object.width}
                             height={object.height}
+                            opacity={object.opacity}
                             rotation={object.rotation}
                             cornerRadius={10}
                             fillPriority={object.fillPriority}
@@ -165,6 +166,7 @@ const Canvas = (props) => {
                             fill={object.fill}
                             rotation={object.rotation}
                             radius={45}
+                            opacity={object.opacity}
                             fillPriority={object.fillPriority}
                             fillLinearGradientStartPoint={{ x: -30, y: 20 }}
                             fillLinearGradientEndPoint={{ x: 50, y: 20 }}

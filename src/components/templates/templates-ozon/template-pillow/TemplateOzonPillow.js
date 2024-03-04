@@ -5,7 +5,7 @@ const TemplateOzonPillow = ({ handleChangeClickOnUnsplash }) => {
     <div>
       <img
         src="./templatesOzon/template-pillow/PillowTemp.png"
-        style={{ width: "105px", height: "130px" }}
+        style={{ width: "100px", height: "130px" }}
         onDoubleClick={() => {
           handleChangeClickOnUnsplash(
             "./templatesOzon/template-pillow/Идеально.png",

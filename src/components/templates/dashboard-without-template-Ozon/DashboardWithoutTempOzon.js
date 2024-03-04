@@ -8,6 +8,10 @@ import axios from "axios";
 import CanvasProjects from "../canvas/CanvasProjects";
 import CanvasAppBar from "../canvas/CanvasAppBar";
 import addImageTemplateOzonPillow from "../templates-ozon/template-pillow/TemplateOzonPillowData";
+import addImageTemplateOzonBasket from "../templates-ozon/template-basket/TemplateOzonBaketData";
+import addImageTemplateOzonKettle from "../templates-ozon/template-kettle/TemplateOzonKettleData";
+import addImageTemplateOzonKPB from "../templates-ozon/template-KPB/TemplateOzonKPBData";
+import addImageTemplateOzonToilet from "../templates-ozon/templates-ozon-toilet/TemplateOzonToiletData";
 
 const DashboardWithoutTempOzon = () => {
   const [allObjectsOnStage, setallObjectsOnStage] = useState([]); //для отображения всех фоток на холсте
@@ -104,6 +108,50 @@ const DashboardWithoutTempOzon = () => {
     if (!template) addImage(file, value);
     else if (template == "tempOzonPillow") {
       addImageTemplateOzonPillow(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempOzonBasket") {
+      addImageTemplateOzonBasket(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempOzonKettle") {
+      addImageTemplateOzonKettle(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempOzonKPB") {
+      addImageTemplateOzonKPB(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempOzonToilet") {
+      addImageTemplateOzonToilet(
         allObjectsOnStage,
         allObjectsOnCURRENTStage,
         currentStageIndex,
@@ -444,8 +492,6 @@ const DashboardWithoutTempOzon = () => {
         allObjectsOnCURRENTStage.shift();
       }
     });
-    console.log(allObjectsOnCURRENTStage);
-    console.log(allObjectsOnStage);
   };
 
   ////////to download stage
