@@ -7,6 +7,14 @@ import Grid from "@mui/material/Grid";
 import axios from "axios";
 import CanvasProjects from "../canvas/CanvasProjects";
 import CanvasAppBar from "../canvas/CanvasAppBar";
+import addImageTemplateOzonPillow from "../templates-ozon/template-pillow/TemplateOzonPillowData";
+import addImageTemplateOzonBasket from "../templates-ozon/template-basket/TemplateOzonBaketData";
+import addImageTemplateOzonKettle from "../templates-ozon/template-kettle/TemplateOzonKettleData";
+import addImageTemplateOzonKPB from "../templates-ozon/template-KPB/TemplateOzonKPBData";
+import addImageTemplateOzonToilet from "../templates-ozon/templates-ozon-toilet/TemplateOzonToiletData";
+import addImageTemplateOzonRassada from "../templates-ozon/template-8march-rassada/Template8marchRassada";
+import addImageTemplateOzonMatras from "../templates-ozon/template-matras/TemplateOzonMatras";
+import addImageTemplateSlippers from "../templates-ozon/template-slippers/TemplateSlippersData";
 
 const DashboardWithoutTempYM = () => {
   const [allObjectsOnStage, setallObjectsOnStage] = useState([]); //для отображения всех фоток на холсте
@@ -44,85 +52,96 @@ const DashboardWithoutTempYM = () => {
 
     setClickOnUnsplash(file);
     setPreviewUrl(value);
-    // if (!template) addImage(file, value);
-    // else if (template == "tempOzonPillow") {
-    //   addImageTemplateOzonPillow(
-    //     allObjectsOnStage,
-    //     allObjectsOnCURRENTStage,
-    //     currentStageIndex,
-    //     setallObjectsOnStage,
-    //     setallObjectsOnCURRENTStage,
-    //     file,
-    //     value,
-    //     template
-    //   );
-    // } else if (template == "tempOzonBasket") {
-    //   addImageTemplateOzonBasket(
-    //     allObjectsOnStage,
-    //     allObjectsOnCURRENTStage,
-    //     currentStageIndex,
-    //     setallObjectsOnStage,
-    //     setallObjectsOnCURRENTStage,
-    //     file,
-    //     value,
-    //     template
-    //   );
-    // } else if (template == "tempOzonKettle") {
-    //   addImageTemplateOzonKettle(
-    //     allObjectsOnStage,
-    //     allObjectsOnCURRENTStage,
-    //     currentStageIndex,
-    //     setallObjectsOnStage,
-    //     setallObjectsOnCURRENTStage,
-    //     file,
-    //     value,
-    //     template
-    //   );
-    // } else if (template == "tempOzonKPB") {
-    //   addImageTemplateOzonKPB(
-    //     allObjectsOnStage,
-    //     allObjectsOnCURRENTStage,
-    //     currentStageIndex,
-    //     setallObjectsOnStage,
-    //     setallObjectsOnCURRENTStage,
-    //     file,
-    //     value,
-    //     template
-    //   );
-    // } else if (template == "tempOzonToilet") {
-    //   addImageTemplateOzonToilet(
-    //     allObjectsOnStage,
-    //     allObjectsOnCURRENTStage,
-    //     currentStageIndex,
-    //     setallObjectsOnStage,
-    //     setallObjectsOnCURRENTStage,
-    //     file,
-    //     value,
-    //     template
-    //   );
-    // } else if (template == "tempOzon8marchRassada") {
-    //   addImageTemplateOzonRassada(
-    //     allObjectsOnStage,
-    //     allObjectsOnCURRENTStage,
-    //     currentStageIndex,
-    //     setallObjectsOnStage,
-    //     setallObjectsOnCURRENTStage,
-    //     file,
-    //     value,
-    //     template
-    //   );
-    // } else if (template == "tempOzonMatras") {
-    //   addImageTemplateOzonMatras(
-    //     allObjectsOnStage,
-    //     allObjectsOnCURRENTStage,
-    //     currentStageIndex,
-    //     setallObjectsOnStage,
-    //     setallObjectsOnCURRENTStage,
-    //     file,
-    //     value,
-    //     template
-    //   );
-    // }
+    if (!template) addImage(file, value);
+    else if (template == "tempOzonPillow") {
+      addImageTemplateOzonPillow(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempOzonBasket") {
+      addImageTemplateOzonBasket(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempOzonKettle") {
+      addImageTemplateOzonKettle(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempOzonKPB") {
+      addImageTemplateOzonKPB(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempOzonToilet") {
+      addImageTemplateOzonToilet(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempOzon8marchRassada") {
+      addImageTemplateOzonRassada(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempOzonMatras") {
+      addImageTemplateOzonMatras(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempSlippers") {
+      addImageTemplateSlippers(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    }
   };
 
   const [dragActive, setDragActive] = React.useState(false);

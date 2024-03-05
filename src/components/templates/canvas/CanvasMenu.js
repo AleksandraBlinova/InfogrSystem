@@ -344,13 +344,10 @@ const CanvasMenu = (props) => {
                   />
                 </IconButton>
               </Grid>
-              {props.typeOfMarketplace == "ozon" && (
-                <TemplatesContainer
-                  handleChangeClickOnUnsplash={
-                    props.handleChangeClickOnUnsplash
-                  }
-                />
-              )}
+
+              <TemplatesContainer
+                handleChangeClickOnUnsplash={props.handleChangeClickOnUnsplash}
+              />
             </Grid>{" "}
           </Box>
         )}

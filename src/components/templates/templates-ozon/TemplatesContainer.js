@@ -8,6 +8,7 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import TemplateOzonToilet from "./templates-ozon-toilet/TemplateOzonToilet";
 import "./TemplatesContainer.css";
+import TemplateSlippers from "./template-slippers/TemplateSlippers";
 
 const TemplatesContainer = ({ handleChangeClickOnUnsplash }) => {
   return (
@@ -45,6 +46,7 @@ const TemplatesContainer = ({ handleChangeClickOnUnsplash }) => {
           handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
         />
       </Grid>
+
       <Grid item xs={6} sx={{ marginBottom: "20px" }}>
         <img
           src="./templatesOzon/template-matras/matras.png"
@@ -55,6 +57,11 @@ const TemplatesContainer = ({ handleChangeClickOnUnsplash }) => {
               "tempOzonMatras"
             );
           }}
+        />
+      </Grid>
+      <Grid item xs={6} sx={{ marginBottom: "20px" }}>
+        <TemplateSlippers
+          handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
         />
       </Grid>
       <Grid item xs={6} sx={{ marginBottom: "20px" }}>
