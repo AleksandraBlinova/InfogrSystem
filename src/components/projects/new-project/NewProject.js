@@ -112,13 +112,15 @@ const NewProject = () => {
                 </TableCell>
                 <TableCell align="center">
                   {" "}
-                  <CardMedia
-                    component="img"
-                    width="150px"
-                    height="200px"
-                    image="6391435521.jpg"
-                  />
-                  Создать без шаблона для Wildberries
+                  <CardActionArea href="/withouttempWB">
+                    <CardMedia
+                      component="img"
+                      width="150px"
+                      height="200px"
+                      image="6391435521.jpg"
+                    />
+                    Создать без шаблона для Wildberries
+                  </CardActionArea>
                 </TableCell>{" "}
                 <TableCell align="center">
                   {" "}
@@ -162,13 +164,15 @@ const NewProject = () => {
                 </TableCell>
                 <TableCell align="center">
                   {" "}
-                  <CardMedia
-                    component="img"
-                    width="150px"
-                    height="200px"
-                    image="6391435521.jpg"
-                  />
-                  Создать без шаблона для Yandex Market
+                  <CardActionArea href="/withouttempYM">
+                    <CardMedia
+                      component="img"
+                      width="150px"
+                      height="200px"
+                      image="6391435521.jpg"
+                    />
+                    Создать без шаблона для Yandex Market
+                  </CardActionArea>
                 </TableCell>{" "}
                 <TableCell align="center">
                   {" "}

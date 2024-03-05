@@ -7,6 +7,7 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import TemplateOzonToilet from "./templates-ozon-toilet/TemplateOzonToilet";
+import "./TemplatesContainer.css";
 
 const TemplatesContainer = ({ handleChangeClickOnUnsplash }) => {
   return (
@@ -14,7 +15,9 @@ const TemplatesContainer = ({ handleChangeClickOnUnsplash }) => {
       container
       rowSpacing={1}
       columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-      sx={{ marginTop: "20px" }}
+      sx={{
+        marginTop: "20px",
+      }}
     >
       <Grid item xs={6}>
         <TemplatesOzonPillow
@@ -40,6 +43,42 @@ const TemplatesContainer = ({ handleChangeClickOnUnsplash }) => {
       <Grid item xs={6} sx={{ marginBottom: "20px" }}>
         <TemplateOzonKPB
           handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+        />
+      </Grid>
+      <Grid item xs={6} sx={{ marginBottom: "20px" }}>
+        <img
+          src="./templatesOzon/template-matras/matras.png"
+          style={{ width: "100px", height: "130px" }}
+          onDoubleClick={() => {
+            handleChangeClickOnUnsplash(
+              "./templatesOzon/template-matras/матрасбезинфогр.png",
+              "tempOzonMatras"
+            );
+          }}
+        />
+      </Grid>
+      <Grid item xs={6} sx={{ marginBottom: "20px" }}>
+        <img
+          src="./templatesOzon/template-8march/fddf1.jpg"
+          style={{ width: "100px", height: "130px" }}
+          onDoubleClick={() => {
+            handleChangeClickOnUnsplash(
+              "./templatesOzon/template-8march/fddf1.jpg",
+              "tempOzon8marchRassada"
+            );
+          }}
+        />
+      </Grid>
+      <Grid item xs={6} sx={{ marginBottom: "20px" }}>
+        <img
+          src="./templatesOzon/template-8march-kpb/1 (1).jpg"
+          style={{ width: "100px", height: "130px" }}
+          onDoubleClick={() => {
+            handleChangeClickOnUnsplash(
+              "./templatesOzon/template-8march-kpb/1 (1).jpg",
+              "tempOzon8marchKPB"
+            );
+          }}
         />
       </Grid>
     </Grid>

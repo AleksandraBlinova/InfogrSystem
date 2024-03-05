@@ -44,10 +44,7 @@ export default function HPFirstSec() {
           </Box>
         </Box>
         <div>
-          <img
-            src="main_video_ru_poster.jpg"
-            className="main_video_ru_poster"
-          ></img>
+          <img src="start.PNG" className="main_video_ru_poster"></img>
         </div>
       </Box>
     </div>

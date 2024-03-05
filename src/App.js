@@ -6,6 +6,8 @@ import AppBarComponent from "./components/app-bar/Appbar";
 import CreateNewCreative from "./components/create-new-creative/CreateNewCreative";
 import NewProject from "./components/projects/new-project/NewProject";
 import DashboardWithoutTempOzon from "./components/templates/dashboard-without-template-Ozon/DashboardWithoutTempOzon";
+import DashboardWithoutTempWB from "./components/templates/dashboard-without-template-WB/DashboardWithoutTempWB";
+import DashboardWithoutTempYM from "./components/templates/dashboard-without-template-YM/DashboardWithoutTempYM";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
             path="/withouttempOzon"
             element={<DashboardWithoutTempOzon />}
           />
+          <Route path="/withouttempWB" element={<DashboardWithoutTempWB />} />
+          <Route path="/withouttempYM" element={<DashboardWithoutTempYM />} />
         </Routes>
       </Router>
     </div>

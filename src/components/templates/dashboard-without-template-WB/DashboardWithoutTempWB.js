@@ -7,15 +7,8 @@ import Grid from "@mui/material/Grid";
 import axios from "axios";
 import CanvasProjects from "../canvas/CanvasProjects";
 import CanvasAppBar from "../canvas/CanvasAppBar";
-import addImageTemplateOzonPillow from "../templates-ozon/template-pillow/TemplateOzonPillowData";
-import addImageTemplateOzonBasket from "../templates-ozon/template-basket/TemplateOzonBaketData";
-import addImageTemplateOzonKettle from "../templates-ozon/template-kettle/TemplateOzonKettleData";
-import addImageTemplateOzonKPB from "../templates-ozon/template-KPB/TemplateOzonKPBData";
-import addImageTemplateOzonToilet from "../templates-ozon/templates-ozon-toilet/TemplateOzonToiletData";
-import addImageTemplateOzonRassada from "../templates-ozon/template-8march-rassada/Template8marchRassada";
-import addImageTemplateOzonMatras from "../templates-ozon/template-matras/TemplateOzonMatras";
 
-const DashboardWithoutTempOzon = () => {
+const DashboardWithoutTempWB = () => {
   const [allObjectsOnStage, setallObjectsOnStage] = useState([]); //для отображения всех фоток на холсте
 
   const [allObjectsOnCURRENTStage, setallObjectsOnCURRENTStage] = useState([]); //для отображения всех фоток на холсте
@@ -35,62 +28,6 @@ const DashboardWithoutTempOzon = () => {
   };
   ////////photos from unsplash
 
-  ////////Textures from unsplash
-  const [unsplashTextures, setUnsplashTextures] = useState([]);
-
-  const fetchAPIUnsplashTextures = async () => {
-    const query = "texture";
-    const clientId = "RKnG9ADSOyqmCXxJ_9nf3au8Ie-E5kzFcdIkVFIcLNc";
-    const response = await axios.get(
-      `https://api.unsplash.com/search/photos?query=${query}&client_id=${clientId}`
-    );
-    const data = await response.data.results;
-    setUnsplashTextures(data);
-  };
-  ////////Textures from unsplash
-
-  ////////photo gradients from unsplash
-  const [unsplashPhotoGradients, setUnsplashPhotoGradients] = useState([]);
-
-  const fetchAPIUnsplashPhotoGradients = async () => {
-    const query = "gradient";
-    const clientId = "RKnG9ADSOyqmCXxJ_9nf3au8Ie-E5kzFcdIkVFIcLNc";
-    const response = await axios.get(
-      `https://api.unsplash.com/search/photos?query=${query}&client_id=${clientId}`
-    );
-    const data = await response.data.results;
-    setUnsplashPhotoGradients(data);
-  };
-  ////////photo gradients from unsplash
-
-  ////////abstracts from unsplash
-  const [unsplashAbstracts, setUnsplashAbstracts] = useState([]);
-
-  const fetchAPIUnsplashAbstracts = async () => {
-    const query = "abstract background";
-    const clientId = "RKnG9ADSOyqmCXxJ_9nf3au8Ie-E5kzFcdIkVFIcLNc";
-    const response = await axios.get(
-      `https://api.unsplash.com/search/photos?query=${query}&client_id=${clientId}`
-    );
-    const data = await response.data.results;
-    setUnsplashAbstracts(data);
-  };
-  ////////abstracts gradients from unsplash
-
-  ////////water from unsplash
-  const [unsplashWater, setUnsplashWater] = useState([]);
-
-  const fetchAPIUnsplashWater = async () => {
-    const query = "water background";
-    const clientId = "RKnG9ADSOyqmCXxJ_9nf3au8Ie-E5kzFcdIkVFIcLNc";
-    const response = await axios.get(
-      `https://api.unsplash.com/search/photos?query=${query}&client_id=${clientId}`
-    );
-    const data = await response.data.results;
-    setUnsplashWater(data);
-  };
-  ////////water from unsplash
-
   const [clickOnUnsplash, setClickOnUnsplash] = useState();
 
   const handleChangeClickOnUnsplash = (value, template) => {
@@ -107,85 +44,85 @@ const DashboardWithoutTempOzon = () => {
 
     setClickOnUnsplash(file);
     setPreviewUrl(value);
-    if (!template) addImage(file, value);
-    else if (template == "tempOzonPillow") {
-      addImageTemplateOzonPillow(
-        allObjectsOnStage,
-        allObjectsOnCURRENTStage,
-        currentStageIndex,
-        setallObjectsOnStage,
-        setallObjectsOnCURRENTStage,
-        file,
-        value,
-        template
-      );
-    } else if (template == "tempOzonBasket") {
-      addImageTemplateOzonBasket(
-        allObjectsOnStage,
-        allObjectsOnCURRENTStage,
-        currentStageIndex,
-        setallObjectsOnStage,
-        setallObjectsOnCURRENTStage,
-        file,
-        value,
-        template
-      );
-    } else if (template == "tempOzonKettle") {
-      addImageTemplateOzonKettle(
-        allObjectsOnStage,
-        allObjectsOnCURRENTStage,
-        currentStageIndex,
-        setallObjectsOnStage,
-        setallObjectsOnCURRENTStage,
-        file,
-        value,
-        template
-      );
-    } else if (template == "tempOzonKPB") {
-      addImageTemplateOzonKPB(
-        allObjectsOnStage,
-        allObjectsOnCURRENTStage,
-        currentStageIndex,
-        setallObjectsOnStage,
-        setallObjectsOnCURRENTStage,
-        file,
-        value,
-        template
-      );
-    } else if (template == "tempOzonToilet") {
-      addImageTemplateOzonToilet(
-        allObjectsOnStage,
-        allObjectsOnCURRENTStage,
-        currentStageIndex,
-        setallObjectsOnStage,
-        setallObjectsOnCURRENTStage,
-        file,
-        value,
-        template
-      );
-    } else if (template == "tempOzon8marchRassada") {
-      addImageTemplateOzonRassada(
-        allObjectsOnStage,
-        allObjectsOnCURRENTStage,
-        currentStageIndex,
-        setallObjectsOnStage,
-        setallObjectsOnCURRENTStage,
-        file,
-        value,
-        template
-      );
-    } else if (template == "tempOzonMatras") {
-      addImageTemplateOzonMatras(
-        allObjectsOnStage,
-        allObjectsOnCURRENTStage,
-        currentStageIndex,
-        setallObjectsOnStage,
-        setallObjectsOnCURRENTStage,
-        file,
-        value,
-        template
-      );
-    }
+    // if (!template) addImage(file, value);
+    // else if (template == "tempOzonPillow") {
+    //   addImageTemplateOzonPillow(
+    //     allObjectsOnStage,
+    //     allObjectsOnCURRENTStage,
+    //     currentStageIndex,
+    //     setallObjectsOnStage,
+    //     setallObjectsOnCURRENTStage,
+    //     file,
+    //     value,
+    //     template
+    //   );
+    // } else if (template == "tempOzonBasket") {
+    //   addImageTemplateOzonBasket(
+    //     allObjectsOnStage,
+    //     allObjectsOnCURRENTStage,
+    //     currentStageIndex,
+    //     setallObjectsOnStage,
+    //     setallObjectsOnCURRENTStage,
+    //     file,
+    //     value,
+    //     template
+    //   );
+    // } else if (template == "tempOzonKettle") {
+    //   addImageTemplateOzonKettle(
+    //     allObjectsOnStage,
+    //     allObjectsOnCURRENTStage,
+    //     currentStageIndex,
+    //     setallObjectsOnStage,
+    //     setallObjectsOnCURRENTStage,
+    //     file,
+    //     value,
+    //     template
+    //   );
+    // } else if (template == "tempOzonKPB") {
+    //   addImageTemplateOzonKPB(
+    //     allObjectsOnStage,
+    //     allObjectsOnCURRENTStage,
+    //     currentStageIndex,
+    //     setallObjectsOnStage,
+    //     setallObjectsOnCURRENTStage,
+    //     file,
+    //     value,
+    //     template
+    //   );
+    // } else if (template == "tempOzonToilet") {
+    //   addImageTemplateOzonToilet(
+    //     allObjectsOnStage,
+    //     allObjectsOnCURRENTStage,
+    //     currentStageIndex,
+    //     setallObjectsOnStage,
+    //     setallObjectsOnCURRENTStage,
+    //     file,
+    //     value,
+    //     template
+    //   );
+    // } else if (template == "tempOzon8marchRassada") {
+    //   addImageTemplateOzonRassada(
+    //     allObjectsOnStage,
+    //     allObjectsOnCURRENTStage,
+    //     currentStageIndex,
+    //     setallObjectsOnStage,
+    //     setallObjectsOnCURRENTStage,
+    //     file,
+    //     value,
+    //     template
+    //   );
+    // } else if (template == "tempOzonMatras") {
+    //   addImageTemplateOzonMatras(
+    //     allObjectsOnStage,
+    //     allObjectsOnCURRENTStage,
+    //     currentStageIndex,
+    //     setallObjectsOnStage,
+    //     setallObjectsOnCURRENTStage,
+    //     file,
+    //     value,
+    //     template
+    //   );
+    // }
   };
 
   const [dragActive, setDragActive] = React.useState(false);
@@ -592,8 +529,6 @@ const DashboardWithoutTempOzon = () => {
 
   ///////to download stage
 
-  const [typeOfMarketplace, setTypeOfMarketplace] = useState("ozon");
-
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#FAFAFA" }}>
       <Grid
@@ -626,15 +561,7 @@ const DashboardWithoutTempOzon = () => {
             dragActive={dragActive}
             inputRef={inputRef}
             unsplashImagesOnline={unsplashImagesOnline}
-            unsplashTextures={unsplashTextures}
-            unsplashPhotoGradients={unsplashPhotoGradients}
-            unsplashAbstracts={unsplashAbstracts}
-            unsplashWater={unsplashWater}
             fetchAPIUnsplash={fetchAPIUnsplash}
-            fetchAPIUnsplashTextures={fetchAPIUnsplashTextures}
-            fetchAPIUnsplashPhotoGradients={fetchAPIUnsplashPhotoGradients}
-            fetchAPIUnsplashAbstracts={fetchAPIUnsplashAbstracts}
-            fetchAPIUnsplashWater={fetchAPIUnsplashWater}
             handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
             uploadedImagesDrDr={uploadedImagesDrDr}
             setuploadedImagesDrDr={setuploadedImagesDrDr}
@@ -644,7 +571,6 @@ const DashboardWithoutTempOzon = () => {
             textInputRef={textInputRef}
             changeTextStyle={changeTextStyle}
             changeBackgroundLinesFigures={changeBackgroundLinesFigures}
-            typeOfMarketplace={typeOfMarketplace}
           />
         </Grid>
         <Grid item xs={5} sm={4} md={4} key={2}>
@@ -686,4 +612,4 @@ const DashboardWithoutTempOzon = () => {
   );
 };
 
-export default DashboardWithoutTempOzon;
+export default DashboardWithoutTempWB;
