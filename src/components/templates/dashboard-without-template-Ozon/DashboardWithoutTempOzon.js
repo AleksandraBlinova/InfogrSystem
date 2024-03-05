@@ -15,6 +15,8 @@ import addImageTemplateOzonToilet from "../templates-ozon/templates-ozon-toilet/
 import addImageTemplateOzonRassada from "../templates-ozon/template-8march-rassada/Template8marchRassada";
 import addImageTemplateOzonMatras from "../templates-ozon/template-matras/TemplateOzonMatras";
 import addImageTemplateSlippers from "../templates-ozon/template-slippers/TemplateSlippersData";
+import addImageTemplateKashpo from "../templates-ozon/template-kashpo/TemplateKashpoData";
+import addImageTemplateFrames from "../templates-ozon/template-frames/TemplateFrameData";
 
 const DashboardWithoutTempOzon = () => {
   const [allObjectsOnStage, setallObjectsOnStage] = useState([]); //для отображения всех фоток на холсте
@@ -142,6 +144,17 @@ const DashboardWithoutTempOzon = () => {
         value,
         template
       );
+    } else if (template == "tempFrames") {
+      addImageTemplateFrames(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
     } else if (template == "tempOzonKPB") {
       addImageTemplateOzonKPB(
         allObjectsOnStage,
@@ -188,6 +201,17 @@ const DashboardWithoutTempOzon = () => {
       );
     } else if (template == "tempSlippers") {
       addImageTemplateSlippers(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempKashpo") {
+      addImageTemplateKashpo(
         allObjectsOnStage,
         allObjectsOnCURRENTStage,
         currentStageIndex,
