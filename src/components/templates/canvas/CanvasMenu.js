@@ -314,15 +314,27 @@ const CanvasMenu = (props) => {
           >
             <Grid
               container
-              spacing={8}
+              spacing={2}
               sx={{ marginLeft: "0px", width: "100%" }}
             >
-              <Grid item xs={8}>
-                <Typography sx={{ marginTop: "3px", fontWeight: "600" }}>
-                  Шаблоны
-                </Typography>
+              <Grid item xs={10}>
+                {props.typeOfMarketplace == "ozon" && (
+                  <Typography sx={{ marginTop: "3px", fontWeight: "600" }}>
+                    Шаблоны Ozon
+                  </Typography>
+                )}
+                {props.typeOfMarketplace == "wb" && (
+                  <Typography sx={{ marginTop: "3px", fontWeight: "600" }}>
+                    Шаблоны Wildberries
+                  </Typography>
+                )}
+                {props.typeOfMarketplace == "ym" && (
+                  <Typography sx={{ marginTop: "3px", fontWeight: "600" }}>
+                    Шаблоны Yandex Market
+                  </Typography>
+                )}
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={2}>
                 <IconButton onClick={() => handleChangeOpened(0)}>
                   <CloseIcon
                     sx={{

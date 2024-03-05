@@ -528,7 +528,7 @@ const DashboardWithoutTempYM = () => {
   };
 
   ///////to download stage
-
+  const [typeOfMarketplace, setTypeOfMarketplace] = useState("ym");
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#FAFAFA" }}>
       <Grid
@@ -571,6 +571,7 @@ const DashboardWithoutTempYM = () => {
             textInputRef={textInputRef}
             changeTextStyle={changeTextStyle}
             changeBackgroundLinesFigures={changeBackgroundLinesFigures}
+            typeOfMarketplace={typeOfMarketplace}
           />
         </Grid>
         <Grid item xs={5} sm={4} md={4} key={2}>
