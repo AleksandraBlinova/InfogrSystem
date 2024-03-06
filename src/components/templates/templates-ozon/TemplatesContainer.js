@@ -11,6 +11,8 @@ import "./TemplatesContainer.css";
 import TemplateSlippers from "./template-slippers/TemplateSlippers";
 import TemplateKashpo from "./template-kashpo/TemplateKashpo";
 import TemplateFrame from "./template-frames/TemplateFrame";
+import TemplateBoots from "./template-boots/TemplateBoots";
+import TemplateHolder from "./template-holder/TemplateHolder";
 
 const TemplatesContainer = ({ handleChangeClickOnUnsplash }) => {
   return (
@@ -68,6 +70,16 @@ const TemplatesContainer = ({ handleChangeClickOnUnsplash }) => {
       </Grid>
       <Grid item xs={6} sx={{ marginBottom: "20px" }}>
         <TemplateFrame
+          handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+        />
+      </Grid>
+      <Grid item xs={6} sx={{ marginBottom: "20px" }}>
+        <TemplateBoots
+          handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+        />
+      </Grid>
+      <Grid item xs={6} sx={{ marginBottom: "20px" }}>
+        <TemplateHolder
           handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
         />
       </Grid>
