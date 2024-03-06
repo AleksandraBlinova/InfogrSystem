@@ -13,6 +13,8 @@ import TemplateKashpo from "./template-kashpo/TemplateKashpo";
 import TemplateFrame from "./template-frames/TemplateFrame";
 import TemplateBoots from "./template-boots/TemplateBoots";
 import TemplateHolder from "./template-holder/TemplateHolder";
+import TemplatePicknic from "./template-picknic/TemplatePicknic";
+import TemplateFur from "./template-fur/TemplateFur";
 
 const TemplatesContainer = ({ handleChangeClickOnUnsplash }) => {
   return (
@@ -80,6 +82,16 @@ const TemplatesContainer = ({ handleChangeClickOnUnsplash }) => {
       </Grid>
       <Grid item xs={6} sx={{ marginBottom: "20px" }}>
         <TemplateHolder
+          handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+        />
+      </Grid>
+      <Grid item xs={6} sx={{ marginBottom: "20px" }}>
+        <TemplateFur
+          handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+        />
+      </Grid>
+      <Grid item xs={6} sx={{ marginBottom: "20px" }}>
+        <TemplatePicknic
           handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
         />
       </Grid>

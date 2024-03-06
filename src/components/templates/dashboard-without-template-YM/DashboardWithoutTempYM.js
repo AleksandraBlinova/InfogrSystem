@@ -19,6 +19,8 @@ import addImageTemplateKashpo from "../templates-ozon/template-kashpo/TemplateKa
 import addImageTemplateFrames from "../templates-ozon/template-frames/TemplateFrameData";
 import addImageTemplateBoots from "../templates-ozon/template-boots/TemplateBootsData";
 import addImageTemplateHolder from "../templates-ozon/template-holder/TemplateHolderData";
+import addImageTemplatePicknic from "../templates-ozon/template-picknic/TemplatePicknicData";
+import addImageTemplateFur from "../templates-ozon/template-fur/TemplateFurData";
 
 const DashboardWithoutTempYM = () => {
   const [allObjectsOnStage, setallObjectsOnStage] = useState([]); //для отображения всех фоток на холсте
@@ -70,6 +72,28 @@ const DashboardWithoutTempYM = () => {
       );
     } else if (template == "tempHolder") {
       addImageTemplateHolder(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempFur") {
+      addImageTemplateFur(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempPicknic") {
+      addImageTemplatePicknic(
         allObjectsOnStage,
         allObjectsOnCURRENTStage,
         currentStageIndex,
