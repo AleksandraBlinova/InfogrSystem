@@ -15,6 +15,9 @@ import TemplateBoots from "./template-boots/TemplateBoots";
 import TemplateHolder from "./template-holder/TemplateHolder";
 import TemplatePicknic from "./template-picknic/TemplatePicknic";
 import TemplateFur from "./template-fur/TemplateFur";
+import TemplateHoodie from "./template-hoodie/TemplateHoodie";
+import TemplateTrousers from "./template-trousers/TemplateTrousers";
+import TemplateCover from "./template-cover/TemplateCover";
 
 const TemplatesContainer = ({ handleChangeClickOnUnsplash }) => {
   return (
@@ -91,12 +94,28 @@ const TemplatesContainer = ({ handleChangeClickOnUnsplash }) => {
         />
       </Grid>
       <Grid item xs={6} sx={{ marginBottom: "20px" }}>
+        <TemplateHoodie
+          handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+        />
+      </Grid>
+
+      <Grid item xs={6} sx={{ marginBottom: "20px" }}>
+        <TemplateTrousers
+          handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+        />
+      </Grid>
+      <Grid item xs={6} sx={{ marginBottom: "20px" }}>
         <TemplatePicknic
           handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
         />
       </Grid>
       <Grid item xs={6} sx={{ marginBottom: "20px" }}>
         <TemplateSlippers
+          handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
+        />
+      </Grid>
+      <Grid item xs={6} sx={{ marginBottom: "20px" }}>
+        <TemplateCover
           handleChangeClickOnUnsplash={handleChangeClickOnUnsplash}
         />
       </Grid>

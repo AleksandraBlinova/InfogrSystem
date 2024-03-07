@@ -21,6 +21,9 @@ import addImageTemplateBoots from "../templates-ozon/template-boots/TemplateBoot
 import addImageTemplateHolder from "../templates-ozon/template-holder/TemplateHolderData";
 import addImageTemplatePicknic from "../templates-ozon/template-picknic/TemplatePicknicData";
 import addImageTemplateFur from "../templates-ozon/template-fur/TemplateFurData";
+import addImageTemplateHoodie from "../templates-ozon/template-hoodie/TemplateHoodieData";
+import addImageTemplateTrousers from "../templates-ozon/template-trousers/TemplateTrousersData";
+import addImageTemplateCover from "../templates-ozon/template-cover/TemplateCoverData";
 
 const DashboardWithoutTempYM = () => {
   const [allObjectsOnStage, setallObjectsOnStage] = useState([]); //для отображения всех фоток на холсте
@@ -72,6 +75,39 @@ const DashboardWithoutTempYM = () => {
       );
     } else if (template == "tempHolder") {
       addImageTemplateHolder(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempCover") {
+      addImageTemplateCover(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempTrousers") {
+      addImageTemplateTrousers(
+        allObjectsOnStage,
+        allObjectsOnCURRENTStage,
+        currentStageIndex,
+        setallObjectsOnStage,
+        setallObjectsOnCURRENTStage,
+        file,
+        value,
+        template
+      );
+    } else if (template == "tempHoodie") {
+      addImageTemplateHoodie(
         allObjectsOnStage,
         allObjectsOnCURRENTStage,
         currentStageIndex,
