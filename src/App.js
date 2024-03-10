@@ -8,6 +8,8 @@ import NewProject from "./components/projects/new-project/NewProject";
 import DashboardWithoutTempOzon from "./components/templates/dashboard-without-template-Ozon/DashboardWithoutTempOzon";
 import DashboardWithoutTempWB from "./components/templates/dashboard-without-template-WB/DashboardWithoutTempWB";
 import DashboardWithoutTempYM from "./components/templates/dashboard-without-template-YM/DashboardWithoutTempYM";
+import Authorization from "./components/forms/Authorization";
+import Registration from "./components/forms/Registration";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           />
           <Route path="/withouttempWB" element={<DashboardWithoutTempWB />} />
           <Route path="/withouttempYM" element={<DashboardWithoutTempYM />} />
+          <Route path="/login" element={<Authorization />} />
+          <Route path="/register" element={<Registration />} />
         </Routes>
       </Router>
     </div>

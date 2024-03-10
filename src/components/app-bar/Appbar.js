@@ -205,7 +205,7 @@ function AppBarComponent() {
                     marginRight: "40px",
                     fontWeight: "600",
                   }}
-                  href="/createnewcreative"
+                  href="/login"
                 >
                   Вход
                 </Button>
@@ -221,7 +221,7 @@ function AppBarComponent() {
 
                     backgroundColor: "purple",
                   }}
-                  href="/createnewcreative"
+                  href="/register"
                 >
                   Регистрация
                 </Button>
