@@ -10,13 +10,20 @@ import DashboardWithoutTempWB from "./components/templates/dashboard-without-tem
 import DashboardWithoutTempYM from "./components/templates/dashboard-without-template-YM/DashboardWithoutTempYM";
 import Authorization from "./components/forms/Authorization";
 import Registration from "./components/forms/Registration";
+import FormSuccessLog from "./components/forms/FormSuccessLog";
 
 function App() {
+  const [isLog, setLog] = useState(localStorage.getItem("isLog") === "true");
+  let [authResult, setAuthResult] = useState("");
+  const [isRegister, setIsRegister] = useState("false");
+  const handleChangeIsRegister = (val) => {
+    setIsRegister(val);
+  };
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route exact path="/" element={<Homepage />} />
+          <Route exact path="/" element={<Homepage isLog={isLog} />} />
           <Route path="/createnewcreative" element={<CreateNewCreative />} />
           <Route path="/newproject" element={<NewProject />} />
           <Route
@@ -25,8 +32,34 @@ function App() {
           />
           <Route path="/withouttempWB" element={<DashboardWithoutTempWB />} />
           <Route path="/withouttempYM" element={<DashboardWithoutTempYM />} />
-          <Route path="/login" element={<Authorization />} />
-          <Route path="/register" element={<Registration />} />
+          <Route
+            path="/login"
+            element={
+              !isLog ? (
+                <Authorization
+                  setLog={setLog}
+                  authResult={authResult}
+                  setAuthResult={setAuthResult}
+                />
+              ) : (
+                <Homepage
+                  isLog={isLog}
+                  setLog={setLog}
+                  authResult={authResult}
+                />
+              )
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              isRegister == "false" ? (
+                <Registration handleChangeIsRegister={handleChangeIsRegister} />
+              ) : (
+                <FormSuccessLog />
+              )
+            }
+          />
         </Routes>
       </Router>
     </div>

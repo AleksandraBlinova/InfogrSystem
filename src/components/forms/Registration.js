@@ -12,6 +12,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
 
 const theme = createTheme({
   palette: {
@@ -22,14 +23,48 @@ const theme = createTheme({
     },
   },
 });
-export default function Registration() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+export default function Registration(props) {
+  const [curUserFirstName, setCurUserFirstName] = React.useState("");
+  const [curUserLastName, setCurUserLastName] = React.useState("");
+  const [curUserPassword, setCurUserPassword] = React.useState("");
+  const [curUserName, setCurUserName] = React.useState("");
+  const handleChangeUserFirstName = (event) => {
+    setCurUserFirstName(event.target.value);
+  };
+  const handleChangeUserLastName = (event) => {
+    setCurUserLastName(event.target.value);
+  };
+  const handleChangeUserName = (event) => {
+    setCurUserName(event.target.value);
+  };
+  const handleChangePassword = (event) => {
+    setCurUserPassword(event.target.value);
+  };
+
+  const values = {
+    firstName: curUserFirstName.toString(),
+    lastName: curUserLastName.toString(),
+    password: curUserPassword.toString(),
+    username: curUserName.toString(),
+    role: "user",
+  };
+
+  let authResult = "";
+
+  const handleSubmit = (e) => {
+    axios
+      .post("http://localhost:3001/users/register", values, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        if (response.data) {
+          props.handleChangeIsRegister("true");
+        }
+      })
+      .catch((error) => {
+        authResult = error.response.data.message;
+        console.log(authResult);
+      });
   };
 
   return (
@@ -50,12 +85,7 @@ export default function Registration() {
             <Typography component="h1" variant="h5">
               Регистрация
             </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 3 }}
-            >
+            <Box component="form" noValidate sx={{ mt: 3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -66,6 +96,8 @@ export default function Registration() {
                     id="firstName"
                     label="Имя"
                     autoFocus
+                    value={curUserFirstName}
+                    onChange={handleChangeUserFirstName}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -76,16 +108,20 @@ export default function Registration() {
                     label="Фамилия"
                     name="lastName"
                     autoComplete="family-name"
+                    value={curUserLastName}
+                    onChange={handleChangeUserLastName}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
                     required
                     fullWidth
-                    id="email"
-                    label="Email"
-                    name="email"
-                    autoComplete="email"
+                    id="username"
+                    label="Имя пользователя"
+                    name="username"
+                    autoComplete="username"
+                    value={curUserName}
+                    onChange={handleChangeUserName}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -97,14 +133,16 @@ export default function Registration() {
                     type="password"
                     id="password"
                     autoComplete="new-password"
+                    value={curUserPassword}
+                    onChange={handleChangePassword}
                   />
                 </Grid>
               </Grid>
               <Button
-                type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={handleSubmit}
               >
                 Регистрация
               </Button>

@@ -24,9 +24,9 @@ import { Link } from "react-router-dom";
 
 const pages = ["Создать", "Возможности"];
 const options = ["Вход", "Регистрация"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Аккаунт", "Выйти"];
 
-function AppBarComponent() {
+function AppBarComponent({ isLog, setLog, authResult }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -45,6 +45,10 @@ function AppBarComponent() {
     setAnchorElUser(null);
   };
 
+  const logOut = () => {
+    localStorage.setItem("isLog", "false");
+  };
+
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
@@ -57,7 +61,11 @@ function AppBarComponent() {
     setOpenn(!openn);
   };
 
+  console.log(isLog);
   const logIn = false;
+  const [avatarName, setAvatarName] = React.useState(
+    localStorage.getItem("nameOfUser")
+  );
   return (
     <AppBar position="static">
       <Container maxWidth="xl" style={{ backgroundColor: "#000" }}>
@@ -186,7 +194,7 @@ function AppBarComponent() {
           </Box>
 
           <Box sx={{ flexGrow: 0, display: "flex" }}>
-            {logIn == false && (
+            {localStorage.getItem("isLog") == "false" && (
               <Box
                 sx={{
                   flexGrow: 1,
@@ -227,14 +235,15 @@ function AppBarComponent() {
                 </Button>
               </Box>
             )}
-            {logIn == true && (
+
+            {localStorage.getItem("isLog") == "true" && (
               <>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
-                      alt="Remy Sharp"
+                      alt={localStorage.getItem("nameOfUser")}
                       src="/static/images/avatar/2.jpg"
-                    />
+                    ></Avatar>
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -253,11 +262,18 @@ function AppBarComponent() {
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUserMenu}
                 >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
-                    </MenuItem>
-                  ))}
+                  <MenuItem key={1} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">Аккаунт</Typography>
+                  </MenuItem>
+                  <MenuItem
+                    key={2}
+                    onClick={() => {
+                      handleCloseUserMenu();
+                      logOut();
+                    }}
+                  >
+                    <Typography textAlign="center">Выйти</Typography>
+                  </MenuItem>
                 </Menu>
               </>
             )}

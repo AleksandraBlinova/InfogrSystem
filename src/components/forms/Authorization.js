@@ -12,6 +12,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
 
 const theme = createTheme({
   palette: {
@@ -22,14 +23,38 @@ const theme = createTheme({
     },
   },
 });
-export default function Authorization() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+export default function Authorization(props) {
+  const [curUserName, setCurUserName] = React.useState("");
+  const [curUserPassword, setCurUserPassword] = React.useState("");
+  const handleChangeUserName = (event) => {
+    setCurUserName(event.target.value);
+  };
+  const handleChangePassword = (event) => {
+    setCurUserPassword(event.target.value);
+  };
+
+  const values = {
+    username: curUserName.toString(),
+    password: curUserPassword.toString(),
+  };
+
+  const handleSubmit = (e) => {
+    axios
+      .post("http://localhost:3001/users/authenticate", values, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        if (response.data) {
+          localStorage.setItem("isLog", "true");
+          props.setLog("true");
+          props.setAuthResult(response.data);
+          localStorage.setItem("nameOfUser", response.data.firstName);
+        }
+        console.log(response.data);
+      })
+      .catch((error) => {
+        props.setAuthResult(error);
+      });
   };
 
   return (
@@ -50,20 +75,17 @@ export default function Authorization() {
             <Typography component="h1" variant="h5">
               Вход
             </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 3 }}
-            >
+            <Box component="form" sx={{ mt: 3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <TextField
                     fullWidth
-                    id="email"
-                    label="Email"
-                    name="email"
-                    autoComplete="email"
+                    id="username"
+                    label="Имя пользователя"
+                    name="username"
+                    autoComplete="username"
+                    value={curUserName}
+                    onChange={handleChangeUserName}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -74,14 +96,16 @@ export default function Authorization() {
                     type="password"
                     id="password"
                     autoComplete="new-password"
+                    value={curUserPassword}
+                    onChange={handleChangePassword}
                   />
                 </Grid>
               </Grid>
               <Button
-                type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={handleSubmit}
               >
                 Войти
               </Button>
