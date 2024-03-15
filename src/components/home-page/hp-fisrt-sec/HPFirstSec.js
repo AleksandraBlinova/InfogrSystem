@@ -32,15 +32,28 @@ export default function HPFirstSec() {
             по готовым шаблонам по правилам каждого маркетплейса
           </Typography>
           <Box sx={{ display: "flex", alignItems: "left", marginTop: "20px" }}>
-            <Button
-              variant="contained"
-              color="secondary"
-              className="get-started"
-              sx={{ backgroundColor: "#000", color: "white" }}
-              href="/createnewcreative"
-            >
-              Начать работу
-            </Button>
+            {localStorage.getItem("isLog") === "true" && (
+              <Button
+                variant="contained"
+                color="secondary"
+                className="get-started"
+                sx={{ backgroundColor: "#000", color: "white" }}
+                href="/createnewcreative"
+              >
+                Начать работу
+              </Button>
+            )}
+            {localStorage.getItem("isLog") === "false" && (
+              <Button
+                variant="contained"
+                color="secondary"
+                className="get-started"
+                sx={{ backgroundColor: "#000", color: "white" }}
+                href="/login"
+              >
+                Начать работу
+              </Button>
+            )}
           </Box>
         </Box>
         <div>

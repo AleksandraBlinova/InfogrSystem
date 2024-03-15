@@ -41,13 +41,13 @@ const Footer = () => {
             <Typography variant="subtitle1" color="#fff" gutterBottom>
               ШАБЛОНЫ
             </Typography>
-            <Link href="#" color="inherit" display="block">
+            <Link href="/newproject" color="inherit" display="block">
               Ozon
             </Link>
-            <Link href="#" color="inherit" display="block">
+            <Link href="/newproject" color="inherit" display="block">
               Yandex Market
             </Link>
-            <Link href="#" color="inherit" display="block">
+            <Link href="/newproject" color="inherit" display="block">
               Wildberries
             </Link>
           </Grid>
@@ -55,13 +55,13 @@ const Footer = () => {
             <Typography variant="subtitle1" color="#fff" gutterBottom>
               Возможности
             </Typography>
-            <Link href="#" color="inherit" display="block">
+            <Link color="inherit" display="block">
               Инфографика для Ozon
             </Link>
-            <Link href="#" color="inherit" display="block">
+            <Link color="inherit" display="block">
               Инфографика для Wildberries
             </Link>
-            <Link href="#" color="inherit" display="block">
+            <Link color="inherit" display="block">
               Инфографика для YM
             </Link>
           </Grid>

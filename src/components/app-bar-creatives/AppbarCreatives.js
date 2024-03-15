@@ -36,6 +36,10 @@ function AppBarCreatives(props) {
     setAnchorElUser(null);
   };
 
+  const logOut = () => {
+    localStorage.setItem("isLog", "false");
+  };
+
   const CustomMenuItem = styled(MenuItem)`
     &&.Mui-selected {
       background-color: #fff;
@@ -138,7 +142,10 @@ function AppBarCreatives(props) {
             <>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  <Avatar
+                    alt={localStorage.getItem("nameOfUser")}
+                    src="/static/images/avatar/2.jpg"
+                  ></Avatar>
                 </IconButton>
               </Tooltip>
               <Menu
@@ -157,11 +164,23 @@ function AppBarCreatives(props) {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={1} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Аккаунт</Typography>
+                </MenuItem>
+                <Link
+                  to="/"
+                  style={{ textDecoration: "none", color: "#000000DE" }}
+                >
+                  <MenuItem
+                    key={2}
+                    onClick={() => {
+                      handleCloseUserMenu();
+                      logOut();
+                    }}
+                  >
+                    <Typography textAlign="center">Выйти</Typography>
                   </MenuItem>
-                ))}
+                </Link>
               </Menu>
             </>
           </Box>

@@ -63,9 +63,7 @@ function AppBarComponent({ isLog, setLog, authResult }) {
 
   console.log(isLog);
   const logIn = false;
-  const [avatarName, setAvatarName] = React.useState(
-    localStorage.getItem("nameOfUser")
-  );
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl" style={{ backgroundColor: "#000" }}>
@@ -151,25 +149,41 @@ function AppBarComponent({ isLog, setLog, authResult }) {
                       <ListItemIcon>
                         <StarBorder sx={{ color: "#000" }} />
                       </ListItemIcon>
-                      <ListItemText primary="Шаблон WB" />
+                      <Link
+                        to="/newproject"
+                        style={{ color: "#fff", textDecoration: "none" }}
+                      >
+                        {" "}
+                        <ListItemText primary="Шаблон WB" />
+                      </Link>
                     </ListItemButton>
                     <ListItemButton sx={{ pl: 1 }}>
                       <ListItemIcon>
                         <StarBorder sx={{ color: "#000" }} />
                       </ListItemIcon>
-                      <ListItemText primary="Шаблон Ozon" />
+                      <Link
+                        to="/newproject"
+                        style={{ color: "#fff", textDecoration: "none" }}
+                      >
+                        <ListItemText primary="Шаблон Ozon" />
+                      </Link>
                     </ListItemButton>
                     <ListItemButton sx={{ pl: 3 }}>
                       <ListItemIcon>
                         <StarBorder sx={{ color: "#000" }} />
                       </ListItemIcon>
-                      <ListItemText primary="Шаблон YM" />
+                      <Link
+                        to="/newproject"
+                        style={{ color: "#fff", textDecoration: "none" }}
+                      >
+                        <ListItemText primary="Шаблон YM" />
+                      </Link>
                     </ListItemButton>
                   </List>
                 </Collapse>
               </List>
             </>
-
+            {/* 
             <>
               <List sx={{ marginLeft: "60px" }}>
                 <ListItemButton onClick={handleClickn}>
@@ -190,11 +204,11 @@ function AppBarComponent({ isLog, setLog, authResult }) {
                   </List>
                 </Collapse>
               </List>
-            </>
+            </> */}
           </Box>
 
           <Box sx={{ flexGrow: 0, display: "flex" }}>
-            {localStorage.getItem("isLog") == "false" && (
+            {localStorage.getItem("isLog") === "false" && (
               <Box
                 sx={{
                   flexGrow: 1,
@@ -236,7 +250,7 @@ function AppBarComponent({ isLog, setLog, authResult }) {
               </Box>
             )}
 
-            {localStorage.getItem("isLog") == "true" && (
+            {localStorage.getItem("isLog") === "true" && (
               <>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -265,15 +279,20 @@ function AppBarComponent({ isLog, setLog, authResult }) {
                   <MenuItem key={1} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">Аккаунт</Typography>
                   </MenuItem>
-                  <MenuItem
-                    key={2}
-                    onClick={() => {
-                      handleCloseUserMenu();
-                      logOut();
-                    }}
+                  <Link
+                    to="/"
+                    style={{ textDecoration: "none", color: "#000000DE" }}
                   >
-                    <Typography textAlign="center">Выйти</Typography>
-                  </MenuItem>
+                    <MenuItem
+                      key={2}
+                      onClick={() => {
+                        handleCloseUserMenu();
+                        logOut();
+                      }}
+                    >
+                      <Typography textAlign="center">Выйти</Typography>
+                    </MenuItem>
+                  </Link>
                 </Menu>
               </>
             )}
