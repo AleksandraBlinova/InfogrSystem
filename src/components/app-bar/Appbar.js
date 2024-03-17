@@ -183,7 +183,7 @@ function AppBarComponent({ isLog, setLog, authResult }) {
                 </Collapse>
               </List>
             </>
-            {/* 
+
             <>
               <List sx={{ marginLeft: "60px" }}>
                 <ListItemButton onClick={handleClickn}>
@@ -199,12 +199,33 @@ function AppBarComponent({ isLog, setLog, authResult }) {
                       <ListItemIcon>
                         <StarBorder sx={{ color: "#000" }} />
                       </ListItemIcon>
-                      <ListItemText primary="Starred" />
+                      <ListItemText
+                        primary="Инфографика для Ozon"
+                        sx={{ textAlign: "right" }}
+                      />
+                    </ListItemButton>
+                    <ListItemButton sx={{ pl: 8 }}>
+                      <ListItemIcon>
+                        <StarBorder sx={{ color: "#000" }} />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary="Инфографика для Wildberries"
+                        sx={{ textAlign: "right" }}
+                      />
+                    </ListItemButton>
+                    <ListItemButton sx={{ pl: 8 }}>
+                      <ListItemIcon>
+                        <StarBorder sx={{ color: "#000" }} />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary="Инфографика для Yandex Market"
+                        sx={{ textAlign: "right" }}
+                      />
                     </ListItemButton>
                   </List>
                 </Collapse>
               </List>
-            </> */}
+            </>
           </Box>
 
           <Box sx={{ flexGrow: 0, display: "flex" }}>
