@@ -1,8 +1,28 @@
-import React from "react";
-import { Typography } from "@mui/material";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Typography } from "@mui/material";
+import axios from "axios";
 
 const Emoji = ({ handleChangeClickOnUnsplash }) => {
+  let [data, setData] = React.useState([]);
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3001/emoji",
+      headers: {
+        "content-type": "application/json",
+        withCredentials: true,
+      },
+    })
+      .then((response) => {
+        console.log("res", response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div className="graphics-s8-container">
       <Link to="https://icons8.com/">
@@ -17,137 +37,17 @@ const Emoji = ({ handleChangeClickOnUnsplash }) => {
           Эмодзи:{" "}
         </Typography>{" "}
       </Link>
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/emoji/icons8-teddy-bear-96.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/emoji/icons8-teddy-bear-96.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/emoji/icons8-russia-96.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/emoji/icons8-russia-96.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/emoji/icons8-nesting-dolls-96.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/emoji/icons8-nesting-dolls-96.png"
-          );
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/emoji/icons8-grinning-face-with-big-eyes-96.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/emoji/icons8-grinning-face-with-big-eyes-96.png"
-          );
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/emoji/icons8-face-blowing-a-kiss-96.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/emoji/icons8-face-blowing-a-kiss-96.png"
-          );
-        }}
-      />
 
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/emoji/icons8-dog-96.png");
-        }}
-        src="./icons/emoji/icons8-dog-96.png"
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/emoji/icons8-dizzy-face-96.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/emoji/icons8-dizzy-face-96.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/emoji/icons8-cold-face-96.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/emoji/icons8-cold-face-96.png");
-        }}
-      />
-
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/emoji/icons8-chicken-96.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/emoji/icons8-chicken-96.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/emoji/icons8-cat-with-tears-of-joy-96.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/emoji/icons8-cat-with-tears-of-joy-96.png"
-          );
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/emoji/icons8-cat-96.png");
-        }}
-        src="./icons/emoji/icons8-cat-96.png"
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/emoji/icons8-beating-heart-96.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/emoji/icons8-beating-heart-96.png"
-          );
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/emoji/icons8-astonished-face-96.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/emoji/icons8-astonished-face-96.png"
-          );
-        }}
-      />
-
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/emoji/icons8-anxious-face-with-sweat-96.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/emoji/icons8-anxious-face-with-sweat-96.png"
-          );
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/emoji/icons8-angry-face-with-horns-96.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/emoji/icons8-angry-face-with-horns-96.png"
-          );
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/emoji/icons8-angry-face-96.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/emoji/icons8-angry-face-96.png");
-        }}
-      />
+      {data.map((itm) => (
+        <img
+          key={itm.Id}
+          style={{ width: "70px", marginRight: "20px" }}
+          src={itm.Emoji_name}
+          onClick={() => {
+            handleChangeClickOnUnsplash(itm.Emoji_name);
+          }}
+        />
+      ))}
     </div>
   );
 };

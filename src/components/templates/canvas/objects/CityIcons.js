@@ -1,8 +1,28 @@
-import React from "react";
-import { Typography } from "@mui/material";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Typography } from "@mui/material";
+import axios from "axios";
 
 const CityIcons = ({ handleChangeClickOnUnsplash }) => {
+  let [data, setData] = React.useState([]);
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3001/city_icons",
+      headers: {
+        "content-type": "application/json",
+        withCredentials: true,
+      },
+    })
+      .then((response) => {
+        console.log("res", response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div className="graphics-s8-container">
       <Link to="https://icons8.com/">
@@ -18,165 +38,16 @@ const CityIcons = ({ handleChangeClickOnUnsplash }) => {
         </Typography>{" "}
       </Link>
 
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-bank-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-bank-94.png");
-        }}
-      />
-
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-basilica-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-basilica-94.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-billboard-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-billboard-94.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-bumper-car-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-bumper-car-94.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-car-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-car-94.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-carousel-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-carousel-94.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-cathedral-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-cathedral-94.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-church-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-church-94.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-claw-machine-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/city/icons8-claw-machine-94.png"
-          );
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-confetti-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-confetti-94.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-cosh-weapon-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-cosh-weapon-94.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-electric-bike-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/city/icons8-electric-bike-94.png"
-          );
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-ferris-wheel-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/city/icons8-ferris-wheel-94.png"
-          );
-        }}
-      />
-
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-fountain-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-fountain-94.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-heart-ballon-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/city/icons8-heart-ballon-94.png"
-          );
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-parliament-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-parliament-94.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-party-balloons-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/city/icons8-party-balloons-94.png"
-          );
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-playground-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-playground-94.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-restaurant-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-restaurant-94.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-telescope-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-telescope-94.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/city/icons8-temple-94.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/city/icons8-temple-94.png");
-        }}
-      />
+      {data.map((itm) => (
+        <img
+          key={itm.Id}
+          style={{ width: "70px", marginRight: "20px" }}
+          src={itm.City_icons_name}
+          onClick={() => {
+            handleChangeClickOnUnsplash(itm.City_icons_name);
+          }}
+        />
+      ))}
     </div>
   );
 };

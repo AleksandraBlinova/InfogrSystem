@@ -1,48 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Typography } from "@mui/material";
-import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
+import axios from "axios";
 
 const Lines = ({ handleChangeClickOnUnsplash }) => {
+  let [data, setData] = React.useState([]);
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3001/lines",
+      headers: {
+        "content-type": "application/json",
+        withCredentials: true,
+      },
+    })
+      .then((response) => {
+        console.log("res", response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <div className="lines-container">
       <Typography sx={{ fontSize: "16px", fontWeight: "500" }}>
         Линии:{" "}
       </Typography>{" "}
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./lines/1line.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./lines/1line.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./lines/2line.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./lines/2line.png");
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./lines/3line.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./lines/3line.png");
-        }}
-      />
-      <img
-        style={{ width: "90px", marginRight: "20px" }}
-        src="./lines/7line.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./lines/7line.png");
-        }}
-      />
-      <img
-        style={{ width: "85px", marginRight: "20px" }}
-        src="./lines/8line.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./lines/8line.png");
-        }}
-      />
+      {data.map((itm) => (
+        <img
+          key={itm.Id}
+          style={{ width: "80px", marginRight: "20px" }}
+          src={itm.Line_name}
+          onClick={() => {
+            handleChangeClickOnUnsplash(itm.Line_name);
+          }}
+        />
+      ))}
     </div>
   );
 };

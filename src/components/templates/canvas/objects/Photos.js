@@ -1,14 +1,28 @@
-import React from "react";
 import { Typography } from "@mui/material";
-import UnsplashReact, {
-  Base64Uploader,
-  withDefaultProps,
-} from "unsplash-react";
 import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 
-const MY_ACCESS_KEY = "RKnG9ADSOyqmCXxJ_9nf3au8Ie-E5kzFcdIkVFIcLNc";
+import axios from "axios";
 
 const Photos = ({ unsplashImagesOnline, handleChangeClickOnUnsplash }) => {
+  let [data, setData] = React.useState([]);
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3001/photos",
+      headers: {
+        "content-type": "application/json",
+        withCredentials: true,
+      },
+    })
+      .then((response) => {
+        console.log("res", response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <div className="photos-unsplash-container">
       <Link to="https://unsplash.com/">
@@ -25,36 +39,13 @@ const Photos = ({ unsplashImagesOnline, handleChangeClickOnUnsplash }) => {
       </Link>
 
       <div>
-        {[
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-        ].map((num) => (
+        {data.map((itm) => (
           <img
+            key={itm.Id}
             style={{ height: "120px", width: "100px", marginRight: "20px" }}
-            src={
-              "./unsplash-rand-photos/photounsplashRandom" +
-              num.toString() +
-              ".jpg"
-            }
+            src={itm.Photo_name}
             onClick={() => {
-              handleChangeClickOnUnsplash(
-                "./unsplash-rand-photos/photounsplashRandom" +
-                  num.toString() +
-                  ".jpg"
-              );
+              handleChangeClickOnUnsplash(itm.Photo_name);
             }}
           />
         ))}

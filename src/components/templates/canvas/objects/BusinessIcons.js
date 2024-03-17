@@ -1,8 +1,27 @@
-import React from "react";
-import { Typography } from "@mui/material";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Typography } from "@mui/material";
+import axios from "axios";
 
 const BusinessIcons = ({ handleChangeClickOnUnsplash }) => {
+  let [data, setData] = React.useState([]);
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3001/business_icons",
+      headers: {
+        "content-type": "application/json",
+        withCredentials: true,
+      },
+    })
+      .then((response) => {
+        console.log("res", response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <div className="graphics-s8-container">
       <Link to="https://icons8.com/">
@@ -17,66 +36,16 @@ const BusinessIcons = ({ handleChangeClickOnUnsplash }) => {
           Бизнес иконки:{" "}
         </Typography>{" "}
       </Link>
-
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/business/icons8-commercial-100.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/business/icons8-commercial-100.png"
-          );
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/business/icons8-disclaimer-100.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/business/icons8-disclaimer-100.png"
-          );
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/business/icons8-barbershop-100.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/business/icons8-barbershop-100.png"
-          );
-        }}
-      />
-      <img
-        style={{ width: "70px", marginRight: "20px" }}
-        src="./icons/business/icons8-goal-100.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/business/icons8-goal-100.png");
-        }}
-      />
-      <img
-        style={{ width: "60px", marginRight: "20px" }}
-        src="./icons/business/icons8-hand-with-pen-100.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/business/icons8-hand-with-pen-100.png"
-          );
-        }}
-      />
-      <img
-        style={{ width: "80px", marginRight: "20px" }}
-        src="./icons/business/icons8-service-100.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash(
-            "./icons/business/icons8-service-100.png"
-          );
-        }}
-      />
-      <img
-        style={{ width: "80px", marginRight: "20px" }}
-        src="./icons/business/icons8-trust-100.png"
-        onClick={() => {
-          handleChangeClickOnUnsplash("./icons/business/icons8-trust-100.png");
-        }}
-      />
+      {data.map((itm) => (
+        <img
+          key={itm.Id}
+          style={{ width: "70px", marginRight: "20px" }}
+          src={itm.Business_icons_name}
+          onClick={() => {
+            handleChangeClickOnUnsplash(itm.Business_icons_name);
+          }}
+        />
+      ))}
     </div>
   );
 };
