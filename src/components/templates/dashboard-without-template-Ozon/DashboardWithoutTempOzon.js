@@ -543,19 +543,37 @@ const DashboardWithoutTempOzon = () => {
   };
 
   const changeBackgroundLinesFigures = (value) => {
+    console.log(value);
     setActiveTransformer(false);
     if (curBackground) {
-      if (!value.color.includes("gradient")) {
-        curBackground.fill = value.color;
-        curBackground.stroke = value.color;
-      } else {
-        curBackground.fillPriority = "linear-gradient";
-        let splittedString = value.color.split(",");
-        splittedString.shift();
-        splittedString[splittedString.length - 1] = splittedString[
-          splittedString.length - 1
-        ].replace(")", "");
-        curBackground.fillLinearGradientColorStops = splittedString;
+      if (value.color) {
+        if (!value.color.includes("gradient")) {
+          curBackground.fill = value.color;
+          curBackground.stroke = value.color;
+        } else {
+          curBackground.fillPriority = "linear-gradient";
+          let splittedString = value.color.split(",");
+          splittedString.shift();
+          splittedString[splittedString.length - 1] = splittedString[
+            splittedString.length - 1
+          ].replace(")", "");
+          curBackground.fillLinearGradientColorStops = splittedString;
+        }
+      }
+      if (value.Color) {
+        if (!value.Color.includes("gradient")) {
+          curBackground.fill = value.Color;
+          curBackground.stroke = value.Color;
+          curBackground.fillPriority = "";
+        } else {
+          curBackground.fillPriority = "linear-gradient";
+          let splittedString = value.Color.split(",");
+          splittedString.shift();
+          splittedString[splittedString.length - 1] = splittedString[
+            splittedString.length - 1
+          ].replace(")", "");
+          curBackground.fillLinearGradientColorStops = splittedString;
+        }
       }
     }
   };
