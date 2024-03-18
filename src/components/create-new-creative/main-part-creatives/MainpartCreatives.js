@@ -57,12 +57,12 @@ const MainpartCreatives = () => {
             </Button>
           </Box>
 
-          <Box sx={{ marginTop: "30px" }}>
+          {/* <Box sx={{ marginTop: "30px" }}>
             <Button variant="extended">
               <FolderIcon sx={{ width: "20px", marginRight: "6px" }} />
               Создать новую папку
             </Button>
-          </Box>
+          </Box> */}
           <Box sx={{ marginTop: "80px" }}>
             {" "}
             <Divider light textAlign="left" />
