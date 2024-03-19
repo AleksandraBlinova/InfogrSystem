@@ -26,6 +26,8 @@ const ChooseUserAttributes = () => {
     setCurMarketplace(event.target.value);
   };
 
+  const [categories, setCategories] = React.useState();
+
   const [curCategory, setCurCategory] = React.useState("");
 
   const handleChangeCurCategory = (event) => {
@@ -54,8 +56,24 @@ const ChooseUserAttributes = () => {
       },
     })
       .then((response) => {
-        console.log("res", response.data);
         setMarketplaces(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3001/categories",
+      headers: {
+        "content-type": "application/json",
+        withCredentials: true,
+      },
+    })
+      .then((response) => {
+        setCategories(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -196,9 +214,12 @@ const ChooseUserAttributes = () => {
                   label="Категория"
                   onChange={handleChangeCurCategory}
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  {categories &&
+                    categories.map((itm, index) => (
+                      <MenuItem key={itm.Id} value={itm.Category_name}>
+                        {itm.Category_name}
+                      </MenuItem>
+                    ))}
                 </Select>
               </FormControl>
             </Box>
