@@ -14,6 +14,11 @@ import Select from "@mui/material/Select";
 import { Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 const ChooseUserAttributes = () => {
   const [marketplaces, setMarketplaces] = React.useState();
@@ -90,6 +95,18 @@ const ChooseUserAttributes = () => {
         console.log(error);
       });
   }, []);
+
+  const [openDialog, setOpenDialog] = React.useState(false);
+
+  const handleClickOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  const createNewProject = () => {};
 
   return (
     <div>
@@ -432,6 +449,7 @@ const ChooseUserAttributes = () => {
                   <Grid sx={{ marginTop: "70px", marginLeft: "6%" }}>
                     <Button
                       variant="contained"
+                      onClick={handleClickOpenDialog}
                       sx={{
                         fontSize: "20px",
                         backgroundColor: "grey",
@@ -451,6 +469,7 @@ const ChooseUserAttributes = () => {
                   <Grid sx={{ marginTop: "67vh", marginLeft: "7%" }}>
                     <Button
                       variant="contained"
+                      onClick={handleClickOpenDialog}
                       sx={{
                         fontSize: "20px",
                         backgroundColor: "grey",
@@ -467,6 +486,72 @@ const ChooseUserAttributes = () => {
           </Grid>
         </Grid>
       </div>
+      <Dialog
+        open={openDialog}
+        onClose={handleCloseDialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title" sx={{ fontWeight: "600" }}>
+          {"Убедитесь в правильности выбранных атрибутов:"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            <Typography sx={{ color: "#000" }}>
+              Маркетплейс: {localStorage.getItem("chosMarketPL")}
+            </Typography>
+            <Typography sx={{ color: "#000", marginTop: "15px" }}>
+              Категория: {localStorage.getItem("category")}
+            </Typography>
+            <Typography sx={{ color: "#000", marginTop: "15px" }}>
+              Тип фото: {localStorage.getItem("typeOfPhoto")}
+            </Typography>
+            <Typography sx={{ color: "#000", marginTop: "15px" }}>
+              Комплект: {localStorage.getItem("complect")}
+            </Typography>
+            {localStorage.getItem("needTemplateMarketPL") == "no" && (
+              <Typography sx={{ color: "#000", marginTop: "15px" }}>
+                Шаблон: Нет
+              </Typography>
+            )}
+            {localStorage.getItem("needTemplateMarketPL") != "no" && (
+              <Typography sx={{ color: "#000", marginTop: "15px" }}>
+                Шаблон: Да
+              </Typography>
+            )}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Link>
+            {" "}
+            <Button
+              autoFocus
+              variant="contained"
+              sx={{
+                backgroundColor: "purple",
+                "&:hover": {
+                  backgroundColor: "purple",
+                },
+              }}
+            >
+              Все верно
+            </Button>
+          </Link>
+
+          <Button
+            onClick={handleCloseDialog}
+            sx={{
+              color: "#fff",
+              backgroundColor: "grey",
+              "&:hover": {
+                backgroundColor: "grey",
+              },
+            }}
+          >
+            Назад
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
