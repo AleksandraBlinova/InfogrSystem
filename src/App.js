@@ -11,6 +11,7 @@ import DashboardWithoutTempYM from "./components/templates/dashboard-without-tem
 import Authorization from "./components/forms/Authorization";
 import Registration from "./components/forms/Registration";
 import FormSuccessLog from "./components/forms/FormSuccessLog";
+import ChooseUserAttributes from "./components/projects/choose-user-attributes/ChooseUserAttributes";
 
 function App() {
   const [isLog, setLog] = useState(localStorage.getItem("isLog") === "true");
@@ -19,6 +20,7 @@ function App() {
   const handleChangeIsRegister = (val) => {
     setIsRegister(val);
   };
+
   return (
     <div className="App">
       <Router>
@@ -32,6 +34,10 @@ function App() {
           />
           <Route path="/withouttempWB" element={<DashboardWithoutTempWB />} />
           <Route path="/withouttempYM" element={<DashboardWithoutTempYM />} />
+          <Route
+            path="/chooseUserAttributes"
+            element={<ChooseUserAttributes />}
+          />
           <Route
             path="/login"
             element={

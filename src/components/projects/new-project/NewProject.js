@@ -21,6 +21,9 @@ const NewProject = () => {
     setSelectedIndex(index);
   };
 
+  localStorage.setItem("chosMarketPL", "");
+  localStorage.setItem("needTemplateMarketPL", "");
+
   return (
     <div>
       <AppBarCreatives
@@ -59,35 +62,64 @@ const NewProject = () => {
                   Инфографика OZON
                 </TableCell>
                 <TableCell align="center">
-                  <CardActionArea href="/withouttempOzon">
+                  {/* <CardActionArea href="/withouttempOzon"> */}
+                  <CardActionArea
+                    href="/chooseUserAttributes"
+                    onClick={() => {
+                      localStorage.setItem("chosMarketPL", "Ozon");
+                      localStorage.setItem("needTemplateMarketPL", "no");
+                    }}
+                  >
                     <CardMedia
                       component="img"
-                      width="100px"
-                      height="200px"
+                      width="70px"
+                      height="250px"
                       image="6391435521.jpg"
+                      sx={{ objectFit: "contain", marginBottom: "10px" }}
                     />
                     Создать без шаблона для OZON
                   </CardActionArea>
                 </TableCell>
                 <TableCell align="center">
                   {" "}
-                  <CardMedia
-                    component="img"
-                    width="150px"
-                    height="200px"
-                    image="1-1001.jpg"
-                  />
-                  Создать шаблон для OZON
+                  <CardActionArea
+                    href="/chooseUserAttributes"
+                    onClick={() => {
+                      localStorage.setItem("chosMarketPL", "Ozon");
+                      localStorage.setItem(
+                        "needTemplateMarketPL",
+                        "basketball"
+                      );
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      width="100px"
+                      height="250px"
+                      image="БаскетМяч.png"
+                      sx={{ objectFit: "contain", marginBottom: "10px" }}
+                    />
+                    Создать шаблон для OZON
+                  </CardActionArea>
                 </TableCell>{" "}
                 <TableCell align="center">
                   {" "}
-                  <CardMedia
-                    component="img"
-                    width="150px"
-                    height="200px"
-                    image="1-1001.jpg"
-                  />
-                  Создать шаблон для OZON
+                  <CardActionArea
+                    href="/chooseUserAttributes"
+                    onClick={() => {
+                      localStorage.setItem("chosMarketPL", "Ozon");
+                      localStorage.setItem("needTemplateMarketPL", "pillow");
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      width="100px"
+                      height="250px"
+                      image="PillowTemp.png"
+                      sx={{ objectFit: "contain", marginBottom: "10px" }}
+                    />
+                    Создать шаблон для OZON
+                  </CardActionArea>
                 </TableCell>
               </TableRow>
 
@@ -112,35 +144,61 @@ const NewProject = () => {
                 </TableCell>
                 <TableCell align="center">
                   {" "}
-                  <CardActionArea href="/withouttempWB">
+                  {/* <CardActionArea href="/withouttempWB"> */}
+                  <CardActionArea
+                    href="/chooseUserAttributes"
+                    onClick={() => {
+                      localStorage.setItem("chosMarketPL", "Wildberries");
+                      localStorage.setItem("needTemplateMarketPL", "no");
+                    }}
+                  >
                     <CardMedia
                       component="img"
-                      width="150px"
-                      height="200px"
+                      width="70px"
+                      height="250px"
                       image="6391435521.jpg"
+                      sx={{ objectFit: "contain", marginBottom: "10px" }}
                     />
                     Создать без шаблона для Wildberries
                   </CardActionArea>
                 </TableCell>{" "}
                 <TableCell align="center">
                   {" "}
-                  <CardMedia
-                    component="img"
-                    width="150px"
-                    height="200px"
-                    image="1-1001.jpg"
-                  />
-                  Создать шаблон для Wildberries
+                  <CardActionArea
+                    href="/chooseUserAttributes"
+                    onClick={() => {
+                      localStorage.setItem("chosMarketPL", "Wildberries");
+                      localStorage.setItem("needTemplateMarketPL", "fur");
+                    }}
+                  >
+                    <CardMedia
+                      image="Image-fur.png"
+                      component="img"
+                      width="100px"
+                      height="250px"
+                      sx={{ objectFit: "contain", marginBottom: "10px" }}
+                    />
+                    Создать шаблон для Wildberries
+                  </CardActionArea>
                 </TableCell>{" "}
                 <TableCell align="center">
                   {" "}
-                  <CardMedia
-                    component="img"
-                    width="150px"
-                    height="200px"
-                    image="1-1001.jpg"
-                  />
-                  Создать шаблон для Wildberries
+                  <CardActionArea
+                    href="/chooseUserAttributes"
+                    onClick={() => {
+                      localStorage.setItem("chosMarketPL", "Wildberries");
+                      localStorage.setItem("needTemplateMarketPL", "hoodie");
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      width="100px"
+                      height="250px"
+                      sx={{ objectFit: "contain", marginBottom: "10px" }}
+                      image="hoodie.png"
+                    />
+                    Создать шаблон для Wildberries
+                  </CardActionArea>
                 </TableCell>
               </TableRow>
               <TableRow
@@ -164,35 +222,64 @@ const NewProject = () => {
                 </TableCell>
                 <TableCell align="center">
                   {" "}
-                  <CardActionArea href="/withouttempYM">
+                  {/* <CardActionArea href="/withouttempYM"> */}
+                  <CardActionArea
+                    href="/chooseUserAttributes"
+                    onClick={() => {
+                      localStorage.setItem("chosMarketPL", "YandexMarket");
+                      localStorage.setItem("needTemplateMarketPL", "no");
+                    }}
+                  >
                     <CardMedia
                       component="img"
-                      width="150px"
-                      height="200px"
+                      width="70px"
+                      height="250px"
                       image="6391435521.jpg"
+                      sx={{ objectFit: "contain", marginBottom: "10px" }}
                     />
                     Создать без шаблона для Yandex Market
                   </CardActionArea>
                 </TableCell>{" "}
                 <TableCell align="center">
                   {" "}
-                  <CardMedia
-                    component="img"
-                    width="150px"
-                    height="200px"
-                    image="1-1001.jpg"
-                  />
-                  Создать шаблон для Yandex Market
+                  <CardActionArea
+                    href="/chooseUserAttributes"
+                    onClick={() => {
+                      localStorage.setItem("chosMarketPL", "YandexMarket");
+                      localStorage.setItem(
+                        "needTemplateMarketPL",
+                        "toiletChild"
+                      );
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      width="100px"
+                      height="250px"
+                      sx={{ objectFit: "contain", marginBottom: "10px" }}
+                      image="ToiletReady.png"
+                    />
+                    Создать шаблон для Yandex Market
+                  </CardActionArea>
                 </TableCell>{" "}
                 <TableCell align="center">
                   {" "}
-                  <CardMedia
-                    component="img"
-                    width="150px"
-                    height="200px"
-                    image="1-1001.jpg"
-                  />
-                  Создать шаблон для Yandex Market
+                  <CardActionArea
+                    href="/chooseUserAttributes"
+                    onClick={() => {
+                      localStorage.setItem("chosMarketPL", "YandexMarket");
+                      localStorage.setItem("needTemplateMarketPL", "boots");
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      width="100px"
+                      height="250px"
+                      sx={{ objectFit: "contain", marginBottom: "10px" }}
+                      image="boots.png"
+                    />
+                    Создать шаблон для Yandex Market
+                  </CardActionArea>
                 </TableCell>
               </TableRow>
             </TableBody>
