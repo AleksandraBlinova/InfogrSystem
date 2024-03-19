@@ -25,6 +25,7 @@ const ChooseUserAttributes = () => {
   const handleChangeCurMarketplace = (event) => {
     setCurMarketplace(event.target.value);
     localStorage.setItem("chosMarketPL", event.target.value);
+    localStorage.setItem("needTemplateMarketPL", "no");
   };
 
   const [categories, setCategories] = React.useState();
@@ -368,14 +369,67 @@ const ChooseUserAttributes = () => {
                     </Typography>
                   </Grid>
                   <Grid sx={{ marginTop: "30px" }}>
-                    <img
-                      style={{
-                        width: "250px",
-                        height: "300px",
-                      }}
-                    />
+                    {localStorage.getItem("needTemplateMarketPL") ==
+                      "basketball" && (
+                      <img
+                        src="./БаскетМяч.png"
+                        style={{
+                          width: "250px",
+                          height: "320px",
+                        }}
+                      />
+                    )}
+                    {localStorage.getItem("needTemplateMarketPL") ==
+                      "pillow" && (
+                      <img
+                        src="./PillowTemp.png"
+                        style={{
+                          width: "250px",
+                          height: "320px",
+                        }}
+                      />
+                    )}
+                    {localStorage.getItem("needTemplateMarketPL") == "fur" && (
+                      <img
+                        src="./Image-fur.png"
+                        style={{
+                          width: "250px",
+                          height: "320px",
+                        }}
+                      />
+                    )}
+                    {localStorage.getItem("needTemplateMarketPL") ==
+                      "hoodie" && (
+                      <img
+                        src="./hoodie.png"
+                        style={{
+                          width: "250px",
+                          height: "320px",
+                        }}
+                      />
+                    )}
+                    {localStorage.getItem("needTemplateMarketPL") ==
+                      "boots" && (
+                      <img
+                        src="./boots.png"
+                        style={{
+                          width: "250px",
+                          height: "320px",
+                        }}
+                      />
+                    )}
+                    {localStorage.getItem("needTemplateMarketPL") ==
+                      "toiletChild" && (
+                      <img
+                        src="./ToiletReady.png"
+                        style={{
+                          width: "250px",
+                          height: "320px",
+                        }}
+                      />
+                    )}
                   </Grid>
-                  <Grid sx={{ marginTop: "80px", marginLeft: "7%" }}>
+                  <Grid sx={{ marginTop: "70px", marginLeft: "7%" }}>
                     <Button
                       variant="contained"
                       sx={{
