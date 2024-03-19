@@ -362,7 +362,7 @@ const ChooseUserAttributes = () => {
                         fontSize: "20px",
                         fontFamily: "Segoe UI",
                         paddingTop: "12px",
-                        marginLeft: "8%",
+                        marginLeft: "7%",
                       }}
                     >
                       Выбранный шаблон:
@@ -429,7 +429,7 @@ const ChooseUserAttributes = () => {
                       />
                     )}
                   </Grid>
-                  <Grid sx={{ marginTop: "70px", marginLeft: "7%" }}>
+                  <Grid sx={{ marginTop: "70px", marginLeft: "6%" }}>
                     <Button
                       variant="contained"
                       sx={{
