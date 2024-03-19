@@ -106,7 +106,37 @@ const ChooseUserAttributes = () => {
     setOpenDialog(false);
   };
 
-  const createNewProject = () => {};
+  const createNewProject = () => {
+    let projValues = "";
+    console.log(projValues);
+    // axios
+    //   .post("http://localhost:3001/projects/create", projValues, {
+    //     withCredentials: true,
+    //   })
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
+    let projAttribValues = "";
+    console.log(projAttribValues);
+    // axios
+    //   .post(
+    //     "http://localhost:3001/projects_attributes/create",
+    //     projAttribValues,
+    //     {
+    //       withCredentials: true,
+    //     }
+    //   )
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  };
 
   return (
     <div>
@@ -526,6 +556,7 @@ const ChooseUserAttributes = () => {
             {" "}
             <Button
               autoFocus
+              onClick={createNewProject}
               variant="contained"
               sx={{
                 backgroundColor: "purple",
