@@ -89,7 +89,8 @@ const ChooseUserAttributes = () => {
       },
     })
       .then((response) => {
-        setCategories(response.data);
+        let arr = response.data.filter((itm) => itm.isAllowed != "false");
+        setCategories(arr);
       })
       .catch((error) => {
         console.log(error);
