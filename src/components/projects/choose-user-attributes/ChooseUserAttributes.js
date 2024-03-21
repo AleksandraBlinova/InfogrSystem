@@ -117,6 +117,27 @@ const ChooseUserAttributes = () => {
       });
   }, []);
 
+  const [projectAttr, setProjectAttr] = useState();
+  let [projAttrId, setProAttrjId] = useState();
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3001/project_attributes",
+      headers: {
+        "content-type": "application/json",
+        withCredentials: true,
+      },
+    })
+      .then((response) => {
+        setProjectAttr(response.data);
+        setProAttrjId(response.data.length + 1);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const [users, setUsers] = useState();
 
   useEffect(() => {
@@ -149,7 +170,7 @@ const ChooseUserAttributes = () => {
   let projValues = {};
 
   let projAttribValues = {};
-  let usrId =
+  let usrName =
     users &&
     users.find((u) => u.username == localStorage.getItem("nameOfUser"));
 
@@ -164,17 +185,19 @@ const ChooseUserAttributes = () => {
       Id: projId,
       Project_name: "Project" + projId.toString(),
       Constructor_tables_id: 1,
+      Username: usrName.username,
+      UserId: usrName.id,
     };
     projAttribValues = {
+      Id: projAttrId,
       ProjectId: projId,
       Category: localStorage.getItem("category"),
       TypeOfPhoto: localStorage.getItem("typeOfPhoto"),
       hasSet: localStorage.getItem("complect"),
-      UserId: usrId.id,
       MarketplaceId: markplId.Id,
     };
     axios
-      .post("http://localhost:3001/projects/create", projValues, {
+      .post("http://localhost:3001/projects/createproject", projValues, {
         withCredentials: true,
       })
       .then((response) => {
@@ -186,7 +209,7 @@ const ChooseUserAttributes = () => {
 
     axios
       .post(
-        "http://localhost:3001/projects_attributes/create",
+        "http://localhost:3001/project_attributes/createprojectattribute",
         projAttribValues,
         {
           withCredentials: true,
