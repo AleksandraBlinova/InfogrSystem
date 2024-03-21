@@ -637,22 +637,63 @@ const ChooseUserAttributes = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Link>
-            {" "}
-            <Button
-              autoFocus
-              onClick={createNewProject}
-              variant="contained"
-              sx={{
-                backgroundColor: "purple",
-                "&:hover": {
-                  backgroundColor: "purple",
-                },
-              }}
-            >
-              Все верно
-            </Button>
-          </Link>
+          {localStorage.getItem("chosMarketPL") == "Ozon" &&
+            localStorage.getItem("needTemplateMarketPL") == "no" && (
+              <Link to="/withouttempOzon">
+                {" "}
+                <Button
+                  autoFocus
+                  onClick={createNewProject}
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "purple",
+                    "&:hover": {
+                      backgroundColor: "purple",
+                    },
+                  }}
+                >
+                  Все верно
+                </Button>
+              </Link>
+            )}
+          {localStorage.getItem("chosMarketPL") == "Wildberries" &&
+            localStorage.getItem("needTemplateMarketPL") == "no" && (
+              <Link to="/withouttempWB">
+                {" "}
+                <Button
+                  autoFocus
+                  onClick={createNewProject}
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "purple",
+                    "&:hover": {
+                      backgroundColor: "purple",
+                    },
+                  }}
+                >
+                  Все верно
+                </Button>
+              </Link>
+            )}
+          {localStorage.getItem("chosMarketPL") == "Yandex Market" &&
+            localStorage.getItem("needTemplateMarketPL") == "no" && (
+              <Link to="/withouttempYM">
+                {" "}
+                <Button
+                  autoFocus
+                  onClick={createNewProject}
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "purple",
+                    "&:hover": {
+                      backgroundColor: "purple",
+                    },
+                  }}
+                >
+                  Все верно
+                </Button>
+              </Link>
+            )}
 
           <Button
             onClick={handleCloseDialog}

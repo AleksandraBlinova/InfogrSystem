@@ -229,7 +229,7 @@ const NewProject = () => {
                   <CardActionArea
                     href="/chooseUserAttributes"
                     onClick={() => {
-                      localStorage.setItem("chosMarketPL", "YandexMarket");
+                      localStorage.setItem("chosMarketPL", "Yandex Market");
                       localStorage.setItem("needTemplateMarketPL", "no");
                     }}
                   >
@@ -248,7 +248,7 @@ const NewProject = () => {
                   <CardActionArea
                     href="/chooseUserAttributes"
                     onClick={() => {
-                      localStorage.setItem("chosMarketPL", "YandexMarket");
+                      localStorage.setItem("chosMarketPL", "Yandex Market");
                       localStorage.setItem(
                         "needTemplateMarketPL",
                         "toiletChild"
@@ -270,7 +270,7 @@ const NewProject = () => {
                   <CardActionArea
                     href="/chooseUserAttributes"
                     onClick={() => {
-                      localStorage.setItem("chosMarketPL", "YandexMarket");
+                      localStorage.setItem("chosMarketPL", "Yandex Market");
                       localStorage.setItem("needTemplateMarketPL", "boots");
                     }}
                   >
