@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -96,6 +96,45 @@ const ChooseUserAttributes = () => {
       });
   }, []);
 
+  const [projects, setProjects] = useState();
+  let [projId, setProjId] = useState();
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3001/projects",
+      headers: {
+        "content-type": "application/json",
+        withCredentials: true,
+      },
+    })
+      .then((response) => {
+        setProjects(response.data);
+        setProjId(response.data.length + 1);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  const [users, setUsers] = useState();
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3001/users/getUsers",
+      headers: {
+        "content-type": "application/json",
+        withCredentials: true,
+      },
+    })
+      .then((response) => {
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const [openDialog, setOpenDialog] = React.useState(false);
 
   const handleClickOpenDialog = () => {
@@ -106,36 +145,58 @@ const ChooseUserAttributes = () => {
     setOpenDialog(false);
   };
 
-  const createNewProject = () => {
-    let projValues = "";
-    console.log(projValues);
-    // axios
-    //   .post("http://localhost:3001/projects/create", projValues, {
-    //     withCredentials: true,
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+  let projValues = {};
 
-    let projAttribValues = "";
-    console.log(projAttribValues);
-    // axios
-    //   .post(
-    //     "http://localhost:3001/projects_attributes/create",
-    //     projAttribValues,
-    //     {
-    //       withCredentials: true,
-    //     }
-    //   )
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+  let projAttribValues = {};
+  let usrId =
+    users &&
+    users.find((u) => u.username == localStorage.getItem("nameOfUser"));
+
+  let markplId =
+    marketplaces &&
+    marketplaces.find(
+      (m) => m.Marketplace_name == localStorage.getItem("chosMarketPL")
+    );
+
+  const createNewProject = () => {
+    projValues = {
+      Id: projId,
+      Project_name: "Project" + projId.toString(),
+      Constructor_tables_id: 1,
+    };
+    projAttribValues = {
+      ProjectId: projId,
+      Category: localStorage.getItem("category"),
+      TypeOfPhoto: localStorage.getItem("typeOfPhoto"),
+      hasSet: localStorage.getItem("complect"),
+      UserId: usrId.id,
+      MarketplaceId: markplId.Id,
+    };
+    axios
+      .post("http://localhost:3001/projects/create", projValues, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axios
+      .post(
+        "http://localhost:3001/projects_attributes/create",
+        projAttribValues,
+        {
+          withCredentials: true,
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
