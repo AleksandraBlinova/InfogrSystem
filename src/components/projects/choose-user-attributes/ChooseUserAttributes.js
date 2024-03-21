@@ -19,6 +19,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
 const ChooseUserAttributes = () => {
   const [marketplaces, setMarketplaces] = React.useState();
@@ -238,18 +239,27 @@ const ChooseUserAttributes = () => {
         </Container>
       </AppBar>
       <div className="main-part-user-attributes">
-        <div style={{ marginTop: "30px" }}>
-          <Typography
-            sx={{
-              textAlign: "center",
-              fontSize: "30px",
-              fontFamily: "Segoe UI",
-              fontWeight: "500",
-            }}
-          >
-            Ваши атрибуты
-          </Typography>
-        </div>
+        <Grid container sx={{ marginTop: "40px" }}>
+          <Grid item xs={5} sx={{ marginLeft: "40px" }}>
+            {" "}
+            <IconButton href="/newproject">
+              <KeyboardBackspaceIcon sx={{ fontSize: "30px", color: "#000" }} />
+            </IconButton>
+          </Grid>
+          <Grid item xs={4}>
+            {" "}
+            <Typography
+              sx={{
+                fontSize: "30px",
+                fontFamily: "Segoe UI",
+                fontWeight: "500",
+              }}
+            >
+              Ваши атрибуты
+            </Typography>
+          </Grid>
+        </Grid>
+
         <Grid container>
           <Grid item xs={9}>
             <Grid

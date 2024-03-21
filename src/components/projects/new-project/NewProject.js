@@ -25,7 +25,7 @@ const NewProject = () => {
   localStorage.setItem("needTemplateMarketPL", "");
   localStorage.setItem("complect", "Нет");
   localStorage.setItem("typeOfPhoto", "Главное");
-  localStorage.setItem("category", "");
+  localStorage.setItem("category", "Одежда и обувь");
 
   return (
     <div>

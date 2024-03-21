@@ -15,12 +15,16 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Input from "@mui/material/Input";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
 const CanvasAppBar = (props) => {
   return (
     <div>
       <Grid container spacing={3} p={2}>
         <Grid item xs={4} sx={{ marginTop: "10px" }}>
+          <IconButton href="/newproject">
+            <KeyboardBackspaceIcon sx={{ fontSize: "30px", color: "#000" }} />
+          </IconButton>
           <Input
             sx={{
               fontSize: "18px",
@@ -30,6 +34,7 @@ const CanvasAppBar = (props) => {
               borderTop: "1px solid grey",
               borderRight: "1px solid grey",
               paddingLeft: "10px",
+              marginLeft: "20px",
             }}
             onChange={props.handleChangeInputNameofStage}
             defaultValue={props.curInputNameofStage}
