@@ -26,9 +26,11 @@ import WallpaperIcon from "@mui/icons-material/Wallpaper";
 import BackgroundObjects from "./background-objects/BackgroundObjects";
 import PaletteIcon from "@mui/icons-material/Palette";
 import BackgroundColors from "./background-objects/BackgroundColors";
-
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import "./CanvasMenu.css";
 import TemplatesContainer from "../templates-ozon/TemplatesContainer";
+import Verifier from "../../verification/Verifier";
 
 const CanvasMenu = (props) => {
   const [opened, setOpened] = useState(1);
@@ -112,6 +114,23 @@ const CanvasMenu = (props) => {
             >
               <PaletteIcon sx={{ marginRight: "5px" }} />{" "}
               <Typography>Цвет</Typography>
+            </IconButton>
+          </Box>
+
+          <Box mt={3}>
+            <IconButton
+              color="inherit"
+              onClick={() => {
+                handleChangeOpened(7);
+              }}
+            >
+              <AutoFixHighIcon
+                sx={{
+                  marginRight: "5px",
+                  color: "#CE1A35",
+                }}
+              />{" "}
+              <Typography>Проверить</Typography>
             </IconButton>
           </Box>
         </Box>
@@ -546,6 +565,59 @@ const CanvasMenu = (props) => {
           </Box>
         )}
       </Grid>
+
+      {opened == 7 && (
+        <Box
+          width={240}
+          height={635}
+          p={2}
+          borderRight={1}
+          sx={{
+            borderColor: "grey.500",
+            overflowY: "auto",
+            backgroundColor: "#fff",
+            "&::-webkit-scrollbar": {
+              width: "6px",
+            },
+            "&::-webkit-scrollbar-track": {
+              boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+              webkitBoxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+              backgroundColor: "rgba(0,0,0,.1)",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: "#a6a6a7",
+            },
+          }}
+        >
+          <Grid container spacing={8} sx={{ marginLeft: "0px", width: "100%" }}>
+            <Grid item xs={8}>
+              <Typography
+                sx={{
+                  marginTop: "3px",
+                  fontWeight: "600",
+                  textAlign: "center",
+                }}
+              >
+                Проверить инфографику
+              </Typography>
+            </Grid>
+            <Grid item xs={4}>
+              <IconButton onClick={() => handleChangeOpened(0)}>
+                <CloseIcon
+                  sx={{
+                    color: "#000",
+                    fontSize: "14px",
+                  }}
+                />
+              </IconButton>
+            </Grid>
+          </Grid>{" "}
+          <Grid sx={{ marginTop: "50px" }}>
+            {" "}
+            <Verifier />
+          </Grid>
+        </Box>
+      )}
     </Grid>
   );
 };
