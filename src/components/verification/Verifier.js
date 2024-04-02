@@ -3,13 +3,15 @@ import * as mobilenet from "@tensorflow-models/mobilenet";
 import "@tensorflow/tfjs-backend-webgl";
 import "./Verifier.css";
 import CircularProgress from "@mui/material/CircularProgress";
+import { limitsOzon } from "./limitsOzon";
+import { limitsWB } from "./limitsWB";
+import { limitsYM } from "./limitsYM";
 
 const Verifier = () => {
   const [isModelLoading, setIsModelLoading] = useState(false);
   const [model, setModel] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [results, setResults] = useState([]);
-  const imageRef = useRef();
 
   const fileInputRef = useRef();
 
@@ -58,30 +60,57 @@ const Verifier = () => {
   }
 
   const detectImage = async () => {
-    const results = await model.classify(imageRef.current);
+    const img = document.getElementById("imageDetect");
+    const results = await model.classify(img);
     setResults(results);
-    console.log(results);
+
     setExplicit([]);
     results.forEach((element) => {
-      debugger;
-      if (
-        element.className.toLowerCase().includes("gun") ||
-        element.className.toLowerCase().includes("revolver") ||
-        element.className.toLowerCase().includes("lighter") ||
-        element.className.toLowerCase().includes("shoot") ||
-        element.className.toLowerCase().includes("cigarette") ||
-        element.className.toLowerCase().includes("smoke") ||
-        element.className.toLowerCase().includes("rifle")
-      ) {
-        console.log(element.className.toLowerCase());
-        setExplicit((explicitPhotos) => [
-          ...explicitPhotos,
-          element.className.toLowerCase(),
-        ]);
-      }
+      localStorage.getItem("chosMarketPL") == "Ozon" &&
+        limitsOzon.forEach((l) => {
+          if (
+            element.className.toLowerCase().includes(l) &&
+            element.probability > 0.3 &&
+            (l == "cat" ||
+              l == "dog" ||
+              l == "hamster" ||
+              l == "mouse" ||
+              l == "rabbit" ||
+              l == "parrot" ||
+              l == "snake")
+          ) {
+            setExplicit((explicitPhotos) => [
+              ...explicitPhotos,
+              element.className.toLowerCase(),
+            ]);
+          } else if (element.className.toLowerCase().includes(l)) {
+            setExplicit((explicitPhotos) => [
+              ...explicitPhotos,
+              element.className.toLowerCase(),
+            ]);
+          }
+        });
+      localStorage.getItem("chosMarketPL") == "Wildberries" &&
+        limitsWB.forEach((l) => {
+          if (element.className.toLowerCase().includes(l)) {
+            setExplicit((explicitPhotos) => [
+              ...explicitPhotos,
+              element.className.toLowerCase(),
+            ]);
+          }
+        });
+      localStorage.getItem("chosMarketPL") == "Yandex Market" &&
+        limitsYM.forEach((l) => {
+          if (element.className.toLowerCase().includes(l)) {
+            setExplicit((explicitPhotos) => [
+              ...explicitPhotos,
+              element.className.toLowerCase(),
+            ]);
+          }
+        });
     });
   };
-  console.log("explicitPhotos", explicitPhotos);
+
   return (
     <div>
       <div className="inputField">
@@ -93,7 +122,11 @@ const Verifier = () => {
           onChange={uploadImage}
           ref={fileInputRef}
         />
-        <button className="uploadImage" onClick={uploadTrigger}>
+        <button
+          className="uploadImage"
+          onClick={uploadTrigger}
+          style={{ margin: "auto" }}
+        >
           Загрузить фото
         </button>
       </div>
@@ -103,9 +136,9 @@ const Verifier = () => {
             {imageUrl && (
               <img
                 src={imageUrl}
-                alt="Image Preview"
+                id="imageDetect"
                 crossOrigin="anonymous"
-                ref={imageRef}
+                style={{ height: "250px", width: "200px", margin: "auto" }}
               />
             )}
           </div>
@@ -115,16 +148,28 @@ const Verifier = () => {
             explicitPhotos.map((expl) => (
               <p
                 key={expl.className}
-                style={{ color: "red", fontWeight: "600", fontSize: "25px" }}
+                style={{
+                  color: "red",
+                  fontWeight: "600",
+                  fontSize: "25px",
+                }}
               >
                 ЗАПРЕЩЕНКА!!
               </p>
             ))}
+          {imageUrl && explicitPhotos.length == 0 && (
+            <p style={{ color: "green", fontWeight: "600", fontSize: "35px" }}>
+              Все хорошо
+            </p>
+          )}
         </div>
         {imageUrl && (
-          <button className="button" onClick={detectImage}>
-            Определить
-          </button>
+          <div style={{ margin: "11%" }}>
+            {" "}
+            <button className="button" onClick={detectImage}>
+              Проверить
+            </button>
+          </div>
         )}
       </div>
     </div>
