@@ -21,8 +21,6 @@ export const limitsYM = [
   "nipple",
   "vitamin",
   "medicine",
-  "cure",
-  "powder",
   "armament",
   "gunpowder",
   "detonat",

@@ -108,7 +108,7 @@ const MainpartCreatives = () => {
                       image="1-1001.jpg"
                       sx={{
                         "&:hover": {
-                          "*": "inherit", // Nope. Code does not go here.
+                          "*": "inherit",
                         },
                       }}
                     />

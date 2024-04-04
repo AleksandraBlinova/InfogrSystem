@@ -612,7 +612,7 @@ const CanvasMenu = (props) => {
               </IconButton>
             </Grid>
           </Grid>{" "}
-          <Grid sx={{ marginTop: "50px" }}>
+          <Grid sx={{ marginTop: "0px" }}>
             {" "}
             <Verifier />
           </Grid>

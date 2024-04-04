@@ -8,8 +8,6 @@ export const limitsWB = [
   "nipple",
   "vitamin",
   "medicine",
-  "cure",
-  "powder",
   "armament",
   "gunpowder",
   "detonat",

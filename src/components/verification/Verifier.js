@@ -14,26 +14,29 @@ import { limitsOzon } from "./limitsOzon";
 import { limitsWB } from "./limitsWB";
 import { limitsYM } from "./limitsYM";
 
+import Tesseract from "tesseract.js";
+
 const Verifier = () => {
   const [isModelLoading, setIsModelLoading] = useState(false);
   const [model, setModel] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [results, setResults] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
-  const fileInputRef = useRef();
+
+  const [textStatus, setTextStatus] = useState("");
+
+  const [statusDetection, setStatusDetection] = useState("");
 
   const uploadImage = (e) => {
+    debugger;
     const { files } = e.target;
+
     if (files.length > 0) {
       const url = URL.createObjectURL(files[0]);
       setImageUrl(url);
     } else {
       setImageUrl(null);
     }
-  };
-
-  const uploadTrigger = () => {
-    fileInputRef.current.click();
   };
 
   const loadModel = async () => {
@@ -75,12 +78,34 @@ const Verifier = () => {
     setOpenDialog(false);
   };
 
+  const recognizeTextFromPhoto = async () => {
+    setTextStatus(null);
+    await Tesseract.recognize(imageUrl, "rus", {
+      logger: (m) => m,
+    })
+      .catch((err) => {
+        console.error(err);
+      })
+      .then((result) => {
+        // Get Confidence score
+        let confidence = result.confidence;
+        let text = result.data.text;
+        let text2 = result.data.text
+          ? result.data.text
+              .replace(/\n\s*\n/g, "\n")
+              .replace(/[®@{}|]/g, " ")
+              .replace(/[^a-zA-Za-яА-Я0-9]/g, " ")
+          : result.data.text;
+        setTextStatus(text2);
+      });
+  };
+
   const detectImage = async () => {
     const img = document.getElementById("imageDetect");
     const results = await model.classify(img);
     setResults(results);
-
     setExplicit([]);
+    setStatusDetection("true");
     results.forEach((element) => {
       localStorage.getItem("chosMarketPL") == "Ozon" &&
         limitsOzon.forEach((l) => {
@@ -151,9 +176,7 @@ const Verifier = () => {
               l == "pills" ||
               l == "nipple" ||
               l == "vitamin" ||
-              l == "medicine" ||
-              l == "cure" ||
-              l == "powder"
+              l == "medicine"
             )
               setExplicitCategory(
                 "Ветеринарные препараты, или Витамины для животных, или Лекарственные средства, или Наркотические средства, психотропные вещества и их прекурсоры"
@@ -217,9 +240,7 @@ const Verifier = () => {
             l == "pills" ||
             l == "nipple" ||
             l == "vitamin" ||
-            l == "medicine" ||
-            l == "cure" ||
-            l == "powder"
+            l == "medicine"
           )
             setExplicitCategory("Медицинские товары");
           else if (
@@ -301,25 +322,48 @@ const Verifier = () => {
     });
   };
 
+  const UploadControl = ({ children, value, onChange, disabled, accept }) => {
+    return (
+      <label htmlFor="contained-button-file" className="m-0 w-100">
+        <input
+          value={value}
+          accept={accept}
+          disabled={disabled}
+          style={{ display: "none" }}
+          id="contained-button-file"
+          multiple
+          type="file"
+          onChange={disabled ? () => {} : onChange}
+        />
+        {children}
+      </label>
+    );
+  };
+
   return (
     <div>
-      <div className="inputField">
-        <input
-          type="file"
-          accept="image/*"
-          capture="camera"
-          className="uploadInput"
-          onChange={uploadImage}
-          ref={fileInputRef}
-        />
-        <button
-          className="uploadImage"
-          onClick={uploadTrigger}
-          style={{ margin: "auto" }}
+      <div>
+        <Button
+          className="btn-styles"
+          sx={{
+            backgroundColor: "#3c3d37",
+            color: "#fff",
+            borderRadius: "0px",
+            marginLeft: "18%",
+            marginRight: "18%",
+            marginTop: "30px",
+            "&:hover": {
+              backgroundColor: "#3c3d37",
+              color: "#fff",
+            },
+          }}
         >
-          Загрузить фото
-        </button>
+          <UploadControl onChange={uploadImage} accept="image/*">
+            Загрузить фото
+          </UploadControl>
+        </Button>
       </div>
+      <div className="inputField"></div>
       <div className="imageWrapper">
         <div className="imageContent">
           <div className="imageArea">
@@ -397,25 +441,79 @@ const Verifier = () => {
               </DialogActions>
             </Dialog>
           )}
-          {imageUrl && explicitPhotos.length == 0 && (
-            <p style={{ color: "green", fontWeight: "600", fontSize: "35px" }}>
-              Все хорошо
-            </p>
-          )}
+          {imageUrl &&
+            explicitPhotos.length == 0 &&
+            statusDetection == "true" &&
+            textStatus && (
+              <Dialog
+                open={openDialog}
+                onClose={handleCloseDialog}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle
+                  id="alert-dialog-title"
+                  sx={{ fontWeight: "600", color: "green" }}
+                >
+                  {" Статус: "}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    <Typography sx={{ color: "#000" }}>
+                      Категория товара разрешена
+                    </Typography>
+                    <br></br>
+                    <Typography sx={{ color: "#000" }}>{textStatus}</Typography>
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    autoFocus
+                    variant="contained"
+                    sx={{
+                      backgroundColor: "purple",
+                      "&:hover": {
+                        backgroundColor: "purple",
+                      },
+                    }}
+                    onClick={handleCloseDialog}
+                  >
+                    Ок
+                  </Button>
+
+                  <Button
+                    sx={{
+                      color: "#fff",
+                      backgroundColor: "grey",
+                      "&:hover": {
+                        backgroundColor: "grey",
+                      },
+                    }}
+                    onClick={handleCloseDialog}
+                  >
+                    Назад
+                  </Button>
+                </DialogActions>
+              </Dialog>
+            )}
         </div>
+
         {imageUrl && (
-          <div style={{ margin: "11%" }}>
-            {" "}
-            <button
-              className="button"
-              onClick={() => {
-                detectImage();
-                handleClickOpenDialog();
-              }}
-            >
-              Проверить
-            </button>
-          </div>
+          <>
+            <div style={{ margin: "11%" }}>
+              {" "}
+              <button
+                className="button"
+                onClick={() => {
+                  detectImage();
+                  handleClickOpenDialog();
+                  recognizeTextFromPhoto();
+                }}
+              >
+                Проверить
+              </button>
+            </div>
+          </>
         )}
       </div>
     </div>

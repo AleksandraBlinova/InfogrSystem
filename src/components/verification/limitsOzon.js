@@ -33,8 +33,6 @@ export const limitsOzon = [
   "nipple",
   "vitamin",
   "medicine",
-  "cure",
-  "powder",
   "armament",
   "gunpowder",
   "detonat",
