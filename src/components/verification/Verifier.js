@@ -8,7 +8,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Typography } from "@mui/material";
+import { Backdrop, Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { limitsOzon } from "./limitsOzon";
 import { limitsWB } from "./limitsWB";
@@ -18,6 +18,8 @@ import Tesseract from "tesseract.js";
 
 const Verifier = () => {
   const [isModelLoading, setIsModelLoading] = useState(false);
+  const [loadingTextRecogn, setLoadingTextRecogn] = useState(false);
+  const [loadingPhotoDetect, setLoadingPhotoDetect] = useState(false);
   const [model, setModel] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [results, setResults] = useState([]);
@@ -28,7 +30,6 @@ const Verifier = () => {
   const [statusDetection, setStatusDetection] = useState("");
 
   const uploadImage = (e) => {
-    debugger;
     const { files } = e.target;
 
     if (files.length > 0) {
@@ -80,11 +81,13 @@ const Verifier = () => {
 
   const recognizeTextFromPhoto = async () => {
     setTextStatus(null);
+    setLoadingTextRecogn(true);
     await Tesseract.recognize(imageUrl, "rus", {
       logger: (m) => m,
     })
       .catch((err) => {
         console.error(err);
+        setLoadingTextRecogn(false);
       })
       .then((result) => {
         // Get Confidence score
@@ -97,10 +100,12 @@ const Verifier = () => {
               .replace(/[^a-zA-Za-яА-Я0-9]/g, " ")
           : result.data.text;
         setTextStatus(text2);
+        setLoadingTextRecogn(false);
       });
   };
 
   const detectImage = async () => {
+    setLoadingPhotoDetect(true);
     const img = document.getElementById("imageDetect");
     const results = await model.classify(img);
     setResults(results);
@@ -320,6 +325,7 @@ const Verifier = () => {
             setExplicitCategory("Живые цветы и растения");
         });
     });
+    setLoadingPhotoDetect(false);
   };
 
   const UploadControl = ({ children, value, onChange, disabled, accept }) => {
@@ -440,6 +446,14 @@ const Verifier = () => {
                 </Button>
               </DialogActions>
             </Dialog>
+          )}
+          {(loadingPhotoDetect || loadingTextRecogn) && (
+            <Backdrop
+              sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+              open={!(loadingTextRecogn && loadingPhotoDetect)}
+            >
+              <CircularProgress color="secondary" />
+            </Backdrop>
           )}
           {imageUrl &&
             explicitPhotos.length == 0 &&
