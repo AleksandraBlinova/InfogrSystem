@@ -96,7 +96,7 @@ const Verifier = () => {
         let text2 = result.data.text
           ? result.data.text
               .replace(/\n\s*\n/g, "\n")
-              .replace(/[®@{}|]/g, " ")
+              .replace(/[®@{}|©«»°1234567890]/g, "")
               .replace(/[^a-zA-Za-яА-Я0-9]/g, " ")
           : result.data.text;
         setTextStatus(text2);
@@ -384,6 +384,18 @@ const Verifier = () => {
           </div>
         </div>
         <div>
+          {(loadingPhotoDetect || loadingTextRecogn) &&
+            explicitPhotos.length == 0 && (
+              <Backdrop
+                sx={{
+                  color: "#fff",
+                  zIndex: (theme) => theme.zIndex.drawer + 1,
+                }}
+                open={!(loadingTextRecogn && loadingPhotoDetect)}
+              >
+                <CircularProgress color="secondary" />
+              </Backdrop>
+            )}
           {explicitPhotos.length > 0 && (
             <Dialog
               open={openDialog}
@@ -447,14 +459,7 @@ const Verifier = () => {
               </DialogActions>
             </Dialog>
           )}
-          {(loadingPhotoDetect || loadingTextRecogn) && (
-            <Backdrop
-              sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-              open={!(loadingTextRecogn && loadingPhotoDetect)}
-            >
-              <CircularProgress color="secondary" />
-            </Backdrop>
-          )}
+
           {imageUrl &&
             explicitPhotos.length == 0 &&
             statusDetection == "true" &&
