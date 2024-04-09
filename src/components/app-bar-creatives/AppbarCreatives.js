@@ -140,7 +140,7 @@ function AppBarCreatives(props) {
 
           <Box sx={{ flexGrow: 0, display: "flex" }}>
             <>
-              <Tooltip title="Open settings">
+              <Tooltip title="Опции">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
                     alt={localStorage.getItem("nameOfUser")}

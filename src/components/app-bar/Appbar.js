@@ -273,7 +273,7 @@ function AppBarComponent({ isLog, setLog, authResult }) {
 
             {localStorage.getItem("isLog") === "true" && (
               <>
-                <Tooltip title="Open settings">
+                <Tooltip title="Опции">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
                       alt={localStorage.getItem("nameOfUser")}
