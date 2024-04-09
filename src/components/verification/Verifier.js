@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
-import "@tensorflow/tfjs-backend-webgl";
 import "./Verifier.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import Dialog from "@mui/material/Dialog";
@@ -13,7 +12,6 @@ import { Button } from "@mui/material";
 import { limitsOzon } from "./limitsOzon";
 import { limitsWB } from "./limitsWB";
 import { limitsYM } from "./limitsYM";
-
 import Tesseract from "tesseract.js";
 
 const Verifier = () => {
@@ -43,6 +41,7 @@ const Verifier = () => {
   const loadModel = async () => {
     setIsModelLoading(true);
     try {
+      debugger;
       const model = await mobilenet.load();
       setModel(model);
       setIsModelLoading(false);
@@ -100,6 +99,7 @@ const Verifier = () => {
               .replace(/[^a-zA-Za-яА-Я0-9]/g, " ")
           : result.data.text;
         setTextStatus(text2);
+
         setLoadingTextRecogn(false);
       });
   };
@@ -474,7 +474,7 @@ const Verifier = () => {
                   id="alert-dialog-title"
                   sx={{ fontWeight: "600", color: "green" }}
                 >
-                  {" Статус: "}
+                  {" Результат проверки: "}
                 </DialogTitle>
                 <DialogContent>
                   <DialogContentText id="alert-dialog-description">
