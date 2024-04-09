@@ -198,7 +198,7 @@ const CanvasMenu = (props) => {
                   className={props.dragActive ? "drag-active" : ""}
                 >
                   <div>
-                    <p>Нажмите или перенесите</p>
+                    <p>Перенесите</p>
                     <button
                       className="upload-button"
                       onClick={props.onButtonClick}
