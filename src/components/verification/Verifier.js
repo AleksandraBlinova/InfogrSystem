@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
+import "@tensorflow/tfjs-backend-cpu";
 import "./Verifier.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import Dialog from "@mui/material/Dialog";
@@ -40,13 +41,13 @@ const Verifier = () => {
 
   const loadModel = async () => {
     setIsModelLoading(true);
-    try {
+    if (mobilenet) {
       debugger;
       const model = await mobilenet.load();
       setModel(model);
       setIsModelLoading(false);
-    } catch (error) {
-      console.log(error);
+    } else {
+      console.log("error");
       setIsModelLoading(false);
     }
   };
