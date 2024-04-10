@@ -14,6 +14,9 @@ import { limitsOzon } from "./limitsOzon";
 import { limitsWB } from "./limitsWB";
 import { limitsYM } from "./limitsYM";
 import Tesseract from "tesseract.js";
+import axios from "axios";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import ErrorIcon from "@mui/icons-material/Error";
 
 const Verifier = () => {
   const [isModelLoading, setIsModelLoading] = useState(false);
@@ -25,6 +28,25 @@ const Verifier = () => {
   const [openDialog, setOpenDialog] = useState(false);
 
   const [textStatus, setTextStatus] = useState("");
+
+  const [stopwords, setStopWords] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3001/stop_words",
+      headers: {
+        "content-type": "application/json",
+        withCredentials: true,
+      },
+    })
+      .then((response) => {
+        setStopWords(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const [statusDetection, setStatusDetection] = useState("");
 
@@ -42,7 +64,6 @@ const Verifier = () => {
   const loadModel = async () => {
     setIsModelLoading(true);
     if (mobilenet) {
-      debugger;
       const model = await mobilenet.load();
       setModel(model);
       setIsModelLoading(false);
@@ -99,8 +120,16 @@ const Verifier = () => {
               .replace(/[®@{}|©«»°1234567890]/g, "")
               .replace(/[^a-zA-Za-яА-Я0-9]/g, " ")
           : result.data.text;
-        setTextStatus(text2);
-
+        stopwords.forEach((i) => {
+          if (text2 && text2.includes(i.Stopword_name))
+            setTextStatus(
+              "Проверка на стоп-слова не пройдена. Слово, не прошедшее модерацию:" +
+                i.Stopword_name
+            );
+          else {
+            setTextStatus("Проверка на стоп-слова пройдена");
+          }
+        });
         setLoadingTextRecogn(false);
       });
   };
@@ -116,6 +145,8 @@ const Verifier = () => {
       localStorage.getItem("chosMarketPL") == "Ozon" &&
         limitsOzon.forEach((l) => {
           if (
+            element &&
+            element.className &&
             element.className.toLowerCase().includes(l) &&
             element.probability > 0.3 &&
             (l == "cat" ||
@@ -131,7 +162,11 @@ const Verifier = () => {
               element.className.toLowerCase(),
             ]);
             setExplicitCategory("Живые животные");
-          } else if (element.className.toLowerCase().includes(l)) {
+          } else if (
+            element &&
+            element.className &&
+            element.className.toLowerCase().includes(l)
+          ) {
             setExplicit((explicitPhotos) => [
               ...explicitPhotos,
               element.className.toLowerCase(),
@@ -214,7 +249,11 @@ const Verifier = () => {
         });
       localStorage.getItem("chosMarketPL") == "Wildberries" &&
         limitsWB.forEach((l) => {
-          if (element.className.toLowerCase().includes(l)) {
+          if (
+            element &&
+            element.className &&
+            element.className.toLowerCase().includes(l)
+          ) {
             setExplicit((explicitPhotos) => [
               ...explicitPhotos,
               element.className.toLowerCase(),
@@ -275,7 +314,11 @@ const Verifier = () => {
         });
       localStorage.getItem("chosMarketPL") == "Yandex Market" &&
         limitsYM.forEach((l) => {
-          if (element.className.toLowerCase().includes(l)) {
+          if (
+            element &&
+            element.className &&
+            element.className.toLowerCase().includes(l)
+          ) {
             setExplicit((explicitPhotos) => [
               ...explicitPhotos,
               element.className.toLowerCase(),
@@ -406,28 +449,98 @@ const Verifier = () => {
             >
               <DialogTitle
                 id="alert-dialog-title"
-                sx={{ fontWeight: "600", color: "red" }}
+                sx={{ fontWeight: "600", color: "#000" }}
               >
-                {" Предупреждение! "}
+                {" Результат проверки: "}
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
                   <Typography sx={{ color: "#000" }}>
-                    Данный товар попадает под одну из категорий:{" "}
+                    <CheckCircleIcon
+                      sx={{
+                        color: "green",
+                        marginRight: "5px",
+                        fontSize: "20px",
+                        marginBottom: "-4px",
+                      }}
+                    />
+                    Расширение допустимое
                   </Typography>
-                  <br></br>
-                  <Typography
-                    sx={{ color: "#000", fontWeight: "600", fontSize: "18px" }}
-                  >
-                    {explicitCategory}
+                  <Typography sx={{ color: "#000" }}>
+                    <CheckCircleIcon
+                      sx={{
+                        color: "green",
+                        marginRight: "5px",
+                        fontSize: "20px",
+                        marginBottom: "-4px",
+                      }}
+                    />
+                    Разрешение подходящее
                   </Typography>
-                  <br></br>
+                  <Typography sx={{ color: "#000" }}>
+                    <CheckCircleIcon
+                      sx={{
+                        color: "green",
+                        marginRight: "5px",
+                        fontSize: "20px",
+                        marginBottom: "-4px",
+                      }}
+                    />
+                    Формат подходящий{" "}
+                  </Typography>
+                  <Typography sx={{ color: "#000" }}>
+                    <CheckCircleIcon
+                      sx={{
+                        color: "green",
+                        marginRight: "5px",
+                        fontSize: "20px",
+                        marginBottom: "-4px",
+                      }}
+                    />
+                    Размер соответствует{" "}
+                  </Typography>
                   <Typography
                     sx={{ color: "#000", color: "red", fontSize: "16px" }}
                   >
-                    Данная категория запрещена на маркетплейсе{" "}
-                    {localStorage.getItem("chosMarketPL")}
+                    <ErrorIcon
+                      sx={{
+                        color: "red",
+                        marginRight: "5px",
+                        fontSize: "20px",
+                        marginBottom: "-4px",
+                      }}
+                    />
+                    Проверка по категории не пройдена. Данный товар попадает под
+                    одну из категорий: "{explicitCategory}". Категория запрещена
+                    на маркетплейсе {localStorage.getItem("chosMarketPL")}!
                   </Typography>
+                  {textStatus &&
+                  textStatus != "" &&
+                  textStatus.includes("Проверка на стоп-слова пройдена") ? (
+                    <Typography sx={{ color: "#000" }}>
+                      <CheckCircleIcon
+                        sx={{
+                          color: "green",
+                          marginRight: "5px",
+                          fontSize: "20px",
+                          marginBottom: "-4px",
+                        }}
+                      />
+                      {textStatus}
+                    </Typography>
+                  ) : (
+                    <Typography sx={{ color: "#000" }}>
+                      <CheckCircleIcon
+                        sx={{
+                          color: "red",
+                          marginRight: "5px",
+                          fontSize: "20px",
+                          marginBottom: "-4px",
+                        }}
+                      />
+                      {textStatus}
+                    </Typography>
+                  )}
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
@@ -473,17 +586,95 @@ const Verifier = () => {
               >
                 <DialogTitle
                   id="alert-dialog-title"
-                  sx={{ fontWeight: "600", color: "green" }}
+                  sx={{ fontWeight: "600", color: "#000" }}
                 >
                   {" Результат проверки: "}
                 </DialogTitle>
                 <DialogContent>
                   <DialogContentText id="alert-dialog-description">
                     <Typography sx={{ color: "#000" }}>
+                      <CheckCircleIcon
+                        sx={{
+                          color: "green",
+                          marginRight: "5px",
+                          fontSize: "20px",
+                          marginBottom: "-4px",
+                        }}
+                      />
+                      Расширение допустимое
+                    </Typography>
+                    <Typography sx={{ color: "#000" }}>
+                      <CheckCircleIcon
+                        sx={{
+                          color: "green",
+                          marginRight: "5px",
+                          fontSize: "20px",
+                          marginBottom: "-4px",
+                        }}
+                      />
+                      Разрешение подходящее
+                    </Typography>
+                    <Typography sx={{ color: "#000" }}>
+                      <CheckCircleIcon
+                        sx={{
+                          color: "green",
+                          marginRight: "5px",
+                          fontSize: "20px",
+                          marginBottom: "-4px",
+                        }}
+                      />
+                      Формат подходящий{" "}
+                    </Typography>
+                    <Typography sx={{ color: "#000" }}>
+                      <CheckCircleIcon
+                        sx={{
+                          color: "green",
+                          marginRight: "5px",
+                          fontSize: "20px",
+                          marginBottom: "-4px",
+                        }}
+                      />
+                      Размер соответствует{" "}
+                    </Typography>
+                    <Typography sx={{ color: "#000" }}>
+                      <CheckCircleIcon
+                        sx={{
+                          color: "green",
+                          marginRight: "5px",
+                          fontSize: "20px",
+                          marginBottom: "-4px",
+                        }}
+                      />
                       Категория товара разрешена
                     </Typography>
-                    <br></br>
-                    <Typography sx={{ color: "#000" }}>{textStatus}</Typography>
+
+                    {textStatus &&
+                    textStatus != "" &&
+                    textStatus.includes("Проверка на стоп-слова пройдена") ? (
+                      <Typography sx={{ color: "#000" }}>
+                        <CheckCircleIcon
+                          sx={{
+                            color: "green",
+                            marginRight: "5px",
+                            fontSize: "20px",
+                            marginBottom: "-4px",
+                          }}
+                        />
+                        {textStatus}
+                      </Typography>
+                    ) : (
+                      <Typography sx={{ color: "#000" }}>
+                        <CheckCircleIcon
+                          sx={{
+                            color: "red",
+                            marginRight: "5px",
+                            fontSize: "20px",
+                            marginBottom: "-4px",
+                          }}
+                        />
+                        {textStatus}
+                      </Typography>
+                    )}
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
