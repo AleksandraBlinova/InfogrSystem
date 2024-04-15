@@ -142,6 +142,8 @@ const Verifier = () => {
   };
 
   const detectBackgroundColor = async (res) => {
+    setBackgroundDetection("");
+    setBackgroundDetectionRes("");
     const img = document.getElementById("imageDetect");
     let backgroundColor = await DearImage.detectBackgroundColor(img);
     setBackgroundDetection(backgroundColor);
