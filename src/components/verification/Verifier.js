@@ -33,7 +33,7 @@ const Verifier = () => {
 
   const [stopwords, setStopWords] = useState([]);
 
-  const [loadBackgroundDetection, setBackgroundDetection] = useState(false);
+  const [backgroundDetection, setBackgroundDetection] = useState("");
 
   useEffect(() => {
     axios({
@@ -139,16 +139,16 @@ const Verifier = () => {
   };
 
   const detectBackgroundColor = async () => {
-    setBackgroundDetection(true);
     const img = document.getElementById("imageDetect");
     let backgroundColor = await DearImage.detectBackgroundColor(img);
-    if (backgroundColor.includes("#")) setBackgroundDetection(false);
+    if (backgroundColor.includes("#")) setBackgroundDetection(backgroundColor);
   };
   const detectImage = async () => {
     setLoadingPhotoDetect(true);
     const img = document.getElementById("imageDetect");
     const results = await model.classify(img);
     setResults(results);
+    console.log("res", results);
     setExplicit([]);
     setStatusDetection("true");
     results.forEach((element) => {
@@ -163,7 +163,19 @@ const Verifier = () => {
               l == "dog" ||
               l == "hamster" ||
               l == "mouse" ||
+              l == "Tinca tinca" ||
+              l == "goldfish" ||
+              l == "great white shark" ||
               l == "rabbit" ||
+              l == "tiger shark" ||
+              l == "hammerhead" ||
+              l == "electric ray" ||
+              l == "stingray" ||
+              l == "ostrich" ||
+              l == "goldfinch" ||
+              l == "spider" ||
+              l == "monkey" ||
+              l == "polecat" ||
               l == "parrot" ||
               l == "snake")
           ) {
@@ -227,7 +239,8 @@ const Verifier = () => {
               l == "pills" ||
               l == "nipple" ||
               l == "vitamin" ||
-              l == "medicine"
+              l == "medicine" ||
+              l == "ambulance"
             )
               setExplicitCategory(
                 "Ветеринарные препараты, или Витамины для животных, или Лекарственные средства, или Наркотические средства, психотропные вещества и их прекурсоры"
@@ -248,6 +261,10 @@ const Verifier = () => {
               l == "ignitor" ||
               l == "cigaret" ||
               l == "lighter" ||
+              l == "tobacco shop" ||
+              l == "tobacconist shop" ||
+              l == "tobacconist" ||
+              l == "tobacco" ||
               l == "spray" ||
               l == "tam-tam"
             )
@@ -295,7 +312,8 @@ const Verifier = () => {
             l == "pills" ||
             l == "nipple" ||
             l == "vitamin" ||
-            l == "medicine"
+            l == "medicine" ||
+            l == "ambulance"
           )
             setExplicitCategory("Медицинские товары");
           else if (
@@ -314,6 +332,10 @@ const Verifier = () => {
             l == "ignitor" ||
             l == "cigaret" ||
             l == "lighter" ||
+            l == "tobacco shop" ||
+            l == "tobacconist shop" ||
+            l == "tobacconist" ||
+            l == "tobacco" ||
             l == "spray" ||
             l == "tam-tam"
           )
@@ -367,6 +389,10 @@ const Verifier = () => {
             l == "igniter" ||
             l == "ignitor" ||
             l == "cigaret" ||
+            l == "tobacco shop" ||
+            l == "tobacconist shop" ||
+            l == "tobacconist" ||
+            l == "tobacco" ||
             l == "lighter" ||
             l == "spray" ||
             l == "tam-tam"
@@ -509,6 +535,7 @@ const Verifier = () => {
                     />
                     Размер соответствует{" "}
                   </Typography>
+
                   <Typography
                     sx={{ color: "#000", color: "red", fontSize: "16px" }}
                   >
@@ -549,6 +576,19 @@ const Verifier = () => {
                         }}
                       />
                       {textStatus}
+                    </Typography>
+                  )}
+                  {localStorage.getItem("chosMarketPL") == "Ozon" && (
+                    <Typography sx={{ color: "#000" }}>
+                      <CheckCircleIcon
+                        sx={{
+                          color: "green",
+                          marginRight: "5px",
+                          fontSize: "20px",
+                          marginBottom: "-4px",
+                        }}
+                      />
+                      Цвет фона : {backgroundDetection}
                     </Typography>
                   )}
                 </DialogContentText>
@@ -646,6 +686,7 @@ const Verifier = () => {
                       />
                       Размер соответствует{" "}
                     </Typography>
+
                     <Typography sx={{ color: "#000" }}>
                       <CheckCircleIcon
                         sx={{
@@ -683,6 +724,19 @@ const Verifier = () => {
                           }}
                         />
                         {textStatus}
+                      </Typography>
+                    )}
+                    {localStorage.getItem("chosMarketPL") == "Ozon" && (
+                      <Typography sx={{ color: "#000" }}>
+                        <CheckCircleIcon
+                          sx={{
+                            color: "green",
+                            marginRight: "5px",
+                            fontSize: "20px",
+                            marginBottom: "-4px",
+                          }}
+                        />
+                        Цвет фона : {backgroundDetection}
                       </Typography>
                     )}
                   </DialogContentText>
@@ -726,8 +780,8 @@ const Verifier = () => {
               <button
                 className="button"
                 onClick={() => {
-                  detectImage();
                   detectBackgroundColor();
+                  detectImage();
                   handleClickOpenDialog();
                   recognizeTextFromPhoto();
                 }}
