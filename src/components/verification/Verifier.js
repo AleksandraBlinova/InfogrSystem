@@ -20,6 +20,7 @@ import ErrorIcon from "@mui/icons-material/Error";
 import "dear-image.detect-background-color";
 import DearImage from "dear-image";
 import { electronics } from "./electronics";
+import { ColorExtractor } from "react-color-harvest";
 
 const Verifier = () => {
   const [isModelLoading, setIsModelLoading] = useState(false);
@@ -37,6 +38,10 @@ const Verifier = () => {
 
   const [backgroundDetection, setBackgroundDetection] = useState("");
   const [backgroundDetectionRes, setBackgroundDetectionRes] = useState("");
+
+  const [colors, setColors] = useState(null);
+
+  const [isBlackWhite, setIsBlackWhite] = useState("");
 
   useEffect(() => {
     axios({
@@ -171,6 +176,40 @@ const Verifier = () => {
         });
       });
   };
+
+  const getColors = (detectedColorCodes) => {
+    setIsBlackWhite("");
+    setColors(detectedColorCodes);
+    detectedColorCodes.forEach((c) => {
+      if (isWhiteBlackOrGray(c)) {
+        setIsBlackWhite("black-white");
+      } else {
+        setIsBlackWhite("mixed-colors");
+      }
+    });
+  };
+
+  function isWhiteBlackOrGray(hex) {
+    hex = hex.replace("#", "");
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+
+    if (r === 0 && g === 0 && b === 0) {
+      return true;
+    } else if (r === 255 && g === 255 && b === 255) {
+      return true;
+    } else if (
+      Math.abs(r - g) <= 10 &&
+      Math.abs(g - b) <= 10 &&
+      Math.abs(b - r) <= 10
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   const detectImage = async () => {
     setLoadingPhotoDetect(true);
     const img = document.getElementById("imageDetect");
@@ -500,12 +539,19 @@ const Verifier = () => {
         <div className="imageContent">
           <div className="imageArea">
             {imageUrl && (
-              <img
-                src={imageUrl}
-                id="imageDetect"
-                crossOrigin="anonymous"
-                style={{ height: "250px", width: "200px", margin: "auto" }}
-              />
+              <>
+                {" "}
+                <ColorExtractor
+                  src={imageUrl}
+                  getColors={(colors) => getColors(colors)}
+                ></ColorExtractor>
+                <img
+                  src={imageUrl}
+                  id="imageDetect"
+                  crossOrigin="anonymous"
+                  style={{ height: "250px", width: "200px", margin: "auto" }}
+                />
+              </>
             )}
           </div>
         </div>
@@ -624,6 +670,33 @@ const Verifier = () => {
                         }}
                       />
                       {textStatus}
+                    </Typography>
+                  )}
+                  {isBlackWhite &&
+                  isBlackWhite != "" &&
+                  isBlackWhite.includes("mixed-colors") ? (
+                    <Typography sx={{ color: "#000" }}>
+                      <CheckCircleIcon
+                        sx={{
+                          color: "green",
+                          marginRight: "5px",
+                          fontSize: "20px",
+                          marginBottom: "-4px",
+                        }}
+                      />
+                      Не является черно-белым
+                    </Typography>
+                  ) : (
+                    <Typography sx={{ color: "#000" }}>
+                      <CheckCircleIcon
+                        sx={{
+                          color: "red",
+                          marginRight: "5px",
+                          fontSize: "20px",
+                          marginBottom: "-4px",
+                        }}
+                      />
+                      Проверка не пройдена: черно-белые фотографии запрещены
                     </Typography>
                   )}
                   {localStorage.getItem("chosMarketPL") == "Ozon" && (
@@ -805,6 +878,33 @@ const Verifier = () => {
                           для категории "Электроника"
                         </Typography>
                       )}
+                    {isBlackWhite &&
+                    isBlackWhite != "" &&
+                    isBlackWhite.includes("mixed-colors") ? (
+                      <Typography sx={{ color: "#000" }}>
+                        <CheckCircleIcon
+                          sx={{
+                            color: "green",
+                            marginRight: "5px",
+                            fontSize: "20px",
+                            marginBottom: "-4px",
+                          }}
+                        />
+                        Не является черно-белым
+                      </Typography>
+                    ) : (
+                      <Typography sx={{ color: "#000" }}>
+                        <CheckCircleIcon
+                          sx={{
+                            color: "red",
+                            marginRight: "5px",
+                            fontSize: "20px",
+                            marginBottom: "-4px",
+                          }}
+                        />
+                        Проверка не пройдена: является черно-белым
+                      </Typography>
+                    )}
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
