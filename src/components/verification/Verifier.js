@@ -17,6 +17,8 @@ import Tesseract from "tesseract.js";
 import axios from "axios";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
+import "dear-image.detect-background-color";
+import DearImage from "dear-image";
 
 const Verifier = () => {
   const [isModelLoading, setIsModelLoading] = useState(false);
@@ -30,6 +32,8 @@ const Verifier = () => {
   const [textStatus, setTextStatus] = useState("");
 
   const [stopwords, setStopWords] = useState([]);
+
+  const [loadBackgroundDetection, setBackgroundDetection] = useState(false);
 
   useEffect(() => {
     axios({
@@ -134,6 +138,12 @@ const Verifier = () => {
       });
   };
 
+  const detectBackgroundColor = async () => {
+    setBackgroundDetection(true);
+    const img = document.getElementById("imageDetect");
+    let backgroundColor = await DearImage.detectBackgroundColor(img);
+    if (backgroundColor.includes("#")) setBackgroundDetection(false);
+  };
   const detectImage = async () => {
     setLoadingPhotoDetect(true);
     const img = document.getElementById("imageDetect");
@@ -717,6 +727,7 @@ const Verifier = () => {
                 className="button"
                 onClick={() => {
                   detectImage();
+                  detectBackgroundColor();
                   handleClickOpenDialog();
                   recognizeTextFromPhoto();
                 }}
