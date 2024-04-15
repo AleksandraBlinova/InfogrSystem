@@ -19,11 +19,13 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
 import "dear-image.detect-background-color";
 import DearImage from "dear-image";
+import { electronics } from "./electronics";
 
 const Verifier = () => {
   const [isModelLoading, setIsModelLoading] = useState(false);
   const [loadingTextRecogn, setLoadingTextRecogn] = useState(false);
   const [loadingPhotoDetect, setLoadingPhotoDetect] = useState(false);
+  const [loadingDetectBG, setLoadingDetectBG] = useState(false);
   const [model, setModel] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [results, setResults] = useState([]);
@@ -34,6 +36,7 @@ const Verifier = () => {
   const [stopwords, setStopWords] = useState([]);
 
   const [backgroundDetection, setBackgroundDetection] = useState("");
+  const [backgroundDetectionRes, setBackgroundDetectionRes] = useState("");
 
   useEffect(() => {
     axios({
@@ -138,17 +141,41 @@ const Verifier = () => {
       });
   };
 
-  const detectBackgroundColor = async () => {
+  const detectBackgroundColor = async (res) => {
     const img = document.getElementById("imageDetect");
     let backgroundColor = await DearImage.detectBackgroundColor(img);
-    if (backgroundColor.includes("#")) setBackgroundDetection(backgroundColor);
+    setBackgroundDetection(backgroundColor);
+    localStorage.getItem("chosMarketPL") == "Ozon" &&
+      backgroundColor &&
+      res &&
+      electronics.forEach((i) => {
+        res.forEach((element) => {
+          if (
+            element &&
+            element.className &&
+            element.className.toLowerCase().includes(i)
+          ) {
+            setLoadingDetectBG(true);
+            debugger;
+            if (backgroundColor) {
+              if (isLightColor(backgroundColor)) {
+                setBackgroundDetectionRes("светлый");
+                setLoadingDetectBG(false);
+              } else {
+                setBackgroundDetectionRes("темный");
+                setLoadingDetectBG(false);
+              }
+            }
+          }
+        });
+      });
   };
   const detectImage = async () => {
     setLoadingPhotoDetect(true);
     const img = document.getElementById("imageDetect");
     const results = await model.classify(img);
     setResults(results);
-    console.log("res", results);
+    detectBackgroundColor(results);
     setExplicit([]);
     setStatusDetection("true");
     results.forEach((element) => {
@@ -405,8 +432,26 @@ const Verifier = () => {
             setExplicitCategory("Живые цветы и растения");
         });
     });
+
     setLoadingPhotoDetect(false);
   };
+
+  function isLightColor(hex) {
+    //для определения того, является ли цвет светлым
+    // Получаем значения HSP компонентов
+    let r = parseInt(hex.substring(1, 3), 16);
+    let g = parseInt(hex.substring(3, 5), 16);
+    let b = parseInt(hex.substring(5, 7), 16);
+
+    // Вычисление значения HSP
+    let brightness = Math.sqrt(0.299 * r * r + 0.587 * g * g + 0.114 * b * b);
+    // Проверка на светлый цвет
+    if (brightness > 127.5) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   const UploadControl = ({ children, value, onChange, disabled, accept }) => {
     return (
@@ -464,14 +509,16 @@ const Verifier = () => {
           </div>
         </div>
         <div>
-          {(loadingPhotoDetect || loadingTextRecogn) &&
+          {(loadingPhotoDetect || loadingTextRecogn || loadingDetectBG) &&
             explicitPhotos.length == 0 && (
               <Backdrop
                 sx={{
                   color: "#fff",
                   zIndex: (theme) => theme.zIndex.drawer + 1,
                 }}
-                open={!(loadingTextRecogn && loadingPhotoDetect)}
+                open={
+                  !(loadingTextRecogn && loadingPhotoDetect && loadingDetectBG)
+                }
               >
                 <CircularProgress color="secondary" />
               </Backdrop>
@@ -578,19 +625,37 @@ const Verifier = () => {
                       {textStatus}
                     </Typography>
                   )}
-                  {localStorage.getItem("chosMarketPL") == "Ozon" && (
-                    <Typography sx={{ color: "#000" }}>
-                      <CheckCircleIcon
-                        sx={{
-                          color: "green",
-                          marginRight: "5px",
-                          fontSize: "20px",
-                          marginBottom: "-4px",
-                        }}
-                      />
-                      Цвет фона : {backgroundDetection}
-                    </Typography>
-                  )}
+                  {localStorage.getItem("chosMarketPL") == "Ozon" &&
+                    backgroundDetectionRes &&
+                    backgroundDetectionRes == "светлый" && (
+                      <Typography sx={{ color: "#000" }}>
+                        <CheckCircleIcon
+                          sx={{
+                            color: "green",
+                            marginRight: "5px",
+                            fontSize: "20px",
+                            marginBottom: "-4px",
+                          }}
+                        />
+                        Цвет фона соответствует
+                      </Typography>
+                    )}
+                  {localStorage.getItem("chosMarketPL") == "Ozon" &&
+                    backgroundDetectionRes &&
+                    backgroundDetectionRes == "темный" && (
+                      <Typography sx={{ color: "#000" }}>
+                        <CheckCircleIcon
+                          sx={{
+                            color: "red",
+                            marginRight: "5px",
+                            fontSize: "20px",
+                            marginBottom: "-4px",
+                          }}
+                        />
+                        Цвет фона не соответствует: фон должен быть светлый для
+                        категории "Электроника"
+                      </Typography>
+                    )}
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
@@ -627,7 +692,8 @@ const Verifier = () => {
           {imageUrl &&
             explicitPhotos.length == 0 &&
             statusDetection == "true" &&
-            textStatus && (
+            textStatus &&
+            backgroundDetectionRes && (
               <Dialog
                 open={openDialog}
                 onClose={handleCloseDialog}
@@ -726,19 +792,37 @@ const Verifier = () => {
                         {textStatus}
                       </Typography>
                     )}
-                    {localStorage.getItem("chosMarketPL") == "Ozon" && (
-                      <Typography sx={{ color: "#000" }}>
-                        <CheckCircleIcon
-                          sx={{
-                            color: "green",
-                            marginRight: "5px",
-                            fontSize: "20px",
-                            marginBottom: "-4px",
-                          }}
-                        />
-                        Цвет фона : {backgroundDetection}
-                      </Typography>
-                    )}
+                    {localStorage.getItem("chosMarketPL") == "Ozon" &&
+                      backgroundDetectionRes &&
+                      backgroundDetectionRes == "светлый" && (
+                        <Typography sx={{ color: "#000" }}>
+                          <CheckCircleIcon
+                            sx={{
+                              color: "green",
+                              marginRight: "5px",
+                              fontSize: "20px",
+                              marginBottom: "-4px",
+                            }}
+                          />
+                          Цвет фона соответствует
+                        </Typography>
+                      )}
+                    {localStorage.getItem("chosMarketPL") == "Ozon" &&
+                      backgroundDetectionRes &&
+                      backgroundDetectionRes == "темный" && (
+                        <Typography sx={{ color: "#000" }}>
+                          <CheckCircleIcon
+                            sx={{
+                              color: "red",
+                              marginRight: "5px",
+                              fontSize: "20px",
+                              marginBottom: "-4px",
+                            }}
+                          />
+                          Цвет фона не соответствует: фон должен быть светлый
+                          для категории "Электроника"
+                        </Typography>
+                      )}
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
@@ -780,7 +864,6 @@ const Verifier = () => {
               <button
                 className="button"
                 onClick={() => {
-                  detectBackgroundColor();
                   detectImage();
                   handleClickOpenDialog();
                   recognizeTextFromPhoto();
