@@ -156,7 +156,6 @@ const Verifier = () => {
             element.className.toLowerCase().includes(i)
           ) {
             setLoadingDetectBG(true);
-            debugger;
             if (backgroundColor) {
               if (isLightColor(backgroundColor)) {
                 setBackgroundDetectionRes("светлый");
@@ -625,37 +624,19 @@ const Verifier = () => {
                       {textStatus}
                     </Typography>
                   )}
-                  {localStorage.getItem("chosMarketPL") == "Ozon" &&
-                    backgroundDetectionRes &&
-                    backgroundDetectionRes == "светлый" && (
-                      <Typography sx={{ color: "#000" }}>
-                        <CheckCircleIcon
-                          sx={{
-                            color: "green",
-                            marginRight: "5px",
-                            fontSize: "20px",
-                            marginBottom: "-4px",
-                          }}
-                        />
-                        Цвет фона соответствует
-                      </Typography>
-                    )}
-                  {localStorage.getItem("chosMarketPL") == "Ozon" &&
-                    backgroundDetectionRes &&
-                    backgroundDetectionRes == "темный" && (
-                      <Typography sx={{ color: "#000" }}>
-                        <CheckCircleIcon
-                          sx={{
-                            color: "red",
-                            marginRight: "5px",
-                            fontSize: "20px",
-                            marginBottom: "-4px",
-                          }}
-                        />
-                        Цвет фона не соответствует: фон должен быть светлый для
-                        категории "Электроника"
-                      </Typography>
-                    )}
+                  {localStorage.getItem("chosMarketPL") == "Ozon" && (
+                    <Typography sx={{ color: "#000" }}>
+                      <CheckCircleIcon
+                        sx={{
+                          color: "green",
+                          marginRight: "5px",
+                          fontSize: "20px",
+                          marginBottom: "-4px",
+                        }}
+                      />
+                      Цвет фона соответствует
+                    </Typography>
+                  )}
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
@@ -692,8 +673,7 @@ const Verifier = () => {
           {imageUrl &&
             explicitPhotos.length == 0 &&
             statusDetection == "true" &&
-            textStatus &&
-            backgroundDetectionRes && (
+            textStatus && (
               <Dialog
                 open={openDialog}
                 onClose={handleCloseDialog}
