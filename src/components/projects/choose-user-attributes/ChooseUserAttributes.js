@@ -571,40 +571,82 @@ const ChooseUserAttributes = () => {
                       />
                     )}
                   </Grid>
-                  <Grid sx={{ marginTop: "70px", marginLeft: "6%" }}>
-                    <Button
-                      variant="contained"
-                      onClick={handleClickOpenDialog}
-                      sx={{
-                        fontSize: "20px",
-                        backgroundColor: "grey",
-                        "&:hover": {
-                          backgroundColor: "purple",
-                        },
-                      }}
-                    >
-                      Создать проект
-                    </Button>
+                  <Grid container sx={{ marginTop: "70px" }}>
+                    <Grid item xs={6}>
+                      {" "}
+                      <Button
+                        variant="contained"
+                        onClick={handleClickOpenDialog}
+                        sx={{
+                          fontSize: "14px",
+                          backgroundColor: "black",
+                          "&:hover": {
+                            backgroundColor: "purple",
+                          },
+                        }}
+                      >
+                        Получить рекомендации
+                      </Button>
+                    </Grid>
+                    <Grid item xs={6}>
+                      {" "}
+                      <Button
+                        variant="contained"
+                        onClick={handleClickOpenDialog}
+                        sx={{
+                          fontSize: "14px",
+                          backgroundColor: "grey",
+                          height: "61px",
+                          marginLeft: "5px",
+                          "&:hover": {
+                            backgroundColor: "purple",
+                          },
+                        }}
+                      >
+                        Создать проект
+                      </Button>
+                    </Grid>
                   </Grid>
                 </>
               )}
             {localStorage.getItem("needTemplateMarketPL") &&
               localStorage.getItem("needTemplateMarketPL") == "no" && (
                 <>
-                  <Grid sx={{ marginTop: "67vh", marginLeft: "7%" }}>
-                    <Button
-                      variant="contained"
-                      onClick={handleClickOpenDialog}
-                      sx={{
-                        fontSize: "20px",
-                        backgroundColor: "grey",
-                        "&:hover": {
-                          backgroundColor: "purple",
-                        },
-                      }}
-                    >
-                      Создать проект
-                    </Button>
+                  <Grid container sx={{ marginTop: "67vh" }}>
+                    <Grid item xs={6}>
+                      {" "}
+                      <Button
+                        variant="contained"
+                        onClick={handleClickOpenDialog}
+                        sx={{
+                          fontSize: "14px",
+                          backgroundColor: "black",
+                          "&:hover": {
+                            backgroundColor: "purple",
+                          },
+                        }}
+                      >
+                        Получить рекомендации
+                      </Button>
+                    </Grid>
+                    <Grid item xs={6}>
+                      {" "}
+                      <Button
+                        variant="contained"
+                        onClick={handleClickOpenDialog}
+                        sx={{
+                          fontSize: "14px",
+                          backgroundColor: "grey",
+                          height: "62px",
+                          marginLeft: "5px",
+                          "&:hover": {
+                            backgroundColor: "purple",
+                          },
+                        }}
+                      >
+                        Создать проект
+                      </Button>
+                    </Grid>
                   </Grid>
                 </>
               )}

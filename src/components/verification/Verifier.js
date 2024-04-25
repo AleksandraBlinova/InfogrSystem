@@ -75,6 +75,7 @@ const Verifier = () => {
 
   const loadModel = async () => {
     setIsModelLoading(true);
+    debugger;
     if (mobilenet) {
       const model = await mobilenet.load();
       setModel(model);
@@ -213,53 +214,152 @@ const Verifier = () => {
   const detectImage = async () => {
     setLoadingPhotoDetect(true);
     const img = document.getElementById("imageDetect");
-    const results = await model.classify(img);
+    const results =
+      model && model != ""
+        ? await model.classify(img)
+        : console.log("model is not available");
     setResults(results);
     detectBackgroundColor(results);
     setExplicit([]);
     setStatusDetection("true");
-    results.forEach((element) => {
-      localStorage.getItem("chosMarketPL") == "Ozon" &&
-        limitsOzon.forEach((l) => {
-          if (
-            element &&
-            element.className &&
-            element.className.toLowerCase().includes(l) &&
-            element.probability > 0.3 &&
-            (l == "cat" ||
-              l == "dog" ||
-              l == "hamster" ||
-              l == "mouse" ||
-              l == "Tinca tinca" ||
-              l == "goldfish" ||
-              l == "great white shark" ||
-              l == "rabbit" ||
-              l == "tiger shark" ||
-              l == "hammerhead" ||
-              l == "electric ray" ||
-              l == "stingray" ||
-              l == "ostrich" ||
-              l == "goldfinch" ||
-              l == "spider" ||
-              l == "monkey" ||
-              l == "polecat" ||
-              l == "parrot" ||
-              l == "snake")
-          ) {
-            setExplicit((explicitPhotos) => [
-              ...explicitPhotos,
-              element.className.toLowerCase(),
-            ]);
-            setExplicitCategory("Живые животные");
-          } else if (
-            element &&
-            element.className &&
-            element.className.toLowerCase().includes(l)
-          ) {
-            setExplicit((explicitPhotos) => [
-              ...explicitPhotos,
-              element.className.toLowerCase(),
-            ]);
+    results &&
+      results.forEach((element) => {
+        console.log(element);
+        localStorage.getItem("chosMarketPL") == "Ozon" &&
+          limitsOzon.forEach((l) => {
+            if (
+              element &&
+              element.className &&
+              element.className.toLowerCase().includes(l) &&
+              element.probability > 0.3 &&
+              (l == "cat" ||
+                l == "dog" ||
+                l == "hamster" ||
+                l == "mouse" ||
+                l == "Tinca tinca" ||
+                l == "goldfish" ||
+                l == "great white shark" ||
+                l == "rabbit" ||
+                l == "tiger shark" ||
+                l == "hammerhead" ||
+                l == "electric ray" ||
+                l == "stingray" ||
+                l == "ostrich" ||
+                l == "goldfinch" ||
+                l == "spider" ||
+                l == "monkey" ||
+                l == "polecat" ||
+                l == "parrot" ||
+                l == "snake")
+            ) {
+              setExplicit((explicitPhotos) => [
+                ...explicitPhotos,
+                element.className.toLowerCase(),
+              ]);
+              setExplicitCategory("Живые животные");
+            } else if (
+              element &&
+              element.className &&
+              element.className.toLowerCase().includes(l)
+            ) {
+              setExplicit((explicitPhotos) => [
+                ...explicitPhotos,
+                element.className.toLowerCase(),
+              ]);
+              if (
+                l == "gun" ||
+                l == "revolver" ||
+                l == "shoot" ||
+                l == "rifle" ||
+                l == "cannon" ||
+                l == "weapon" ||
+                l == "pistol" ||
+                l == "mortar" ||
+                l == "torpedo" ||
+                l == "missile" ||
+                l == "ammunition" ||
+                l == "bullet" ||
+                l == "grenade" ||
+                l == "bomb" ||
+                l == "explos"
+              )
+                setExplicitCategory("Вооружение, боеприпасы");
+              else if (
+                l == "wine" ||
+                l == "beer" ||
+                l == "alcohol" ||
+                l == "liqueur" ||
+                l == "cognac" ||
+                l == "rum" ||
+                l == "gin" ||
+                l == "champagne" ||
+                l == "whisky" ||
+                l == "sherry" ||
+                l == "tequila" ||
+                l == "madeira"
+              )
+                setExplicitCategory("Алкогольная продукция");
+              else if (
+                l == "traffic light" ||
+                l == "traffic signal" ||
+                l == "stoplight"
+              )
+                setExplicitCategory("Дорожные знаки");
+              else if (
+                l == "drug" ||
+                l == "aid" ||
+                l == "pill bottle" ||
+                l == "pills" ||
+                l == "nipple" ||
+                l == "vitamin" ||
+                l == "medicine" ||
+                l == "ambulance"
+              )
+                setExplicitCategory(
+                  "Ветеринарные препараты, или Витамины для животных, или Лекарственные средства, или Наркотические средства, психотропные вещества и их прекурсоры"
+                );
+              else if (
+                l == "gunpowder" ||
+                l == "detonat" ||
+                l == "armament" ||
+                l == "burst" ||
+                l == "implos" ||
+                l == "blast"
+              )
+                setExplicitCategory(
+                  "Взрывчатые вещества, средства взрывания, порох"
+                );
+              else if (
+                l == "igniter" ||
+                l == "ignitor" ||
+                l == "cigaret" ||
+                l == "lighter" ||
+                l == "tobacco shop" ||
+                l == "tobacconist shop" ||
+                l == "tobacconist" ||
+                l == "tobacco" ||
+                l == "spray" ||
+                l == "tam-tam"
+              )
+                setExplicitCategory(
+                  "Табачная и никотинсодержащая продукция, или Легковоспламеняющиеся жидкости и вещества, или Самовозгорающиеся вещества"
+                );
+              else if (l == "poison") setExplicitCategory("Яды");
+            }
+          });
+        localStorage.getItem("chosMarketPL") == "Wildberries" &&
+          limitsWB.forEach((l) => {
+            if (
+              element &&
+              element.className &&
+              element.className.toLowerCase().includes(l)
+            ) {
+              setExplicit((explicitPhotos) => [
+                ...explicitPhotos,
+                element.className.toLowerCase(),
+              ]);
+            }
+
             if (
               l == "gun" ||
               l == "revolver" ||
@@ -279,27 +379,6 @@ const Verifier = () => {
             )
               setExplicitCategory("Вооружение, боеприпасы");
             else if (
-              l == "wine" ||
-              l == "beer" ||
-              l == "alcohol" ||
-              l == "liqueur" ||
-              l == "cognac" ||
-              l == "rum" ||
-              l == "gin" ||
-              l == "champagne" ||
-              l == "whisky" ||
-              l == "sherry" ||
-              l == "tequila" ||
-              l == "madeira"
-            )
-              setExplicitCategory("Алкогольная продукция");
-            else if (
-              l == "traffic light" ||
-              l == "traffic signal" ||
-              l == "stoplight"
-            )
-              setExplicitCategory("Дорожные знаки");
-            else if (
               l == "drug" ||
               l == "aid" ||
               l == "pill bottle" ||
@@ -309,9 +388,7 @@ const Verifier = () => {
               l == "medicine" ||
               l == "ambulance"
             )
-              setExplicitCategory(
-                "Ветеринарные препараты, или Витамины для животных, или Лекарственные средства, или Наркотические средства, психотропные вещества и их прекурсоры"
-              );
+              setExplicitCategory("Медицинские товары");
             else if (
               l == "gunpowder" ||
               l == "detonat" ||
@@ -336,142 +413,71 @@ const Verifier = () => {
               l == "tam-tam"
             )
               setExplicitCategory(
-                "Табачная и никотинсодержащая продукция, или Легковоспламеняющиеся жидкости и вещества, или Самовозгорающиеся вещества"
+                "Взрывчатые вещества, или Никотиносодержащая продукция, или Легковоспламеняющиеся жидкости и вещества, или Самовозгорающиеся вещества"
               );
             else if (l == "poison") setExplicitCategory("Яды");
-          }
-        });
-      localStorage.getItem("chosMarketPL") == "Wildberries" &&
-        limitsWB.forEach((l) => {
-          if (
-            element &&
-            element.className &&
-            element.className.toLowerCase().includes(l)
-          ) {
-            setExplicit((explicitPhotos) => [
-              ...explicitPhotos,
-              element.className.toLowerCase(),
-            ]);
-          }
-
-          if (
-            l == "gun" ||
-            l == "revolver" ||
-            l == "shoot" ||
-            l == "rifle" ||
-            l == "cannon" ||
-            l == "weapon" ||
-            l == "pistol" ||
-            l == "mortar" ||
-            l == "torpedo" ||
-            l == "missile" ||
-            l == "ammunition" ||
-            l == "bullet" ||
-            l == "grenade" ||
-            l == "bomb" ||
-            l == "explos"
-          )
-            setExplicitCategory("Вооружение, боеприпасы");
-          else if (
-            l == "drug" ||
-            l == "aid" ||
-            l == "pill bottle" ||
-            l == "pills" ||
-            l == "nipple" ||
-            l == "vitamin" ||
-            l == "medicine" ||
-            l == "ambulance"
-          )
-            setExplicitCategory("Медицинские товары");
-          else if (
-            l == "gunpowder" ||
-            l == "detonat" ||
-            l == "armament" ||
-            l == "burst" ||
-            l == "implos" ||
-            l == "blast"
-          )
-            setExplicitCategory(
-              "Взрывчатые вещества, средства взрывания, порох"
-            );
-          else if (
-            l == "igniter" ||
-            l == "ignitor" ||
-            l == "cigaret" ||
-            l == "lighter" ||
-            l == "tobacco shop" ||
-            l == "tobacconist shop" ||
-            l == "tobacconist" ||
-            l == "tobacco" ||
-            l == "spray" ||
-            l == "tam-tam"
-          )
-            setExplicitCategory(
-              "Взрывчатые вещества, или Никотиносодержащая продукция, или Легковоспламеняющиеся жидкости и вещества, или Самовозгорающиеся вещества"
-            );
-          else if (l == "poison") setExplicitCategory("Яды");
-        });
-      localStorage.getItem("chosMarketPL") == "Yandex Market" &&
-        limitsYM.forEach((l) => {
-          if (
-            element &&
-            element.className &&
-            element.className.toLowerCase().includes(l)
-          ) {
-            setExplicit((explicitPhotos) => [
-              ...explicitPhotos,
-              element.className.toLowerCase(),
-            ]);
-          }
-          if (
-            l == "gun" ||
-            l == "revolver" ||
-            l == "shoot" ||
-            l == "rifle" ||
-            l == "cannon" ||
-            l == "weapon" ||
-            l == "pistol" ||
-            l == "mortar" ||
-            l == "torpedo" ||
-            l == "missile" ||
-            l == "ammunition" ||
-            l == "bullet" ||
-            l == "grenade" ||
-            l == "bomb" ||
-            l == "explos"
-          )
-            setExplicitCategory("Любые виды оружия");
-          else if (
-            l == "gunpowder" ||
-            l == "detonat" ||
-            l == "armament" ||
-            l == "burst" ||
-            l == "implos" ||
-            l == "blast"
-          )
-            setExplicitCategory(
-              "Взрывчатые вещества, средства взрывания, порох"
-            );
-          else if (
-            l == "igniter" ||
-            l == "ignitor" ||
-            l == "cigaret" ||
-            l == "tobacco shop" ||
-            l == "tobacconist shop" ||
-            l == "tobacconist" ||
-            l == "tobacco" ||
-            l == "lighter" ||
-            l == "spray" ||
-            l == "tam-tam"
-          )
-            setExplicitCategory(
-              "Взрывчатые вещества, или Никотиносодержащая продукция, или Легковоспламеняющиеся жидкости и вещества, или Самовозгорающиеся вещества"
-            );
-          else if (l == "poison") setExplicitCategory("Яды");
-          else if (l == "daisy" || l == "garden" || l == "cactus")
-            setExplicitCategory("Живые цветы и растения");
-        });
-    });
+          });
+        localStorage.getItem("chosMarketPL") == "Yandex Market" &&
+          limitsYM.forEach((l) => {
+            if (
+              element &&
+              element.className &&
+              element.className.toLowerCase().includes(l)
+            ) {
+              setExplicit((explicitPhotos) => [
+                ...explicitPhotos,
+                element.className.toLowerCase(),
+              ]);
+            }
+            if (
+              l == "gun" ||
+              l == "revolver" ||
+              l == "shoot" ||
+              l == "rifle" ||
+              l == "cannon" ||
+              l == "weapon" ||
+              l == "pistol" ||
+              l == "mortar" ||
+              l == "torpedo" ||
+              l == "missile" ||
+              l == "ammunition" ||
+              l == "bullet" ||
+              l == "grenade" ||
+              l == "bomb" ||
+              l == "explos"
+            )
+              setExplicitCategory("Любые виды оружия");
+            else if (
+              l == "gunpowder" ||
+              l == "detonat" ||
+              l == "armament" ||
+              l == "burst" ||
+              l == "implos" ||
+              l == "blast"
+            )
+              setExplicitCategory(
+                "Взрывчатые вещества, средства взрывания, порох"
+              );
+            else if (
+              l == "igniter" ||
+              l == "ignitor" ||
+              l == "cigaret" ||
+              l == "tobacco shop" ||
+              l == "tobacconist shop" ||
+              l == "tobacconist" ||
+              l == "tobacco" ||
+              l == "lighter" ||
+              l == "spray" ||
+              l == "tam-tam"
+            )
+              setExplicitCategory(
+                "Взрывчатые вещества, или Никотиносодержащая продукция, или Легковоспламеняющиеся жидкости и вещества, или Самовозгорающиеся вещества"
+              );
+            else if (l == "poison") setExplicitCategory("Яды");
+            else if (l == "daisy" || l == "garden" || l == "cactus")
+              setExplicitCategory("Живые цветы и растения");
+          });
+      });
 
     setLoadingPhotoDetect(false);
   };
