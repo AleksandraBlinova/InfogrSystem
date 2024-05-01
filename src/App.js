@@ -12,6 +12,7 @@ import Authorization from "./components/forms/Authorization";
 import Registration from "./components/forms/Registration";
 import FormSuccessLog from "./components/forms/FormSuccessLog";
 import ChooseUserAttributes from "./components/projects/choose-user-attributes/ChooseUserAttributes";
+import Recommendations from "./components/recommendations/Recommendations";
 
 function App() {
   const [isLog, setLog] = useState(localStorage.getItem("isLog") === "true");
@@ -38,6 +39,7 @@ function App() {
             path="/chooseUserAttributes"
             element={<ChooseUserAttributes />}
           />
+          <Route path="/recomend" element={<Recommendations />} />
           <Route
             path="/login"
             element={

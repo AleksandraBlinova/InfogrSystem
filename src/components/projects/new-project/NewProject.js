@@ -93,6 +93,10 @@ const NewProject = () => {
                         "needTemplateMarketPL",
                         "basketball"
                       );
+                      localStorage.setItem(
+                        "category",
+                        "Канцтовары и товары для хобби"
+                      );
                     }}
                   >
                     <CardMedia
@@ -112,6 +116,10 @@ const NewProject = () => {
                     onClick={() => {
                       localStorage.setItem("chosMarketPL", "Ozon");
                       localStorage.setItem("needTemplateMarketPL", "pillow");
+                      localStorage.setItem(
+                        "category",
+                        "Товары для дома и дачи"
+                      );
                     }}
                   >
                     <CardMedia
@@ -172,6 +180,7 @@ const NewProject = () => {
                     onClick={() => {
                       localStorage.setItem("chosMarketPL", "Wildberries");
                       localStorage.setItem("needTemplateMarketPL", "fur");
+                      localStorage.setItem("category", "Одежда и обувь");
                     }}
                   >
                     <CardMedia
@@ -191,6 +200,7 @@ const NewProject = () => {
                     onClick={() => {
                       localStorage.setItem("chosMarketPL", "Wildberries");
                       localStorage.setItem("needTemplateMarketPL", "hoodie");
+                      localStorage.setItem("category", "Одежда и обувь");
                     }}
                   >
                     <CardMedia
@@ -253,6 +263,7 @@ const NewProject = () => {
                         "needTemplateMarketPL",
                         "toiletChild"
                       );
+                      localStorage.setItem("category", "Товары для детей");
                     }}
                   >
                     <CardMedia
@@ -272,6 +283,7 @@ const NewProject = () => {
                     onClick={() => {
                       localStorage.setItem("chosMarketPL", "Yandex Market");
                       localStorage.setItem("needTemplateMarketPL", "boots");
+                      localStorage.setItem("category", "Одежда и обувь");
                     }}
                   >
                     <CardMedia

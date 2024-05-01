@@ -574,19 +574,21 @@ const ChooseUserAttributes = () => {
                   <Grid container sx={{ marginTop: "70px" }}>
                     <Grid item xs={6}>
                       {" "}
-                      <Button
-                        variant="contained"
-                        onClick={handleClickOpenDialog}
-                        sx={{
-                          fontSize: "14px",
-                          backgroundColor: "black",
-                          "&:hover": {
-                            backgroundColor: "purple",
-                          },
-                        }}
-                      >
-                        Получить рекомендации
-                      </Button>
+                      <Link to="/recomend">
+                        <Button
+                          variant="contained"
+                          onClick={handleClickOpenDialog}
+                          sx={{
+                            fontSize: "14px",
+                            backgroundColor: "black",
+                            "&:hover": {
+                              backgroundColor: "purple",
+                            },
+                          }}
+                        >
+                          Получить рекомендации
+                        </Button>
+                      </Link>
                     </Grid>
                     <Grid item xs={6}>
                       {" "}
@@ -615,19 +617,22 @@ const ChooseUserAttributes = () => {
                   <Grid container sx={{ marginTop: "67vh" }}>
                     <Grid item xs={6}>
                       {" "}
-                      <Button
-                        variant="contained"
-                        onClick={handleClickOpenDialog}
-                        sx={{
-                          fontSize: "14px",
-                          backgroundColor: "black",
-                          "&:hover": {
-                            backgroundColor: "purple",
-                          },
-                        }}
-                      >
-                        Получить рекомендации
-                      </Button>
+                      <Link to="/recomend">
+                        {" "}
+                        <Button
+                          variant="contained"
+                          onClick={handleClickOpenDialog}
+                          sx={{
+                            fontSize: "14px",
+                            backgroundColor: "black",
+                            "&:hover": {
+                              backgroundColor: "purple",
+                            },
+                          }}
+                        >
+                          Получить рекомендации
+                        </Button>
+                      </Link>
                     </Grid>
                     <Grid item xs={6}>
                       {" "}
