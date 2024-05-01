@@ -94,11 +94,16 @@ const Recommendations = () => {
               <List
                 sx={{
                   width: "100%",
-                  maxWidth: 560,
+                  maxWidth: 900,
                   bgcolor: "background.paper",
-                  marginLeft: "50px",
-                  marginTop: "30px",
+                  position: "relative",
+                  overflow: "auto",
+                  maxHeight: 500,
+                  margin: "0 auto",
+                  marginTop: "40px",
+                  "& ul": { padding: 0 },
                 }}
+                subheader={<li />}
               >
                 <ListItem alignItems="flex-start">
                   <ListItemAvatar>
@@ -129,7 +134,7 @@ const Recommendations = () => {
                     secondary={
                       <React.Fragment>
                         <Typography
-                          sx={{ display: "inline", fontSize: "20px" }}
+                          sx={{ display: "inline", fontSize: "18px" }}
                           component="span"
                           variant="body2"
                           color="text.primary"
@@ -143,174 +148,228 @@ const Recommendations = () => {
                 <Divider variant="inset" component="li" />
                 <ListItem alignItems="flex-start">
                   <ListItemAvatar>
-                    <Avatar
-                      alt="Travis Howard"
-                      src="/static/images/avatar/2.jpg"
+                    <img
+                      style={{ width: "40px", height: "40px" }}
+                      src="/logos/colors.png"
                     />
                   </ListItemAvatar>
                   <ListItemText
-                    primary="Summer BBQ"
+                    primary="2. Рекомендуемые цвета:"
                     secondary={
                       <React.Fragment>
                         <Typography
-                          sx={{ display: "inline" }}
+                          sx={{ display: "inline", fontSize: "14px" }}
                           component="span"
                           variant="body2"
                           color="text.primary"
                         >
-                          to Scott, Alex, Jennifer
+                          {rec.Colors_value}
                         </Typography>
-                        {" — Wish I could come, but I'm out of town this…"}
+                      </React.Fragment>
+                    }
+                  />
+                </ListItem>
+                <Divider variant="inset" component="li" />
+                <ListItem alignItems="flex-start">
+                  <ListItemAvatar>
+                    <img
+                      style={{ width: "40px", height: "40px" }}
+                      src="/logos/bg.png"
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="3. Задний фон:"
+                    secondary={
+                      <React.Fragment>
+                        <Typography
+                          sx={{ display: "inline", fontSize: "14px" }}
+                          component="span"
+                          variant="body2"
+                          color="text.primary"
+                        >
+                          {rec.Background_value}
+                        </Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItem>
+                <Divider variant="inset" component="li" />
+                <ListItem alignItems="flex-start">
+                  <ListItemAvatar>
+                    <img
+                      style={{ width: "40px", height: "40px" }}
+                      src="/logos/watermark.png"
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="4. Водяные знаки:"
+                    secondary={
+                      <React.Fragment>
+                        <Typography
+                          sx={{ display: "inline", fontSize: "14px" }}
+                          component="span"
+                          variant="body2"
+                          color="text.primary"
+                        >
+                          {rec.Watermarks_value}
+                        </Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItem>
+                <Divider variant="inset" component="li" />
+                <ListItem alignItems="flex-start">
+                  <ListItemAvatar>
+                    <img
+                      style={{ width: "40px", height: "40px" }}
+                      src="/logos/photos.png"
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={
+                      "5. " +
+                      (localStorage.getItem("typeOfPhoto") == "Главное"
+                        ? "Главное фото: "
+                        : "Дополнительные фото: ")
+                    }
+                    secondary={
+                      <React.Fragment>
+                        <Typography
+                          sx={{ display: "inline", fontSize: "14px" }}
+                          component="span"
+                          variant="body2"
+                          color="text.primary"
+                        >
+                          {localStorage.getItem("typeOfPhoto") == "Главное"
+                            ? rec.Mainphoto_value
+                            : rec.Extraphotos_value != null &&
+                              rec.Extraphotos_value}
+                        </Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItem>
+                <Divider variant="inset" component="li" />
+                <ListItem alignItems="flex-start">
+                  <ListItemAvatar>
+                    <img
+                      style={{ width: "40px", height: "40px" }}
+                      src="/logos/photo quality.png"
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="6. Качество фотографий:"
+                    secondary={
+                      <React.Fragment>
+                        <Typography
+                          sx={{ display: "inline", fontSize: "14px" }}
+                          component="span"
+                          variant="body2"
+                          color="text.primary"
+                        >
+                          {rec.Quality_value}
+                        </Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItem>
+                <Divider variant="inset" component="li" />
+                <ListItem alignItems="flex-start">
+                  <ListItemAvatar>
+                    <img
+                      style={{ width: "40px", height: "40px" }}
+                      src="/logos/center.png"
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="7. Размещение фотографий:"
+                    secondary={
+                      <React.Fragment>
+                        <Typography
+                          sx={{ display: "inline", fontSize: "14px" }}
+                          component="span"
+                          variant="body2"
+                          color="text.primary"
+                        >
+                          {rec.Center_value}
+                        </Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItem>
+                <Divider variant="inset" component="li" />
+                <ListItem alignItems="flex-start">
+                  <ListItemAvatar>
+                    <img
+                      style={{ width: "40px", height: "40px" }}
+                      src="/logos/turn.png"
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="8. Поворот фотографий:"
+                    secondary={
+                      <React.Fragment>
+                        <Typography
+                          sx={{ display: "inline", fontSize: "14px" }}
+                          component="span"
+                          variant="body2"
+                          color="text.primary"
+                        >
+                          {rec.Turn_value}
+                        </Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItem>
+                <Divider variant="inset" component="li" />
+                <ListItem alignItems="flex-start">
+                  <ListItemAvatar>
+                    <img
+                      style={{ width: "40px", height: "40px" }}
+                      src="/logos/elements.png"
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="9. Элементы инфографики на товаре:"
+                    secondary={
+                      <React.Fragment>
+                        <Typography
+                          sx={{ display: "inline", fontSize: "14px" }}
+                          component="span"
+                          variant="body2"
+                          color="text.primary"
+                        >
+                          {rec.Infographics_elements_value}
+                        </Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItem>
+                <Divider variant="inset" component="li" />
+                <ListItem alignItems="flex-start">
+                  <ListItemAvatar>
+                    <img
+                      style={{ width: "40px", height: "40px" }}
+                      src="/logos/accessories.png"
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="10. Аксессуары и комплекты товаров:"
+                    secondary={
+                      <React.Fragment>
+                        <Typography
+                          sx={{ display: "inline", fontSize: "14px" }}
+                          component="span"
+                          variant="body2"
+                          color="text.primary"
+                        >
+                          {rec.Accessories_value}
+                        </Typography>
                       </React.Fragment>
                     }
                   />
                 </ListItem>
               </List>
-              // <Grid
-              //   container
-              //   spacing={{ xs: 2, md: 3 }}
-              //   columns={{ xs: 4, sm: 8, md: 12 }}
-              //   sx={{ padding: "30px" }}
-              // >
-              //   <Grid item xs={2} sm={4} md={4} key={1}>
-              //     {" "}
-              //     <Typography
-              //       sx={{
-              //         textAlign: "left",
-              //         fontSize: "18px",
-              //         fontFamily: "Segoe UI",
-              //         paddingTop: "42px",
-              //       }}
-              //     >
-              //       1. Выбранный маркетплейс: {rec.Marketplace_value}
-              //       {rec.Marketplace_value == "Ozon" && (
-              //         <img
-              //           style={{
-              //             width: "50px",
-              //             height: "55px",
-              //             marginLeft: "5px",
-              //             marginBottom: "-20px",
-              //           }}
-              //           src="/logos/ozon.png"
-              //         />
-              //       )}
-              //       {rec.Marketplace_value == "Wildberries" && (
-              //         <img
-              //           style={{ width: "50px", height: "55px" }}
-              //           src="/logos/wb.png"
-              //         />
-              //       )}
-              //       {rec.Marketplace_value == "Yandex Market" && (
-              //         <img
-              //           style={{ width: "50px", height: "55px" }}
-              //           src="/logos/yam.png"
-              //         />
-              //       )}
-              //     </Typography>
-              //     <Typography
-              //       sx={{
-              //         textAlign: "left",
-              //         fontSize: "18px",
-              //         fontFamily: "Segoe UI",
-              //         paddingTop: "62px",
-              //       }}
-              //     >
-              //       2. Рекомендуемые цвета: {rec.Colors_value}
-              //     </Typography>
-              //     <Typography
-              //       sx={{
-              //         textAlign: "left",
-              //         fontSize: "18px",
-              //         fontFamily: "Segoe UI",
-              //         paddingTop: "62px",
-              //       }}
-              //     >
-              //       3. {rec.Background_value}
-              //     </Typography>
-              //     <Typography
-              //       sx={{
-              //         textAlign: "left",
-              //         fontSize: "18px",
-              //         fontFamily: "Segoe UI",
-              //         paddingTop: "62px",
-              //       }}
-              //     >
-              //       4. {rec.Watermarks_value}
-              //     </Typography>
-              //   </Grid>
-
-              //   <Grid item xs={2} sm={4} md={4} key={2}>
-              //     <Typography
-              //       sx={{
-              //         textAlign: "left",
-              //         fontSize: "18px",
-              //         fontFamily: "Segoe UI",
-              //         paddingTop: "42px",
-              //       }}
-              //     >
-              //       5.{" "}
-              //       {localStorage.getItem("typeOfPhoto") == "Главное"
-              //         ? rec.Mainphoto_value
-              //         : rec.Extraphotos_value != null && rec.Extraphotos_value}
-              //     </Typography>
-
-              //     <Typography
-              //       sx={{
-              //         textAlign: "left",
-              //         fontSize: "18px",
-              //         fontFamily: "Segoe UI",
-              //         paddingTop: "62px",
-              //       }}
-              //     >
-              //       6. {rec.Quality_value}
-              //     </Typography>
-
-              //     <Typography
-              //       sx={{
-              //         textAlign: "left",
-              //         fontSize: "18px",
-              //         fontFamily: "Segoe UI",
-              //         paddingTop: "62px",
-              //       }}
-              //     >
-              //       7. {rec.Center_value}
-              //     </Typography>
-              //   </Grid>
-
-              //   <Grid item xs={2} sm={4} md={4} key={3}>
-              //     {" "}
-              //     <Typography
-              //       sx={{
-              //         textAlign: "left",
-              //         fontSize: "18px",
-              //         fontFamily: "Segoe UI",
-              //         paddingTop: "42px",
-              //       }}
-              //     >
-              //       8. {rec.Turn_value}
-              //     </Typography>
-              //     <Typography
-              //       sx={{
-              //         textAlign: "left",
-              //         fontSize: "18px",
-              //         fontFamily: "Segoe UI",
-              //         paddingTop: "62px",
-              //       }}
-              //     >
-              //       9. {rec.Infographics_elements_value}
-              //     </Typography>
-              //     <Typography
-              //       sx={{
-              //         textAlign: "left",
-              //         fontSize: "18px",
-              //         fontFamily: "Segoe UI",
-              //         paddingTop: "62px",
-              //       }}
-              //     >
-              //       10. {rec.Accessories_value}
-              //     </Typography>
-              //   </Grid>
-              // </Grid>
             ))}
         </div>
       </div>
