@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -8,6 +8,8 @@ import AddIcon from "@mui/icons-material/Add";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import axios from "axios";
+import Grid from "@mui/material/Grid";
 import {
   CardActionArea,
   CardHeader,
@@ -21,6 +23,48 @@ import Divider from "@mui/material/Divider";
 import { Link } from "react-router-dom";
 
 const MainpartCreatives = () => {
+  const [projects, setProjects] = React.useState([]);
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3001/projects",
+      headers: {
+        "content-type": "application/json",
+        withCredentials: true,
+      },
+    })
+      .then((response) => {
+        response.data.map((itm) => {
+          let dateCr = itm.createdAt.slice(0, itm.createdAt.lastIndexOf("T"));
+          var dd = new Date(dateCr),
+            monthh = "" + (dd.getMonth() + 1),
+            dayy = "" + dd.getDate(),
+            yearr = dd.getFullYear();
+
+          if (monthh.length < 2) monthh = "0" + monthh;
+          if (dayy.length < 2) dayy = "0" + dayy;
+
+          let dateCrNew = [dayy, monthh, yearr].join("-");
+
+          itm.createdAt = dateCrNew;
+
+          var d = new Date(),
+            month = "" + (d.getMonth() + 1),
+            day = "" + d.getDate(),
+            year = d.getFullYear();
+
+          var difference = Math.floor((d - dd) / (1000 * 60 * 60 * 24));
+
+          itm.difference = difference;
+        });
+        setProjects(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const [isHovered, setIsHovered] = React.useState(false);
 
   function handleMouseOver() {
@@ -30,12 +74,18 @@ const MainpartCreatives = () => {
   function handleMouseOut() {
     setIsHovered(false);
   }
+
   return (
     <div>
       {" "}
       <Box sx={{ display: "flex", padding: "70px" }}>
         <Box
-          sx={{ display: "flex", flexDirection: "column", marginRight: "50px" }}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            marginRight: "50px",
+            width: "700px",
+          }}
         >
           <Typography
             component="div"
@@ -57,15 +107,9 @@ const MainpartCreatives = () => {
             </Button>
           </Box>
 
-          {/* <Box sx={{ marginTop: "30px" }}>
-            <Button variant="extended">
-              <FolderIcon sx={{ width: "20px", marginRight: "6px" }} />
-              Создать новую папку
-            </Button>
-          </Box> */}
           <Box sx={{ marginTop: "80px" }}>
             {" "}
-            <Divider light textAlign="left" />
+            <Divider textAlign="left" />
           </Box>
           <Box sx={{ marginTop: "30px", marginLeft: "30px" }}>
             <Button variant="contained" color="secondary">
@@ -76,113 +120,76 @@ const MainpartCreatives = () => {
             </Button>
           </Box>
         </Box>
-        <Box sx={{ marginLeft: "90px", marginTop: "110px" }}>
-          <Card sx={{ maxWidth: 400 }}>
-            <CardActionArea
-              onMouseOver={handleMouseOver}
-              onMouseOut={handleMouseOut}
-            >
-              {isHovered ? (
-                <>
-                  {" "}
-                  <Tooltip
-                    title={<Typography fontSize={15}>1 месяц назад</Typography>}
-                    slotProps={{
-                      popper: {
-                        modifiers: [
-                          {
-                            name: "offset",
-                            options: {
-                              offset: [0, -10],
-                            },
-                          },
-                        ],
-                      },
-                    }}
-                  >
-                    {" "}
-                    <CardMedia
-                      component="img"
-                      width="350px"
-                      height="400px"
-                      image="1-1001.jpg"
-                      sx={{
-                        "&:hover": {
-                          "*": "inherit",
-                        },
-                      }}
-                    />
-                  </Tooltip>
-                </>
-              ) : (
-                <CardMedia
-                  component="img"
-                  width="350px"
-                  height="400px"
-                  image="1-1001.jpg"
-                  sx={{
-                    "&:hover": {
-                      "*": "inherit", // Nope. Code does not go here.
-                    },
-                  }}
-                />
-              )}
-            </CardActionArea>
-          </Card>
-        </Box>
-        <Box sx={{ marginLeft: "90px", marginTop: "110px" }}>
-          <Card sx={{ maxWidth: 400 }}>
-            <CardActionArea
-              onMouseOver={handleMouseOver}
-              onMouseOut={handleMouseOut}
-            >
-              {isHovered ? (
-                <>
-                  {" "}
-                  <Tooltip
-                    title={<Typography fontSize={15}>3 дня назад</Typography>}
-                    slotProps={{
-                      popper: {
-                        modifiers: [
-                          {
-                            name: "offset",
-                            options: {
-                              offset: [0, -10],
-                            },
-                          },
-                        ],
-                      },
-                    }}
-                  >
-                    {" "}
-                    <CardMedia
-                      component="img"
-                      width="350px"
-                      height="400px"
-                      image="1-2001.jpg"
-                      sx={{
-                        "&:hover": {
-                          "*": "inherit", // Nope. Code does not go here.
-                        },
-                      }}
-                    />
-                  </Tooltip>
-                </>
-              ) : (
-                <CardMedia
-                  component="img"
-                  width="350px"
-                  height="400px"
-                  image="1-2001.jpg"
-                  sx={{
-                    "&:hover": {
-                      "*": "inherit", // Nope. Code does not go here.
-                    },
-                  }}
-                />
-              )}
-            </CardActionArea>
-          </Card>
+        <Box sx={{ marginLeft: "250px" }}>
+          <Grid
+            container
+            rowSpacing={3}
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          >
+            {projects &&
+              projects.map((project) => (
+                <Grid item xs={6}>
+                  <Box>
+                    <Card sx={{ maxWidth: 100 }}>
+                      <CardActionArea
+                        onMouseOver={handleMouseOver}
+                        onMouseOut={handleMouseOut}
+                      >
+                        <>
+                          {" "}
+                          <Tooltip
+                            title={
+                              <Typography fontSize={15}>
+                                {project.difference != 0 &&
+                                project.difference > 5
+                                  ? "создан " +
+                                    project.difference +
+                                    " дней назад"
+                                  : project.difference == 1
+                                  ? "создан вчера"
+                                  : project.difference == 0
+                                  ? "создан сегодня"
+                                  : project.difference > 1 &&
+                                    project.difference < 5
+                                  ? "создан " +
+                                    project.difference +
+                                    " дня назад"
+                                  : ""}
+                              </Typography>
+                            }
+                            slotProps={{
+                              popper: {
+                                modifiers: [
+                                  {
+                                    name: "offset",
+                                    options: {
+                                      offset: [0, -10],
+                                    },
+                                  },
+                                ],
+                              },
+                            }}
+                          >
+                            {" "}
+                            <CardMedia
+                              component="img"
+                              width="100px"
+                              height="100px"
+                              image="-1001.jpg"
+                              sx={{
+                                "&:hover": {
+                                  "*": "inherit",
+                                },
+                              }}
+                            />
+                          </Tooltip>
+                        </>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
+                </Grid>
+              ))}
+          </Grid>
         </Box>
       </Box>
     </div>
