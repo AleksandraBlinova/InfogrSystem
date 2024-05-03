@@ -182,6 +182,53 @@ const ChooseUserAttributes = () => {
     );
 
   const createNewProject = () => {
+    if (localStorage.getItem("needTemplateMarketPL") == "basketball") {
+      localStorage.setItem(
+        "linkTempImg",
+        "./templatesOzon/template-basket/ФонМяч.png"
+      );
+      localStorage.setItem("typeTempImg", "tempOzonBasket");
+    }
+
+    if (localStorage.getItem("needTemplateMarketPL") == "pillow") {
+      localStorage.setItem(
+        "linkTempImg",
+        "./templatesOzon/template-pillow/Идеально.png"
+      );
+      localStorage.setItem("typeTempImg", "tempOzonPillow");
+    }
+
+    if (localStorage.getItem("needTemplateMarketPL") == "fur") {
+      localStorage.setItem(
+        "linkTempImg",
+        "./templatesOzon/template-fur/fur.jpg"
+      );
+      localStorage.setItem("typeTempImg", "tempFur");
+    }
+
+    if (localStorage.getItem("needTemplateMarketPL") == "hoodie") {
+      localStorage.setItem(
+        "linkTempImg",
+        "./templatesOzon/template-hoodie/1 (2).jpg"
+      );
+      localStorage.setItem("typeTempImg", "tempHoodie");
+    }
+
+    if (localStorage.getItem("needTemplateMarketPL") == "boots") {
+      localStorage.setItem(
+        "linkTempImg",
+        "./templatesOzon/template-boots/13165919-1-white.jpg"
+      );
+      localStorage.setItem("typeTempImg", "tempBoots");
+    }
+
+    if (localStorage.getItem("needTemplateMarketPL") == "toiletChild") {
+      localStorage.setItem(
+        "linkTempImg",
+        "./templatesOzon/template-toilet/ГОРШОК-СТУЛЬЧИК.png"
+      );
+      localStorage.setItem("typeTempImg", "tempOzonToilet");
+    }
     projValues = {
       Id: projId,
       Project_name: "Project" + projId.toString(),
@@ -694,63 +741,60 @@ const ChooseUserAttributes = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          {localStorage.getItem("chosMarketPL") == "Ozon" &&
-            localStorage.getItem("needTemplateMarketPL") == "no" && (
-              <Link to="/withouttempOzon">
-                {" "}
-                <Button
-                  autoFocus
-                  onClick={createNewProject}
-                  variant="contained"
-                  sx={{
+          {localStorage.getItem("chosMarketPL") == "Ozon" && (
+            <Link to="/withouttempOzon">
+              {" "}
+              <Button
+                autoFocus
+                onClick={createNewProject}
+                variant="contained"
+                sx={{
+                  backgroundColor: "purple",
+                  "&:hover": {
                     backgroundColor: "purple",
-                    "&:hover": {
-                      backgroundColor: "purple",
-                    },
-                  }}
-                >
-                  Все верно
-                </Button>
-              </Link>
-            )}
-          {localStorage.getItem("chosMarketPL") == "Wildberries" &&
-            localStorage.getItem("needTemplateMarketPL") == "no" && (
-              <Link to="/withouttempWB">
-                {" "}
-                <Button
-                  autoFocus
-                  onClick={createNewProject}
-                  variant="contained"
-                  sx={{
+                  },
+                }}
+              >
+                Все верно
+              </Button>
+            </Link>
+          )}
+          {localStorage.getItem("chosMarketPL") == "Wildberries" && (
+            <Link to="/withouttempWB">
+              {" "}
+              <Button
+                autoFocus
+                onClick={createNewProject}
+                variant="contained"
+                sx={{
+                  backgroundColor: "purple",
+                  "&:hover": {
                     backgroundColor: "purple",
-                    "&:hover": {
-                      backgroundColor: "purple",
-                    },
-                  }}
-                >
-                  Все верно
-                </Button>
-              </Link>
-            )}
-          {localStorage.getItem("chosMarketPL") == "Yandex Market" &&
-            localStorage.getItem("needTemplateMarketPL") == "no" && (
-              <Link to="/withouttempYM">
-                {" "}
-                <Button
-                  autoFocus
-                  onClick={createNewProject}
-                  variant="contained"
-                  sx={{
+                  },
+                }}
+              >
+                Все верно
+              </Button>
+            </Link>
+          )}
+          {localStorage.getItem("chosMarketPL") == "Yandex Market" && (
+            <Link to="/withouttempYM">
+              {" "}
+              <Button
+                autoFocus
+                onClick={createNewProject}
+                variant="contained"
+                sx={{
+                  backgroundColor: "purple",
+                  "&:hover": {
                     backgroundColor: "purple",
-                    "&:hover": {
-                      backgroundColor: "purple",
-                    },
-                  }}
-                >
-                  Все верно
-                </Button>
-              </Link>
-            )}
+                  },
+                }}
+              >
+                Все верно
+              </Button>
+            </Link>
+          )}
 
           <Button
             onClick={handleCloseDialog}

@@ -316,6 +316,20 @@ const DashboardWithoutTempWB = () => {
     }
   };
 
+  useEffect(() => {
+    if (
+      localStorage.getItem("linkTempImg") &&
+      localStorage.getItem("linkTempImg") != "" &&
+      localStorage.getItem("typeTempImg") &&
+      localStorage.getItem("typeTempImg") != ""
+    ) {
+      handleChangeClickOnUnsplash(
+        localStorage.getItem("linkTempImg"),
+        localStorage.getItem("typeTempImg")
+      );
+    }
+  }, []);
+
   const removeImgFromHistory = (imgSrc) => {
     setuploadedImagesDrDr(uploadedImagesDrDr.filter((i) => imgSrc != i));
   };

@@ -308,6 +308,20 @@ const DashboardWithoutTempOzon = () => {
     }
   };
 
+  useEffect(() => {
+    if (
+      localStorage.getItem("linkTempImg") &&
+      localStorage.getItem("linkTempImg") != "" &&
+      localStorage.getItem("typeTempImg") &&
+      localStorage.getItem("typeTempImg") != ""
+    ) {
+      handleChangeClickOnUnsplash(
+        localStorage.getItem("linkTempImg"),
+        localStorage.getItem("typeTempImg")
+      );
+    }
+  }, []);
+
   const [dragActive, setDragActive] = React.useState(false);
   // ref
   const inputRef = React.useRef(null);

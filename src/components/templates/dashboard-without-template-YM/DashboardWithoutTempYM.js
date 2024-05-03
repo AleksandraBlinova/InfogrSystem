@@ -347,6 +347,20 @@ const DashboardWithoutTempYM = () => {
     }
   };
 
+  useEffect(() => {
+    if (
+      localStorage.getItem("linkTempImg") &&
+      localStorage.getItem("linkTempImg") != "" &&
+      localStorage.getItem("typeTempImg") &&
+      localStorage.getItem("typeTempImg") != ""
+    ) {
+      handleChangeClickOnUnsplash(
+        localStorage.getItem("linkTempImg"),
+        localStorage.getItem("typeTempImg")
+      );
+    }
+  }, []);
+
   ///////canvas
 
   const addImage = (file, url) => {
