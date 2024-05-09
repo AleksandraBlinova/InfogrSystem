@@ -253,9 +253,7 @@ const ChooseUserAttributes = () => {
       .post("http://localhost:3001/projects/createproject", projValues, {
         withCredentials: true,
       })
-      .then((response) => {
-        console.log(response.data);
-      })
+      .then((response) => {})
       .catch((error) => {
         console.log(error);
       });
@@ -268,9 +266,7 @@ const ChooseUserAttributes = () => {
           withCredentials: true,
         }
       )
-      .then((response) => {
-        console.log(response.data);
-      })
+      .then((response) => {})
       .catch((error) => {
         console.log(error);
       });

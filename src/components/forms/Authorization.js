@@ -50,7 +50,6 @@ export default function Authorization(props) {
           props.setAuthResult(response.data);
           localStorage.setItem("nameOfUser", response.data.username);
         }
-        console.log(response.data);
       })
       .catch((error) => {
         props.setAuthResult(error);

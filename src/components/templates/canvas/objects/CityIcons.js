@@ -15,7 +15,6 @@ const CityIcons = ({ handleChangeClickOnUnsplash }) => {
       },
     })
       .then((response) => {
-        console.log("res", response.data);
         setData(response.data);
       })
       .catch((error) => {

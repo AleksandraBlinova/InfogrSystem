@@ -61,7 +61,6 @@ function AppBarComponent({ isLog, setLog, authResult }) {
     setOpenn(!openn);
   };
 
-  console.log(isLog);
   const logIn = false;
 
   return (
