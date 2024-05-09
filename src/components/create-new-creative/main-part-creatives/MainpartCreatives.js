@@ -130,7 +130,7 @@ const MainpartCreatives = () => {
               projects.map((project) => (
                 <Grid item xs={6}>
                   <Box>
-                    <Card sx={{ maxWidth: 100 }}>
+                    <Card sx={{ maxWidth: 200 }}>
                       <CardActionArea
                         onMouseOver={handleMouseOver}
                         onMouseOut={handleMouseOut}
@@ -174,7 +174,7 @@ const MainpartCreatives = () => {
                             <CardMedia
                               component="img"
                               width="100px"
-                              height="100px"
+                              height="200px"
                               image="-1001.jpg"
                               sx={{
                                 "&:hover": {

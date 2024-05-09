@@ -182,6 +182,11 @@ const ChooseUserAttributes = () => {
     );
 
   const createNewProject = () => {
+    if (localStorage.getItem("needTemplateMarketPL") == "no") {
+      localStorage.setItem("linkTempImg", "");
+      localStorage.setItem("typeTempImg", "");
+    }
+
     if (localStorage.getItem("needTemplateMarketPL") == "basketball") {
       localStorage.setItem(
         "linkTempImg",
