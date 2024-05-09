@@ -249,6 +249,8 @@ const ChooseUserAttributes = () => {
       hasSet: localStorage.getItem("complect"),
       MarketplaceId: markplId.Id,
     };
+    localStorage.setItem("projectAttributeId", projAttrId.toString());
+    localStorage.setItem("projectId", projId.toString());
     axios
       .post("http://localhost:3001/projects/createproject", projValues, {
         withCredentials: true,

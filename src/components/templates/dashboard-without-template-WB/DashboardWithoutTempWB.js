@@ -24,6 +24,12 @@ import addImageTemplateFur from "../templates-ozon/template-fur/TemplateFurData"
 import addImageTemplateHoodie from "../templates-ozon/template-hoodie/TemplateHoodieData";
 import addImageTemplateTrousers from "../templates-ozon/template-trousers/TemplateTrousersData";
 import addImageTemplateCover from "../templates-ozon/template-cover/TemplateCoverData";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import { Button } from "@mui/material";
 
 const DashboardWithoutTempWB = () => {
   const [allObjectsOnStage, setallObjectsOnStage] = useState([]); //для отображения всех фоток на холсте
@@ -436,6 +442,42 @@ const DashboardWithoutTempWB = () => {
   };
   //////////canvas
 
+  const [openDialog, setOpenDialog] = React.useState(false);
+
+  const handleClickOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  const [saveStatus, setSaveStatus] = useState(0);
+
+  const saveCanvasImage = () => {
+    let pr_attr_id = Number(localStorage.getItem("projectAttributeId"));
+    let pr_attr_values = {
+      CanvasSet: JSON.stringify(allObjectsOnCURRENTStage),
+      CanvasUrl: "123",
+    };
+    axios
+      .put(
+        `http://localhost:3001/project_attributes/${pr_attr_id}`,
+        pr_attr_values,
+        {
+          withCredentials: true,
+        }
+      )
+      .then((response) => {
+        {
+          setSaveStatus(response.status);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   ///////canvas text area
 
   const textInputRef = useRef();
@@ -705,6 +747,8 @@ const DashboardWithoutTempWB = () => {
           valueSelectedJpegPng={valueSelectedJpegPng}
           curInputNameofStage={curInputNameofStage}
           handleChangeInputNameofStage={handleChangeInputNameofStage}
+          saveCanvasImage={saveCanvasImage}
+          handleClickOpenDialog={handleClickOpenDialog}
         />
       </Grid>
       <Grid
@@ -769,6 +813,33 @@ const DashboardWithoutTempWB = () => {
           />
         </Grid>
       </Grid>
+      {saveStatus == 200 && openDialog && (
+        <Dialog
+          open={openDialog}
+          onClose={handleCloseDialog}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title" sx={{ fontWeight: "600" }}>
+            {"Проект был сохранен"}
+          </DialogTitle>
+          <DialogActions>
+            <Button
+              autoFocus
+              onClick={handleCloseDialog}
+              variant="contained"
+              sx={{
+                backgroundColor: "purple",
+                "&:hover": {
+                  backgroundColor: "purple",
+                },
+              }}
+            >
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </Box>
   );
 };

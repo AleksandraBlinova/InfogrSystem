@@ -16,6 +16,7 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Input from "@mui/material/Input";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import SaveIcon from "@mui/icons-material/Save";
 
 const CanvasAppBar = (props) => {
   return (
@@ -100,7 +101,47 @@ const CanvasAppBar = (props) => {
         </Grid>
         <Grid item xs>
           <Typography>
-            {" "}
+            <Tooltip
+              title="Сохранить проект"
+              slotProps={{
+                popper: {
+                  modifiers: [
+                    {
+                      name: "offset",
+                      options: {
+                        offset: [0, -4],
+                      },
+                    },
+                  ],
+                },
+              }}
+            >
+              {" "}
+              <IconButton
+                onClick={() => {
+                  props.saveCanvasImage();
+                  props.handleClickOpenDialog();
+                }}
+                sx={{
+                  marginRight: "15px",
+                  "&:hover": {
+                    backgroundColor: "inherit",
+                  },
+                }}
+              >
+                {" "}
+                <SaveIcon
+                  sx={{
+                    fontSize: "30px",
+                    color: "#aa00ff",
+                    "&:hover": {
+                      color: "#aa00ff",
+                      backgroundColor: "inherit",
+                    },
+                  }}
+                />
+              </IconButton>
+            </Tooltip>{" "}
             <Button
               sx={{
                 borderRadius: "0px",

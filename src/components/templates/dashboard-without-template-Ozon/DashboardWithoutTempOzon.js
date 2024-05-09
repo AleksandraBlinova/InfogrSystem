@@ -24,6 +24,12 @@ import addImageTemplateFur from "../templates-ozon/template-fur/TemplateFurData"
 import addImageTemplateHoodie from "../templates-ozon/template-hoodie/TemplateHoodieData";
 import addImageTemplateTrousers from "../templates-ozon/template-trousers/TemplateTrousersData";
 import addImageTemplateCover from "../templates-ozon/template-cover/TemplateCoverData";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import { Button } from "@mui/material";
 
 const DashboardWithoutTempOzon = () => {
   const [allObjectsOnStage, setallObjectsOnStage] = useState([]); //для отображения всех фоток на холсте
@@ -417,7 +423,43 @@ const DashboardWithoutTempOzon = () => {
     }
   };
 
+  const [openDialog, setOpenDialog] = React.useState(false);
+
+  const handleClickOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
   ///////canvas
+
+  const [saveStatus, setSaveStatus] = useState(0);
+
+  const saveCanvasImage = () => {
+    let pr_attr_id = Number(localStorage.getItem("projectAttributeId"));
+    let pr_attr_values = {
+      CanvasSet: JSON.stringify(allObjectsOnCURRENTStage),
+      CanvasUrl: "123",
+    };
+    axios
+      .put(
+        `http://localhost:3001/project_attributes/${pr_attr_id}`,
+        pr_attr_values,
+        {
+          withCredentials: true,
+        }
+      )
+      .then((response) => {
+        {
+          setSaveStatus(response.status);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const addImage = (file, url) => {
     let typeofPhoto;
@@ -557,7 +599,6 @@ const DashboardWithoutTempOzon = () => {
   };
 
   const changeBackgroundLinesFigures = (value) => {
-    console.log(value);
     setActiveTransformer(false);
     if (curBackground) {
       if (value.color) {
@@ -705,7 +746,7 @@ const DashboardWithoutTempOzon = () => {
 
         const context = canvas.getContext("2d");
         context.drawImage(image, 0, 0);
-        console.log(canvas);
+
         let imageData;
         if (valueSelectedJpegPng == "png")
           // Convert to PNG
@@ -738,7 +779,6 @@ const DashboardWithoutTempOzon = () => {
   const [curInputNameofStage, setCurInputNameofStage] = useState("Image");
 
   const handleChangeInputNameofStage = (event) => {
-    console.log(event.target.value);
     setCurInputNameofStage(event.target.value);
   };
 
@@ -762,6 +802,8 @@ const DashboardWithoutTempOzon = () => {
           valueSelectedJpegPng={valueSelectedJpegPng}
           curInputNameofStage={curInputNameofStage}
           handleChangeInputNameofStage={handleChangeInputNameofStage}
+          saveCanvasImage={saveCanvasImage}
+          handleClickOpenDialog={handleClickOpenDialog}
         />
       </Grid>
       <Grid
@@ -834,6 +876,33 @@ const DashboardWithoutTempOzon = () => {
           />
         </Grid>
       </Grid>
+      {saveStatus == 200 && openDialog && (
+        <Dialog
+          open={openDialog}
+          onClose={handleCloseDialog}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title" sx={{ fontWeight: "600" }}>
+            {"Проект был сохранен"}
+          </DialogTitle>
+          <DialogActions>
+            <Button
+              autoFocus
+              onClick={handleCloseDialog}
+              variant="contained"
+              sx={{
+                backgroundColor: "purple",
+                "&:hover": {
+                  backgroundColor: "purple",
+                },
+              }}
+            >
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
     </Box>
   );
 };
