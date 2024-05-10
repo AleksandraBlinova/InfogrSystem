@@ -30,11 +30,35 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Button } from "@mui/material";
+import { useLocation } from "react-router-dom";
 
 const DashboardWithoutTempYM = () => {
   const [allObjectsOnStage, setallObjectsOnStage] = useState([]); //для отображения всех фоток на холсте
 
   const [allObjectsOnCURRENTStage, setallObjectsOnCURRENTStage] = useState([]); //для отображения всех фоток на холсте
+
+  const location = useLocation();
+  const dataCanvasSet = location.state;
+
+  let arrSavedProjects = [];
+
+  useEffect(() => {
+    if (dataCanvasSet) {
+      setallObjectsOnStage([]);
+      setallObjectsOnCURRENTStage([]);
+      let jsImages = [];
+      let jsondata = JSON.parse(dataCanvasSet);
+      jsondata.forEach((itm) => {
+        if (itm.image && itm.image.url) {
+          handleChangeLoadSavedProjects(
+            itm.image.url.replace("http://localhost:3000", "."),
+            itm.image.x,
+            itm.image.y
+          );
+        }
+      });
+    }
+  }, []);
 
   let [numberOfStages, setNumberOfStages] = useState([1]);
   let [currentStageIndex, setCurrentStageIndex] = useState(1);
@@ -52,6 +76,23 @@ const DashboardWithoutTempYM = () => {
   ////////photos from unsplash
 
   const [clickOnUnsplash, setClickOnUnsplash] = useState();
+
+  const handleChangeLoadSavedProjects = (value, x, y) => {
+    let file;
+    if (
+      value.includes("figures") ||
+      value.includes("emoji") ||
+      value.includes("icon")
+    )
+      file = new File([value], "photo.png", { type: "image/png" });
+    else if (value.includes("lines"))
+      file = new File([value], "line.png", { type: "image/png" });
+    else file = new File([value], "photo.jpeg", { type: "image/jpeg" });
+
+    setClickOnUnsplash(file);
+    setPreviewUrl(value);
+    addImagesSavedProjects(file, value, x, y);
+  };
 
   const handleChangeClickOnUnsplash = (value, template) => {
     let file;
@@ -380,12 +421,30 @@ const DashboardWithoutTempYM = () => {
   ///////canvas
 
   const [saveStatus, setSaveStatus] = useState(0);
-
   const saveCanvasImage = () => {
     let pr_attr_id = Number(localStorage.getItem("projectAttributeId"));
+
+    const clonedArray = allObjectsOnCURRENTStage.map((a) => ({ ...a }));
+
+    let allimagesClonedArr = [];
+
+    clonedArray.forEach((i) => {
+      debugger;
+      let val = {
+        url: i.image && i.image.src,
+        width: i.image && i.image.width,
+        height: i.image && i.image.height,
+        x: i.image && i.image.x,
+        y: i.image && i.image.y,
+      };
+      if (i.image) i.image = val;
+    });
+
     let pr_attr_values = {
-      CanvasSet: JSON.stringify(allObjectsOnCURRENTStage),
-      CanvasUrl: "123",
+      CanvasSet: JSON.stringify(clonedArray),
+      CanvasUrl: clonedArray[0].image
+        ? clonedArray[0].image.url.toString()
+        : null,
     };
     axios
       .put(
@@ -398,6 +457,7 @@ const DashboardWithoutTempYM = () => {
       .then((response) => {
         {
           setSaveStatus(response.status);
+          localStorage.setItem("savedProj", previewUrl.toString());
         }
       })
       .catch((error) => {
@@ -472,6 +532,90 @@ const DashboardWithoutTempYM = () => {
 
         setallObjectsOnStage([...allObjectsOnStage, newImage]);
         setallObjectsOnCURRENTStage([...allObjectsOnCURRENTStage, newImage]);
+      };
+      reader.readAsDataURL(imageFile);
+    }
+  };
+
+  const addImagesSavedProjects = (file, url, x, y) => {
+    let typeofPhoto;
+    if (url) {
+      if (url.includes("figures")) {
+        if (url.includes("квадратСкругленный"))
+          typeofPhoto = "figures_quadrat_rounded";
+        else if (url.includes("квадрат")) typeofPhoto = "figures_quadrat";
+        else if (url.includes("круг")) typeofPhoto = "figures_circle";
+        else if (url.includes("треугольник")) typeofPhoto = "figures_triangle";
+        else if (url.includes("трапеция")) typeofPhoto = "figures_4angles";
+        else if (url.includes("пентагон")) typeofPhoto = "figures_5angles";
+        else if (url.includes("шестиугольник")) typeofPhoto = "figures_6angles";
+        else if (url.includes("восьмиугольник"))
+          typeofPhoto = "figures_8angles";
+        else if (url.includes("звезда")) typeofPhoto = "figures_star";
+      } else if (url.includes("lines")) {
+        if (url.includes("1line")) typeofPhoto = "lines_simple";
+        else if (url.includes("2line")) typeofPhoto = "lines_dotted_smalldotes";
+        else if (url.includes("3line")) typeofPhoto = "lines_dotted_bigdotes";
+        else if (url.includes("7line")) typeofPhoto = "lines_arrawsimple";
+        else if (url.includes("8line")) typeofPhoto = "lines_arrawdashed";
+      } else if (url.includes("emoji")) typeofPhoto = "emoji";
+      else if (url.includes("city")) typeofPhoto = "city_icons";
+      else if (url.includes("business")) typeofPhoto = "business_icons";
+      else if (url.includes("unsplash")) typeofPhoto = "unsplash";
+      else typeofPhoto = "";
+    } else typeofPhoto = "drag_drop";
+
+    const imageFile = file;
+    if (imageFile) {
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        let newImage;
+
+        if (imageFile.type.includes("png")) {
+          newImage = {
+            type: "image",
+            id: allObjectsOnStage.length + 1,
+            x: x,
+            y: y,
+            image: new window.Image(),
+            typeofImage: typeofPhoto,
+            fill: "#bdbdbd",
+            stroke: "#000",
+            width: 85,
+            height: 85,
+            slideIndex: currentStageIndex,
+          };
+        } else {
+          newImage = {
+            type: "image",
+            id: allObjectsOnStage.length + 1,
+            x: x,
+            y: y,
+            width: 450,
+            height: 580,
+            image: new window.Image(),
+            typeofImage: typeofPhoto,
+            slideIndex: currentStageIndex,
+          };
+        }
+
+        if (url) newImage.image.src = url;
+        else newImage.image.src = event.target.result;
+
+        arrSavedProjects.push(newImage);
+
+        arrSavedProjects = arrSavedProjects.filter(
+          (elem, index, self) =>
+            self.findIndex((t) => {
+              return t.image.src === elem.image.src;
+            }) === index
+        );
+
+        setallObjectsOnStage([...allObjectsOnStage, ...arrSavedProjects]);
+        setallObjectsOnCURRENTStage([
+          ...allObjectsOnCURRENTStage,
+          ...arrSavedProjects,
+        ]);
       };
       reader.readAsDataURL(imageFile);
     }

@@ -23,12 +23,12 @@ import Divider from "@mui/material/Divider";
 import { Link } from "react-router-dom";
 
 const MainpartCreatives = () => {
-  const [projects, setProjects] = React.useState([]);
+  const [projectsAttributes, setProjectsAttributes] = React.useState([]);
 
   useEffect(() => {
     axios({
       method: "GET",
-      url: "http://localhost:3001/projects",
+      url: "http://localhost:3001/project_attributes",
       headers: {
         "content-type": "application/json",
         withCredentials: true,
@@ -58,7 +58,7 @@ const MainpartCreatives = () => {
 
           itm.difference = difference;
         });
-        setProjects(response.data);
+        setProjectsAttributes(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -120,72 +120,100 @@ const MainpartCreatives = () => {
             </Button>
           </Box>
         </Box>
-        <Box sx={{ marginLeft: "250px" }}>
+        <Box sx={{ marginLeft: "50px", minHeight: "400px" }}>
           <Grid
             container
             rowSpacing={3}
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
           >
-            {projects &&
-              projects.map((project) => (
+            {projectsAttributes &&
+              projectsAttributes.map((project) => (
                 <Grid item xs={6}>
                   <Box>
-                    <Card sx={{ maxWidth: 200 }}>
-                      <CardActionArea
-                        onMouseOver={handleMouseOver}
-                        onMouseOut={handleMouseOut}
+                    <Link
+                      to={
+                        project.MarketplaceId == 1
+                          ? "/withouttempOzon"
+                          : project.MarketplaceId == 2
+                          ? "/withouttempWB"
+                          : "/withouttempYM"
+                      }
+                      state={project.CanvasSet}
+                    >
+                      <Card
+                        sx={{
+                          maxWidth: 250,
+                          marginRight: "10px",
+                          borderRadius: "0px",
+                        }}
                       >
-                        <>
-                          {" "}
-                          <Tooltip
-                            title={
-                              <Typography fontSize={15}>
-                                {project.difference != 0 &&
-                                project.difference > 5
-                                  ? "создан " +
-                                    project.difference +
-                                    " дней назад"
-                                  : project.difference == 1
-                                  ? "создан вчера"
-                                  : project.difference == 0
-                                  ? "создан сегодня"
-                                  : project.difference > 1 &&
-                                    project.difference < 5
-                                  ? "создан " +
-                                    project.difference +
-                                    " дня назад"
-                                  : ""}
-                              </Typography>
-                            }
-                            slotProps={{
-                              popper: {
-                                modifiers: [
-                                  {
-                                    name: "offset",
-                                    options: {
-                                      offset: [0, -10],
+                        <CardActionArea
+                          onMouseOver={handleMouseOver}
+                          onMouseOut={handleMouseOut}
+                          onClick={() => {
+                            localStorage.setItem("projectId", project.Id);
+                            localStorage.setItem(
+                              "projectAttributeId",
+                              project.Id
+                            );
+                          }}
+                        >
+                          <>
+                            <Tooltip
+                              title={
+                                <Typography fontSize={15}>
+                                  {project.difference != 0 &&
+                                  project.difference > 5
+                                    ? "создан " +
+                                      project.difference +
+                                      " дней назад"
+                                    : project.difference == 1
+                                    ? "создан вчера"
+                                    : project.difference == 0
+                                    ? "создан сегодня"
+                                    : project.difference > 1 &&
+                                      project.difference < 5
+                                    ? "создан " +
+                                      project.difference +
+                                      " дня назад"
+                                    : ""}
+                                </Typography>
+                              }
+                              slotProps={{
+                                popper: {
+                                  modifiers: [
+                                    {
+                                      name: "offset",
+                                      options: {
+                                        offset: [0, -10],
+                                      },
                                     },
-                                  },
-                                ],
-                              },
-                            }}
-                          >
-                            {" "}
-                            <CardMedia
-                              component="img"
-                              width="100px"
-                              height="200px"
-                              image="-1001.jpg"
-                              sx={{
-                                "&:hover": {
-                                  "*": "inherit",
+                                  ],
                                 },
                               }}
-                            />
-                          </Tooltip>
-                        </>
-                      </CardActionArea>
-                    </Card>
+                            >
+                              {" "}
+                              <CardMedia
+                                component="img"
+                                width="250px"
+                                height="300px"
+                                image={
+                                  project.CanvasUrl
+                                    ? project.CanvasUrl.replace("&quot;", "")
+                                    : "./6391435521.jpg"
+                                }
+                                sx={{
+                                  "&:hover": {
+                                    "*": "inherit",
+                                  },
+                                  borderRadius: "0px",
+                                }}
+                              />
+                            </Tooltip>
+                          </>
+                        </CardActionArea>
+                      </Card>
+                    </Link>
                   </Box>
                 </Grid>
               ))}

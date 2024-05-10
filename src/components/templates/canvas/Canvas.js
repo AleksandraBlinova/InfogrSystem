@@ -84,7 +84,7 @@ const Canvas = (props) => {
               Неподдерживаемый формат файла
             </Alert>
           )}
-          {props.previewUrl && (
+          {(props.previewUrl || localStorage.getItem("savedProj")) && (
             <div className="image" id="imageCanvasForRect">
               <Stage
                 id="myCanvas"
