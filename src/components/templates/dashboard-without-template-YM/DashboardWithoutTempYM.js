@@ -429,7 +429,6 @@ const DashboardWithoutTempYM = () => {
     let allimagesClonedArr = [];
 
     clonedArray.forEach((i) => {
-      debugger;
       let val = {
         url: i.image && i.image.src,
         width: i.image && i.image.width,
@@ -467,7 +466,7 @@ const DashboardWithoutTempYM = () => {
 
   const addImage = (file, url) => {
     let typeofPhoto;
-    console.log(url);
+
     if (url) {
       if (url.includes("figures")) {
         if (url.includes("квадратСкругленный"))
@@ -687,7 +686,6 @@ const DashboardWithoutTempYM = () => {
   };
 
   const changeBackgroundLinesFigures = (value) => {
-    console.log(value);
     setActiveTransformer(false);
     if (curBackground) {
       if (value.color) {
@@ -763,7 +761,6 @@ const DashboardWithoutTempYM = () => {
       (selectedStageNum == 1 && numberOfStages.length > 1)
     ) {
       if (numberOfStages.find((i) => i == selectedStageNum)) {
-        console.log(selectedStageNum);
         setCurrentStageIndex(selectedStageNum - 1);
         numberOfStages.splice(numberOfStages.indexOf(selectedStageNum), 1);
         setallObjectsOnStage(
@@ -835,7 +832,7 @@ const DashboardWithoutTempYM = () => {
 
         const context = canvas.getContext("2d");
         context.drawImage(image, 0, 0);
-        console.log(canvas);
+
         let imageData;
         if (valueSelectedJpegPng == "png")
           // Convert to PNG

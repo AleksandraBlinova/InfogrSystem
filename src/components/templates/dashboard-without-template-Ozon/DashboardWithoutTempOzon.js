@@ -136,12 +136,12 @@ const DashboardWithoutTempOzon = () => {
   const handleChangeLoadSavedProjects = (value, x, y) => {
     let file;
     if (
-      value.includes("figures") ||
-      value.includes("emoji") ||
-      value.includes("icon")
+      (value && value.includes("figures")) ||
+      (value && value.includes("emoji")) ||
+      (value && value.includes("icon"))
     )
       file = new File([value], "photo.png", { type: "image/png" });
-    else if (value.includes("lines"))
+    else if (value && value.includes("lines"))
       file = new File([value], "line.png", { type: "image/png" });
     else file = new File([value], "photo.jpeg", { type: "image/jpeg" });
 
@@ -486,7 +486,6 @@ const DashboardWithoutTempOzon = () => {
     let allimagesClonedArr = [];
 
     clonedArray.forEach((i) => {
-      debugger;
       let val = {
         url: i.image && i.image.src,
         width: i.image && i.image.width,
@@ -525,7 +524,7 @@ const DashboardWithoutTempOzon = () => {
 
   const addImage = (file, url) => {
     let typeofPhoto;
-    console.log(url);
+
     if (url) {
       if (url.includes("figures")) {
         if (url.includes("квадратСкругленный"))
@@ -629,7 +628,7 @@ const DashboardWithoutTempOzon = () => {
       reader.onload = function (event) {
         let newImage;
 
-        if (imageFile.type.includes("png")) {
+        if (imageFile && imageFile.type && imageFile.type.includes("png")) {
           newImage = {
             type: "image",
             id: allObjectsOnStage.length + 1,
@@ -820,7 +819,6 @@ const DashboardWithoutTempOzon = () => {
       (selectedStageNum == 1 && numberOfStages.length > 1)
     ) {
       if (numberOfStages.find((i) => i == selectedStageNum)) {
-        console.log(selectedStageNum);
         setCurrentStageIndex(selectedStageNum - 1);
         numberOfStages.splice(numberOfStages.indexOf(selectedStageNum), 1);
         setallObjectsOnStage(
