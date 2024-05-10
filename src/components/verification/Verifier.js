@@ -75,7 +75,7 @@ const Verifier = () => {
 
   const loadModel = async () => {
     setIsModelLoading(true);
-
+    debugger;
     if (mobilenet) {
       const model = await mobilenet.load();
       setModel(model);
@@ -224,13 +224,14 @@ const Verifier = () => {
     setStatusDetection("true");
     results &&
       results.forEach((element) => {
+        console.log(element);
         localStorage.getItem("chosMarketPL") == "Ozon" &&
           limitsOzon.forEach((l) => {
             if (
               element &&
               element.className &&
               element.className.toLowerCase().includes(l) &&
-              element.probability > 0.3 &&
+              element.probability > 0.2 &&
               (l == "cat" ||
                 l == "dog" ||
                 l == "hamster" ||
