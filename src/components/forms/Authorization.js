@@ -49,6 +49,7 @@ export default function Authorization(props) {
           props.setLog("true");
           props.setAuthResult(response.data);
           localStorage.setItem("nameOfUser", response.data.username);
+          localStorage.setItem("userId", response.data.id);
         }
       })
       .catch((error) => {

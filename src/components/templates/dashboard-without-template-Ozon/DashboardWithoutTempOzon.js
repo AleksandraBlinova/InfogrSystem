@@ -56,6 +56,9 @@ const DashboardWithoutTempOzon = () => {
             itm.image.y
           );
         }
+        if (itm.text) {
+          addTextSavedPr(itm.text);
+        }
       });
     }
   }, []);
@@ -596,6 +599,7 @@ const DashboardWithoutTempOzon = () => {
 
   const addImagesSavedProjects = (file, url, x, y) => {
     let typeofPhoto;
+
     if (url) {
       if (url.includes("figures")) {
         if (url.includes("квадратСкругленный"))
@@ -700,6 +704,25 @@ const DashboardWithoutTempOzon = () => {
     setallObjectsOnCURRENTStage([...allObjectsOnCURRENTStage, newText]);
     setPreviewUrl("addedtext");
   };
+
+  const addTextSavedPr = (value) => {
+    const newText = {
+      type: "text",
+      id: allObjectsOnStage.length + 1,
+      x: 100,
+      y: 100,
+      text: value,
+      fontSize: 24,
+      fontFamily: "Arial",
+      textDecoration: "empty",
+      slideIndex: currentStageIndex,
+    };
+
+    debugger;
+    setallObjectsOnStage([...allObjectsOnStage, newText]);
+    setallObjectsOnCURRENTStage([...allObjectsOnCURRENTStage, newText]);
+    setPreviewUrl("addedtext");
+  };
   ///////canvas text area
 
   const [curText, setCurText] = useState("");
@@ -718,6 +741,7 @@ const DashboardWithoutTempOzon = () => {
   };
 
   const changeTextStyle = (value) => {
+    debugger;
     setActiveTransformer(false);
     if (curText) {
       if (value == "arial") curText.fontFamily = "Arial";

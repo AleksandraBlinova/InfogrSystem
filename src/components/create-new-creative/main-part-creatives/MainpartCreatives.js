@@ -25,6 +25,8 @@ import { Link } from "react-router-dom";
 const MainpartCreatives = () => {
   const [projectsAttributes, setProjectsAttributes] = React.useState([]);
 
+  const [count, setCount] = React.useState(false);
+
   useEffect(() => {
     axios({
       method: "GET",
@@ -59,11 +61,48 @@ const MainpartCreatives = () => {
           itm.difference = difference;
         });
         setProjectsAttributes(response.data);
+        setCount(true);
+        console.log("projectsAttributes", response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    if (count) {
+      axios({
+        method: "GET",
+        url: "http://localhost:3001/projects",
+        headers: {
+          "content-type": "application/json",
+          withCredentials: true,
+        },
+      })
+        .then((response) => {
+          let prjs = response.data.filter(
+            (i) => i.UserId == Number(localStorage.getItem("userId"))
+          );
+          setProjects(prjs);
+          let newArr = [];
+
+          projectsAttributes &&
+            projectsAttributes.forEach((i) => {
+              prjs &&
+                prjs.forEach((j) => {
+                  if (i.Id == j.Id) newArr.push(i);
+                });
+            });
+
+          setProjectsAttributes(newArr);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [count]);
 
   const [isHovered, setIsHovered] = React.useState(false);
 
@@ -128,7 +167,7 @@ const MainpartCreatives = () => {
           >
             {projectsAttributes &&
               projectsAttributes.map((project) => (
-                <Grid item xs={6}>
+                <Grid item xs={12}>
                   <Box>
                     <Link
                       to={
