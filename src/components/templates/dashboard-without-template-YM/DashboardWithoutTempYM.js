@@ -56,6 +56,9 @@ const DashboardWithoutTempYM = () => {
             itm.image.y
           );
         }
+        if (itm.text) {
+          addTextSavedPr(itm.text);
+        }
       });
     }
   }, []);
@@ -643,6 +646,25 @@ const DashboardWithoutTempYM = () => {
     setPreviewUrl("addedtext");
   };
   ///////canvas text area
+
+  const addTextSavedPr = (value) => {
+    const newText = {
+      type: "text",
+      id: allObjectsOnStage.length + 1,
+      x: 100,
+      y: 100,
+      text: value,
+      fontSize: 24,
+      fontFamily: "Arial",
+      textDecoration: "empty",
+      slideIndex: currentStageIndex,
+    };
+
+    debugger;
+    setallObjectsOnStage([...allObjectsOnStage, newText]);
+    setallObjectsOnCURRENTStage([...allObjectsOnCURRENTStage, newText]);
+    setPreviewUrl("addedtext");
+  };
 
   const [curText, setCurText] = useState("");
 
