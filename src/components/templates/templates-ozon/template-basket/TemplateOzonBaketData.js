@@ -34,7 +34,7 @@ export default function addImageTemplateOzonBasket(
 
       const newTextWeight = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 2,
         x: 110,
         fill: "#fff",
         fontStyle: "bold",
@@ -48,7 +48,7 @@ export default function addImageTemplateOzonBasket(
 
       const newTexForFintess = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 3,
         x: 10,
         fill: "#ff5722",
         fontStyle: "bold",
@@ -62,7 +62,7 @@ export default function addImageTemplateOzonBasket(
 
       let rectWeight = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 4,
         x: 10,
         y: 110,
         image: new window.Image(),
@@ -76,7 +76,7 @@ export default function addImageTemplateOzonBasket(
 
       const rectText = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 5,
         x: 90,
         y: 120,
         fill: "#fff",
@@ -90,7 +90,7 @@ export default function addImageTemplateOzonBasket(
 
       let newImageBasket = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 6,
         x: -20,
         y: 130,
         width: 450,

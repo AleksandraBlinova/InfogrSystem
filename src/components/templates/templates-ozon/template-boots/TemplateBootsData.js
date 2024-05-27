@@ -34,7 +34,7 @@ export default function addImageTemplateBoots(
 
       const newText = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 2,
         x: 65,
         fill: "#4C412B",
         fontStyle: "bold",
@@ -47,7 +47,7 @@ export default function addImageTemplateBoots(
       };
       const newText3 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 3,
         x: 200,
         fill: "#4C412B",
         fontStyle: "bold",
@@ -61,7 +61,7 @@ export default function addImageTemplateBoots(
 
       let newImageDone1 = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 4,
         x: 10,
         y: 490,
         width: 50,
@@ -76,7 +76,7 @@ export default function addImageTemplateBoots(
 
       let newImageDone2 = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 5,
         x: 150,
         y: 535,
         width: 50,

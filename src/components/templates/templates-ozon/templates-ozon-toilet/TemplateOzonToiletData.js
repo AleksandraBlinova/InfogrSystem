@@ -34,7 +34,7 @@ export default function addImageTemplateOzonToilet(
 
       let newImageToilet = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 2,
         x: -10,
         y: -70,
         width: 450,
@@ -48,7 +48,7 @@ export default function addImageTemplateOzonToilet(
 
       let newImageBearIcon = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 3,
         x: 310,
         y: 460,
         image: new window.Image(),

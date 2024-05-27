@@ -34,7 +34,7 @@ export default function addImageTemplatePicknic(
 
       const newText = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 2,
         x: 110,
         fill: "#E74E0B",
         fontStyle: "bold",
@@ -47,7 +47,7 @@ export default function addImageTemplatePicknic(
       };
       const newText2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 3,
         x: 10,
         fill: "#E74E0B",
         fontStyle: "bold",
@@ -61,7 +61,7 @@ export default function addImageTemplatePicknic(
 
       let newImageCase = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 4,
         x: 0,
         y: 180,
         width: 420,
@@ -76,7 +76,7 @@ export default function addImageTemplatePicknic(
 
       let newImageLine1 = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 5,
         x: 5,
         y: 178,
         width: 50,
@@ -90,7 +90,7 @@ export default function addImageTemplatePicknic(
         "./templatesOzon/templates-picknic/icons8-horizontal-line-96.png";
       let newImageLine2 = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 6,
         x: 359,
         y: 178,
         width: 50,
@@ -105,7 +105,7 @@ export default function addImageTemplatePicknic(
 
       const newText3 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 7,
         x: 60,
         fill: "#E74E0B",
         fontStyle: "bold",

@@ -34,7 +34,7 @@ export default function addImageTemplateHolder(
 
       const newText3 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 2,
         x: 110,
         fill: "#fff",
         fontStyle: "bold",
@@ -47,7 +47,7 @@ export default function addImageTemplateHolder(
       };
       let rectAnatom = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 3,
         x: 90,
         y: 0,
         opacity: 0.9,

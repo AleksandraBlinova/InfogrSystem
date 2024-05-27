@@ -34,7 +34,7 @@ export default function addImageTemplateTrousers(
 
       const Text = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 2,
         x: 20,
         y: 480,
         fill: "#000",
@@ -47,7 +47,7 @@ export default function addImageTemplateTrousers(
       };
       const Text2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 3,
         x: 20,
         y: 525,
         fill: "#000",
@@ -60,7 +60,7 @@ export default function addImageTemplateTrousers(
       };
       const Text22 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 4,
         x: 350,
         y: 5,
         fill: "#000",
@@ -74,7 +74,7 @@ export default function addImageTemplateTrousers(
 
       const Text3 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 5,
         x: 20,
         y: 265,
         fill: "#000",
@@ -87,7 +87,7 @@ export default function addImageTemplateTrousers(
       };
       const Text4 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 6,
         x: 27,
         y: 285,
         fill: "#000",
@@ -101,7 +101,7 @@ export default function addImageTemplateTrousers(
 
       const Text5 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 7,
         x: 20,
         y: 375,
         fill: "#8000FF",

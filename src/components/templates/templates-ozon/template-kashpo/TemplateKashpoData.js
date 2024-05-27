@@ -34,7 +34,7 @@ export default function addImageTemplateKashpo(
 
       const newText = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 2,
         x: 20,
         fill: "#4C412B",
         fontStyle: "italic",
@@ -48,7 +48,7 @@ export default function addImageTemplateKashpo(
 
       const newText2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 3,
         x: 32,
         fill: "#4C412B",
         fontStyle: "bold",

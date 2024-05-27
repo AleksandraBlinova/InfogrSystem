@@ -34,7 +34,7 @@ export default function addImageTemplateSlippers(
 
       let newImageSlip = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 2,
         x: 10,
         y: 130,
         width: 400,
@@ -48,7 +48,7 @@ export default function addImageTemplateSlippers(
 
       const newText = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 3,
         x: 20,
         fill: "#fff",
         fontStyle: "bold",
@@ -62,7 +62,7 @@ export default function addImageTemplateSlippers(
 
       const newText2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 4,
         x: 40,
         fill: "#fff",
         fontStyle: "normal",

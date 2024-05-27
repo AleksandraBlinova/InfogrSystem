@@ -34,7 +34,7 @@ export default function addImageTemplateOzonKPB(
 
       const homeTextileText1 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 2,
         x: 10,
         y: 10,
         fill: "#635D55",
@@ -47,7 +47,7 @@ export default function addImageTemplateOzonKPB(
       };
       const homeTextileText2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 3,
         x: 10,
         y: 54,
 
@@ -64,7 +64,7 @@ export default function addImageTemplateOzonKPB(
 
       let rectAnatom = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 4,
         x: 260,
         y: 5,
         opacity: 0.9,
@@ -81,7 +81,7 @@ export default function addImageTemplateOzonKPB(
 
       const anatomText = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 5,
         x: 275,
         y: 15,
         fill: "#635D55",
@@ -95,7 +95,7 @@ export default function addImageTemplateOzonKPB(
 
       const sizeText1 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 6,
         x: 310,
         y: 135,
         fill: "#635D55",
@@ -109,7 +109,7 @@ export default function addImageTemplateOzonKPB(
 
       const sizeText2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 7,
         x: 320,
         y: 165,
         fill: "#635D55",
@@ -123,7 +123,7 @@ export default function addImageTemplateOzonKPB(
 
       let newImagePillowIcon = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 8,
         x: 327,
         y: 105,
         width: 33,
@@ -138,7 +138,7 @@ export default function addImageTemplateOzonKPB(
 
       let newImageCloudIcon = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 9,
         x: 267,
         y: 55,
         width: 163,
@@ -153,7 +153,7 @@ export default function addImageTemplateOzonKPB(
 
       let newImageCloudIcon2 = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 10,
         x: 5,
         y: 425,
         width: 163,
@@ -168,7 +168,7 @@ export default function addImageTemplateOzonKPB(
 
       const toughText1 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 11,
         x: 55,
         y: 495,
         fill: "#635D55",
@@ -182,7 +182,7 @@ export default function addImageTemplateOzonKPB(
 
       const toughText2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 12,
         x: 50,
         y: 515,
         fill: "#635D55",

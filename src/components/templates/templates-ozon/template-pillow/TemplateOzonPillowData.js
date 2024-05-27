@@ -41,7 +41,7 @@ export default function addImageTemplateOzonPillow(
 
       const newTextPillow = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 2,
         x: 115,
         fill: "#fff",
         fontStyle: "bold",
@@ -54,7 +54,7 @@ export default function addImageTemplateOzonPillow(
       };
       const newTextMedium = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 3,
         x: 120,
         y: 555,
         fill: "#fff",
@@ -69,7 +69,7 @@ export default function addImageTemplateOzonPillow(
       const splittedString = ["#414d0b", "#727a17"];
       rectSoft = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 4,
         x: 120,
         y: 58,
         image: new window.Image(),
@@ -84,7 +84,7 @@ export default function addImageTemplateOzonPillow(
 
       const newTextRectSoft = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 5,
         x: 132,
         y: 68,
         fill: "#fff",
@@ -99,7 +99,7 @@ export default function addImageTemplateOzonPillow(
       const splittedStringRectSize = ["#FF9F45", "#FFBC80"];
       rectSize = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 6,
         x: 20,
         y: 135,
         image: new window.Image(),
@@ -115,7 +115,7 @@ export default function addImageTemplateOzonPillow(
 
       const newTextRectSize1 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 7,
         x: 40,
         y: 136,
         rotation: -13,
@@ -130,7 +130,7 @@ export default function addImageTemplateOzonPillow(
 
       const newTextRectSize2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 8,
         x: 58,
         y: 155,
         rotation: -13,
@@ -145,7 +145,7 @@ export default function addImageTemplateOzonPillow(
 
       rectParams = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 9,
         x: 300,
         y: 435,
         image: new window.Image(),
@@ -161,7 +161,7 @@ export default function addImageTemplateOzonPillow(
 
       const newTextRectParams1 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 10,
         x: 313,
         y: 444,
         rotation: 13,
@@ -176,7 +176,7 @@ export default function addImageTemplateOzonPillow(
 
       const newTextRectParams2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 11,
         x: 305,
         y: 465,
         rotation: 13,
@@ -191,7 +191,7 @@ export default function addImageTemplateOzonPillow(
 
       bottomRect = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 12,
         x: 118,
         y: 513,
         image: new window.Image(),
@@ -207,7 +207,7 @@ export default function addImageTemplateOzonPillow(
 
       bottomsmallRect1 = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 13,
         x: 127,
         y: 518,
         image: new window.Image(),
@@ -222,7 +222,7 @@ export default function addImageTemplateOzonPillow(
 
       bottomsmallRect2 = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 14,
         x: 193,
         y: 518,
         image: new window.Image(),
@@ -237,7 +237,7 @@ export default function addImageTemplateOzonPillow(
 
       bottomsmallRect3 = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 15,
         x: 259,
         y: 518,
         image: new window.Image(),

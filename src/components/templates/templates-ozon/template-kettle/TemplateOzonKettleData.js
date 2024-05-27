@@ -34,7 +34,7 @@ export default function addImageTemplateOzonKettle(
 
       const cleanNiceText1 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 2,
         x: 60,
         y: 60,
         fill: "#1a237e",
@@ -47,7 +47,7 @@ export default function addImageTemplateOzonKettle(
       };
       const cleanNiceText2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 3,
         x: 60,
         y: 80,
         fill: "#1a237e",
@@ -61,7 +61,7 @@ export default function addImageTemplateOzonKettle(
 
       const boiledDegreeText1 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 4,
         x: 280,
         y: 60,
         fill: "#1a237e",
@@ -74,7 +74,7 @@ export default function addImageTemplateOzonKettle(
       };
       const boiledDegreeText2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 5,
         x: 280,
         y: 80,
         fill: "#1a237e",
@@ -88,7 +88,7 @@ export default function addImageTemplateOzonKettle(
 
       const VText1 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 6,
         x: 150,
         y: 520,
         fill: "#1a237e",
@@ -101,7 +101,7 @@ export default function addImageTemplateOzonKettle(
       };
       const VText2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 7,
         x: 150,
         y: 540,
         fill: "#1a237e",
@@ -115,7 +115,7 @@ export default function addImageTemplateOzonKettle(
 
       let newImageBestseller = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 8,
         x: 200,
         y: 350,
         width: 250,
@@ -130,7 +130,7 @@ export default function addImageTemplateOzonKettle(
 
       let arrow1 = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 9,
         x: 80,
         y: 100,
         width: 60,
@@ -144,7 +144,7 @@ export default function addImageTemplateOzonKettle(
 
       let arrow2 = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 10,
         x: 320,
         y: 100,
         width: 35,
@@ -158,7 +158,7 @@ export default function addImageTemplateOzonKettle(
 
       let arrow3 = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 11,
         x: 120,
         y: 455,
         width: 35,

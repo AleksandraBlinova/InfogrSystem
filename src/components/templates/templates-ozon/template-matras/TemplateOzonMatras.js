@@ -34,7 +34,7 @@ export default function addImageTemplateOzonMatras(
 
       const homeTextileText1 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 2,
         x: 40,
         y: 60,
         fill: "#635D55",
@@ -47,7 +47,7 @@ export default function addImageTemplateOzonMatras(
       };
       const homeTextileText2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 3,
         x: 40,
         y: 120,
         fill: "#E42F65",
@@ -61,7 +61,7 @@ export default function addImageTemplateOzonMatras(
 
       const sizeText1 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 4,
         x: 285,
         y: 195,
         fill: "#fff",
@@ -75,7 +75,7 @@ export default function addImageTemplateOzonMatras(
 
       let rectAnatom = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 5,
         x: 280,
         y: 185,
         opacity: 0.9,
@@ -90,7 +90,7 @@ export default function addImageTemplateOzonMatras(
 
       const sizeText2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 6,
         x: 295,
         y: 270,
         fill: "#fff",
@@ -104,7 +104,7 @@ export default function addImageTemplateOzonMatras(
 
       let rectAnatom2 = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 7,
         x: 280,
         y: 255,
         opacity: 0.9,
@@ -120,7 +120,7 @@ export default function addImageTemplateOzonMatras(
 
       const sizeText3 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 8,
         x: 35,
         y: 470,
         fill: "#000",
@@ -134,7 +134,7 @@ export default function addImageTemplateOzonMatras(
 
       let rectAnatom3 = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 9,
         x: 25,
         y: 455,
         opacity: 0.9,

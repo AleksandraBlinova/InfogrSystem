@@ -34,7 +34,7 @@ export default function addImageTemplateHoodie(
 
       const Text = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 2,
         x: 10,
         y: 20,
         fill: "#000",
@@ -47,7 +47,7 @@ export default function addImageTemplateHoodie(
       };
       const Text2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 3,
         x: 10,
         y: 65,
         fill: "#000",
@@ -60,7 +60,7 @@ export default function addImageTemplateHoodie(
       };
       const Text22 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 4,
         x: 350,
         y: 5,
         fill: "#000",
@@ -73,7 +73,7 @@ export default function addImageTemplateHoodie(
       };
       const Text3 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 5,
         x: 385,
         y: 202,
         fill: "#fff",
@@ -88,7 +88,7 @@ export default function addImageTemplateHoodie(
 
       let rectWeight = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 6,
         x: 375,
         rotation: -90,
         y: 210,

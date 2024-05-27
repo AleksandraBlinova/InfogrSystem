@@ -34,7 +34,7 @@ export default function addImageTemplateFrames(
 
       const newText = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 2,
         x: 280,
         fill: "#4C412B",
         fontStyle: "bold",
@@ -47,7 +47,7 @@ export default function addImageTemplateFrames(
       };
       const newText3 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 3,
         x: 160,
         fill: "#4C412B",
         fontStyle: "bold",
@@ -61,7 +61,7 @@ export default function addImageTemplateFrames(
 
       const newText2 = {
         type: "text",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 4,
         x: 315,
         y: 260,
         fill: "#fff",
@@ -75,7 +75,7 @@ export default function addImageTemplateFrames(
 
       let newImageCloud = {
         type: "image",
-        id: allObjectsOnStage.length + 1,
+        id: allObjectsOnStage.length + 5,
         x: 280,
         y: 210,
         width: 120,
