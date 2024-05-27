@@ -97,28 +97,40 @@ const CanvasProjects = ({
                     </Grid>
                     <Grid item xs={8}>
                       {" "}
-                      {(i.typeofImage.includes("icon") ||
-                        i.typeofImage.includes("emoji")) && (
+                      {((i.typeofImage && i.typeofImage.includes("icon")
+                        ? i.typeofImage.includes("icon")
+                        : "") ||
+                        (i.typeofImage && i.typeofImage.includes("emoji")
+                          ? i.typeofImage.includes("emoji")
+                          : "")) && (
                         <Typography sx={{ marginTop: "12px" }}>
                           Иконка
                         </Typography>
                       )}
-                      {(i.typeofImage.includes("unsplash") ||
-                        i.typeofImage.includes("drag_drop")) && (
+                      {((i.typeofImage && i.typeofImage.includes("unsplash")
+                        ? i.typeofImage.includes("unsplash")
+                        : "") ||
+                        (i.typeofImage && i.typeofImage.includes("drag_drop")
+                          ? i.typeofImage.includes("drag_drop")
+                          : "")) && (
                         <Typography sx={{ marginTop: "12px" }}>
                           Изображение
                         </Typography>
                       )}
-                      {i.typeofImage.includes("figure") && (
-                        <Typography sx={{ marginTop: "12px" }}>
-                          Фигура
-                        </Typography>
-                      )}
-                      {i.typeofImage.includes("line") && (
-                        <Typography sx={{ marginTop: "12px" }}>
-                          Линия
-                        </Typography>
-                      )}
+                      {i.typeofImage && i.typeofImage.includes("figure")
+                        ? i.typeofImage.includes("figure")
+                        : "" && (
+                            <Typography sx={{ marginTop: "12px" }}>
+                              Фигура
+                            </Typography>
+                          )}
+                      {i.typeofImage && i.typeofImage.includes("line")
+                        ? i.typeofImage.includes("line")
+                        : "" && (
+                            <Typography sx={{ marginTop: "12px" }}>
+                              Линия
+                            </Typography>
+                          )}
                     </Grid>
                   </Grid>
                 )}
