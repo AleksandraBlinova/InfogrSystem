@@ -167,7 +167,7 @@ const MainpartCreatives = () => {
           >
             {projectsAttributes &&
               projectsAttributes.map((project) => (
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                   <Box>
                     <Link
                       to={
@@ -181,7 +181,7 @@ const MainpartCreatives = () => {
                     >
                       <Card
                         sx={{
-                          maxWidth: 250,
+                          maxWidth: 230,
                           marginRight: "10px",
                           borderRadius: "0px",
                         }}

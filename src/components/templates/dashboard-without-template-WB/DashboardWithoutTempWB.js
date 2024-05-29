@@ -94,7 +94,9 @@ const DashboardWithoutTempWB = () => {
         }
       });
       setPreviewUrl(
-        jsImages[0].image.src ? jsImages[0].image.src : "addedText"
+        jsImages[0] && jsImages[0].image && jsImages[0].image.src
+          ? jsImages[0].image.src
+          : "addedText"
       );
       setallObjectsOnStage([...allObjectsOnStage, ...jsImages]);
       setallObjectsOnCURRENTStage([...allObjectsOnCURRENTStage, ...jsImages]);
@@ -556,9 +558,10 @@ const DashboardWithoutTempWB = () => {
 
     let pr_attr_values = {
       CanvasSet: JSON.stringify(clonedArray),
-      CanvasUrl: clonedArray[0].image
-        ? clonedArray[0].image.url.toString()
-        : null,
+      CanvasUrl:
+        clonedArray[0] && clonedArray[0].image
+          ? clonedArray[0].image.url.toString()
+          : "./6391435521.jpg",
     };
     axios
       .put(
