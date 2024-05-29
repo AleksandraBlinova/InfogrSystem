@@ -41,6 +41,8 @@ const DashboardWithoutTempYM = () => {
   const dataCanvasSet = location.state;
 
   let arrSavedProjects = [];
+  localStorage.setItem("isSavedOpened", "false");
+
   useEffect(() => {
     if (dataCanvasSet) {
       setallObjectsOnStage([]);
@@ -97,6 +99,7 @@ const DashboardWithoutTempYM = () => {
           ? jsImages[0].image.src
           : "addedText"
       );
+      localStorage.setItem("isSavedOpened", "true");
       setallObjectsOnStage([...allObjectsOnStage, ...jsImages]);
       setallObjectsOnCURRENTStage([...allObjectsOnCURRENTStage, ...jsImages]);
     }
@@ -441,7 +444,8 @@ const DashboardWithoutTempYM = () => {
       localStorage.getItem("linkTempImg") &&
       localStorage.getItem("linkTempImg") != "" &&
       localStorage.getItem("typeTempImg") &&
-      localStorage.getItem("typeTempImg") != ""
+      localStorage.getItem("typeTempImg") != "" &&
+      !localStorage.getItem("isSavedOpened", "true")
     ) {
       handleChangeClickOnUnsplash(
         localStorage.getItem("linkTempImg"),
