@@ -124,13 +124,13 @@ const CanvasProjects = ({
                           Фигура
                         </Typography>
                       )}
-                      {i.typeofImage && i.typeofImage.includes("line")
+                      {(i.typeofImage && i.typeofImage.includes("line")
                         ? i.typeofImage.includes("line")
-                        : "" && (
-                            <Typography sx={{ marginTop: "12px" }}>
-                              Линия
-                            </Typography>
-                          )}
+                        : "") && (
+                        <Typography sx={{ marginTop: "12px" }}>
+                          Линия
+                        </Typography>
+                      )}
                     </Grid>
                   </Grid>
                 )}
