@@ -564,7 +564,7 @@ const ChooseUserAttributes = () => {
                     {localStorage.getItem("needTemplateMarketPL") ==
                       "basketball" && (
                       <img
-                        src="./BasketBall.png"
+                        src="./БаскетМяч.png"
                         style={{
                           width: "250px",
                           height: "320px",
