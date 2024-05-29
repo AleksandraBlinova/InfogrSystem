@@ -117,13 +117,13 @@ const CanvasProjects = ({
                           Изображение
                         </Typography>
                       )}
-                      {i.typeofImage && i.typeofImage.includes("figure")
+                      {(i.typeofImage && i.typeofImage.includes("figure")
                         ? i.typeofImage.includes("figure")
-                        : "" && (
-                            <Typography sx={{ marginTop: "12px" }}>
-                              Фигура
-                            </Typography>
-                          )}
+                        : "") && (
+                        <Typography sx={{ marginTop: "12px" }}>
+                          Фигура
+                        </Typography>
+                      )}
                       {i.typeofImage && i.typeofImage.includes("line")
                         ? i.typeofImage.includes("line")
                         : "" && (
