@@ -52,67 +52,50 @@ const DashboardWithoutTempOzon = () => {
       let jsondata = JSON.parse(dataCanvasSet);
       jsondata.forEach((itm) => {
         if (itm.image && itm.image.url) {
-          let typeofPhoto;
           if (itm.image.url) {
             url = itm.image.url.replace("http://localhost:3000", ".");
-            if (url.includes("figures")) {
-              if (url.includes("квадратСкругленный"))
-                typeofPhoto = "figures_quadrat_rounded";
-              else if (url.includes("квадрат")) typeofPhoto = "figures_quadrat";
-              else if (url.includes("круг")) typeofPhoto = "figures_circle";
-              else if (url.includes("треугольник"))
-                typeofPhoto = "figures_triangle";
-              else if (url.includes("трапеция"))
-                typeofPhoto = "figures_4angles";
-              else if (url.includes("пентагон"))
-                typeofPhoto = "figures_5angles";
-              else if (url.includes("шестиугольник"))
-                typeofPhoto = "figures_6angles";
-              else if (url.includes("восьмиугольник"))
-                typeofPhoto = "figures_8angles";
-              else if (url.includes("звезда")) typeofPhoto = "figures_star";
-            } else if (url.includes("lines")) {
-              if (url.includes("1line")) typeofPhoto = "lines_simple";
-              else if (url.includes("2line"))
-                typeofPhoto = "lines_dotted_smalldotes";
-              else if (url.includes("3line"))
-                typeofPhoto = "lines_dotted_bigdotes";
-              else if (url.includes("7line")) typeofPhoto = "lines_arrawsimple";
-              else if (url.includes("8line")) typeofPhoto = "lines_arrawdashed";
-            } else if (url.includes("emoji")) typeofPhoto = "emoji";
-            else if (url.includes("city")) typeofPhoto = "city_icons";
-            else if (url.includes("business")) typeofPhoto = "business_icons";
-            else if (url.includes("unsplash")) typeofPhoto = "unsplash";
-            else typeofPhoto = "";
-          } else typeofPhoto = "drag_drop";
 
-          let newImage;
+            let newImage;
+            newImage = {
+              type: "image",
+              id: itm.id,
+              x: itm.x,
+              y: itm.y,
+              image: new window.Image(),
+              typeofImage: itm.typeofImage,
+              fill: itm.fill,
+              stroke: itm.stroke,
+              width: itm.width,
+              height: itm.height,
+              slideIndex: currentStageIndex,
+            };
 
-          newImage = {
-            type: "image",
-            id: allObjectsOnStage.length + 1,
-            x: itm.x,
-            y: itm.y,
-            id: itm.id,
-            image: new window.Image(),
-            typeofImage: typeofPhoto,
-            fill: "#bdbdbd",
-            stroke: "#000",
-            width: itm.width,
-            height: itm.height,
-            slideIndex: currentStageIndex,
-          };
+            if (url) newImage.image.src = url;
 
-          if (url) newImage.image.src = url;
-
-          jsImages.push(newImage);
+            jsImages.push(newImage);
+          }
         }
         if (itm.text) {
           arrTexts.push(itm);
         }
       });
       Array.prototype.push.apply(jsImages, arrTexts);
-      debugger;
+      let inc = 0;
+      jsImages.forEach((it) => {
+        if (it.image) {
+          it.id = inc;
+          inc = inc + 1;
+        }
+      });
+      jsImages.forEach((it) => {
+        if (it.text) {
+          it.id = inc;
+          inc = inc + 1;
+        }
+      });
+      setPreviewUrl(
+        jsImages[0].image.src ? jsImages[0].image.src : "addedText"
+      );
       setallObjectsOnStage([...allObjectsOnStage, ...jsImages]);
       setallObjectsOnCURRENTStage([...allObjectsOnCURRENTStage, ...jsImages]);
     }

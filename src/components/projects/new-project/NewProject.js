@@ -103,7 +103,7 @@ const NewProject = () => {
                       component="img"
                       width="100px"
                       height="250px"
-                      image="БаскетМяч.png"
+                      image="BasketBall.png"
                       sx={{ objectFit: "contain", marginBottom: "10px" }}
                     />
                     Создать шаблон для OZON

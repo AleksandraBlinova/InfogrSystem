@@ -6,11 +6,11 @@ const TemplateOzonBasket = ({ handleChangeClickOnUnsplash }) => {
       {" "}
       <div>
         <img
-          src="./templatesOzon/template-basket/БаскетМяч.png"
+          src="./templatesOzon/template-basket/BasketBall.png"
           style={{ width: "100px", height: "130px" }}
           onDoubleClick={() => {
             handleChangeClickOnUnsplash(
-              "./templatesOzon/template-basket/ФонМяч.png",
+              "./templatesOzon/template-basket/BackBall.png",
               "tempOzonBasket"
             );
           }}

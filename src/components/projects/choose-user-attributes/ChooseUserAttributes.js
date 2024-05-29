@@ -190,7 +190,7 @@ const ChooseUserAttributes = () => {
     if (localStorage.getItem("needTemplateMarketPL") == "basketball") {
       localStorage.setItem(
         "linkTempImg",
-        "./templatesOzon/template-basket/ФонМяч.png"
+        "./templatesOzon/template-basket/BackBall.png"
       );
       localStorage.setItem("typeTempImg", "tempOzonBasket");
     }
@@ -564,7 +564,7 @@ const ChooseUserAttributes = () => {
                     {localStorage.getItem("needTemplateMarketPL") ==
                       "basketball" && (
                       <img
-                        src="./БаскетМяч.png"
+                        src="./BasketBall.png"
                         style={{
                           width: "250px",
                           height: "320px",
