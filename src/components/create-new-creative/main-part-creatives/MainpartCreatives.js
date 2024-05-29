@@ -92,7 +92,7 @@ const MainpartCreatives = () => {
             projectsAttributes.forEach((i) => {
               prjs &&
                 prjs.forEach((j) => {
-                  if (i.Id == j.Id) newArr.push(i);
+                  if (i.Id == j.Id && i.CanvasSet) newArr.push(i);
                 });
             });
 
@@ -136,7 +136,7 @@ const MainpartCreatives = () => {
               marginTop: "30px",
             }}
           >
-            Мои проекты
+            Сохраненные проекты
           </Typography>
 
           <Box sx={{ marginTop: "50px" }}>
