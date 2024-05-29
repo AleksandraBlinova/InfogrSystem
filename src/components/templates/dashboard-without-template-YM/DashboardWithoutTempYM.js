@@ -445,7 +445,7 @@ const DashboardWithoutTempYM = () => {
       localStorage.getItem("linkTempImg") != "" &&
       localStorage.getItem("typeTempImg") &&
       localStorage.getItem("typeTempImg") != "" &&
-      !localStorage.getItem("isSavedOpened", "true")
+      localStorage.getItem("isSavedOpened") !== "true"
     ) {
       handleChangeClickOnUnsplash(
         localStorage.getItem("linkTempImg"),
