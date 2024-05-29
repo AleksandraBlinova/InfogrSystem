@@ -65,6 +65,8 @@ const DashboardWithoutTempOzon = () => {
               image: new window.Image(),
               typeofImage: itm.typeofImage,
               fill: itm.fill,
+              fillPriority: itm.fillPriority,
+              fillLinearGradientColorStops: itm.fillLinearGradientColorStops,
               stroke: itm.stroke,
               width: itm.width,
               height: itm.height,
