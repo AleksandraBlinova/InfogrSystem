@@ -69,6 +69,7 @@ const DashboardWithoutTempWB = () => {
               fillLinearGradientColorStops: itm.fillLinearGradientColorStops,
               stroke: itm.stroke,
               width: itm.width,
+              rotation: itm.rotation,
               height: itm.height,
               slideIndex: currentStageIndex,
             };

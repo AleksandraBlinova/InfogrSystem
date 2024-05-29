@@ -68,6 +68,7 @@ const DashboardWithoutTempOzon = () => {
               fillPriority: itm.fillPriority,
               fillLinearGradientColorStops: itm.fillLinearGradientColorStops,
               stroke: itm.stroke,
+              rotation: itm.rotation,
               width: itm.width,
               height: itm.height,
               slideIndex: currentStageIndex,
@@ -527,6 +528,7 @@ const DashboardWithoutTempOzon = () => {
   const [saveStatus, setSaveStatus] = useState(0);
 
   const saveCanvasImage = () => {
+    debugger;
     let pr_attr_id = Number(localStorage.getItem("projectAttributeId"));
 
     const clonedArray = allObjectsOnCURRENTStage.map((a) => ({ ...a }));
