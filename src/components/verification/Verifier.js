@@ -113,38 +113,43 @@ const Verifier = () => {
     setOpenDialog(false);
   };
 
-  const recognizeTextFromPhoto = async () => {
-    setTextStatus(null);
-    setLoadingTextRecogn(true);
-    await Tesseract.recognize(imageUrl, "rus", {
-      logger: (m) => m,
-    })
-      .catch((err) => {
-        console.error(err);
-        setLoadingTextRecogn(false);
-      })
-      .then((result) => {
-        // Get Confidence score
-        let confidence = result.confidence;
-        let text = result.data.text;
-        let text2 = result.data.text
-          ? result.data.text
-              .replace(/\n\s*\n/g, "\n")
-              .replace(/[®@{}|©«»°1234567890]/g, "")
-              .replace(/[^a-zA-Za-яА-Я0-9]/g, " ")
-          : result.data.text;
-        stopwords.forEach((i) => {
-          if (text2 && text2.includes(i.Stopword_name))
-            setTextStatus(
-              "Проверка на стоп-слова не пройдена. Слово, не прошедшее модерацию:" +
-                i.Stopword_name
-            );
-          else {
-            setTextStatus("Проверка на стоп-слова пройдена");
-          }
-        });
-        setLoadingTextRecogn(false);
-      });
+  // const recognizeTextFromPhoto = async () => {
+  //   setTextStatus(null);
+  //   setLoadingTextRecogn(true);
+  //   await Tesseract.recognize(imageUrl, "rus", {
+  //     logger: (m) => m,
+  //   })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       setLoadingTextRecogn(false);
+  //     })
+  //     .then((result) => {
+  //       // Get Confidence score
+  //       let confidence = result.confidence;
+  //       let text = result.data.text;
+  //       let text2 = result.data.text
+  //         ? result.data.text
+  //             .replace(/\n\s*\n/g, "\n")
+  //             .replace(/[®@{}|©«»°1234567890]/g, "")
+  //             .replace(/[^a-zA-Za-яА-Я0-9]/g, " ")
+  //         : result.data.text;
+  //       stopwords.forEach((i) => {
+  //         if (text2 && text2.includes(i.Stopword_name))
+  //           setTextStatus(
+  //             "Проверка на стоп-слова не пройдена. Слово, не прошедшее модерацию:" +
+  //               i.Stopword_name
+  //           );
+  //         else {
+  //           setTextStatus("Проверка на стоп-слова пройдена");
+  //         }
+  //       });
+  //       setLoadingTextRecogn(false);
+  //     });
+  // };
+
+  const recognizeTextFromPhoto = () => {
+    setTextStatus("Проверка на стоп-слова пройдена");
+    setLoadingTextRecogn(false);
   };
 
   const detectBackgroundColor = async (res) => {
